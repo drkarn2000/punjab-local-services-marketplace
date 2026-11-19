@@ -86,7 +86,7 @@ export function Navbar() {
                 ? 'bg-amber-950/95 text-amber-50 border-amber-500'
                 : toast.type === 'error'
                 ? 'bg-rose-950/95 text-rose-50 border-rose-500'
-                : 'bg-slate-900/95 text-white border-blue-500'
+                : 'bg-slate-900/95 text-white border-emerald-500'
             }`}
           >
             <div className="flex items-center gap-2.5">
@@ -104,39 +104,50 @@ export function Navbar() {
         ))}
       </div>
 
-      {/* Main Public Header (Shown on all public & customer routes) */}
+      {/* Main Public Header (Modern Midnight Emerald-Teal Glass Navbar) */}
       {!isAdminRoute && !isProviderRoute && (
-        <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+        <header className="sticky top-0 z-40 bg-gradient-to-r from-[#041418]/95 via-[#092930]/95 to-[#0f1c38]/95 backdrop-blur-xl border-b border-emerald-400/25 shadow-[0_8px_32px_rgba(4,20,24,0.4)] text-white">
+          <div className="w-full px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             {/* Brand Logo */}
             <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-700 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-600/20 group-hover:scale-105 transition">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-400 flex items-center justify-center text-slate-950 shadow-[0_0_20px_rgba(16,185,129,0.45)] group-hover:scale-105 transition">
                 <div className="relative flex items-center justify-center">
-                  <Home className="w-6 h-6 stroke-[2.2]" />
-                  <Zap className="w-3 h-3 text-amber-300 fill-amber-300 absolute -bottom-0.5 -right-1" />
+                  <Home className="w-6 h-6 stroke-[2.3]" />
+                  <Zap className="w-3 h-3 text-slate-950 fill-slate-950 absolute -bottom-0.5 -right-1" />
                 </div>
               </div>
               <div>
-                <div className="text-xl font-extrabold tracking-tight text-slate-900 leading-none">
-                  Punjab <span className="text-blue-700">Services</span>
+                <div className="text-xl font-extrabold tracking-tight text-white leading-none">
+                  Punjab <span className="text-emerald-300">Services</span>
                 </div>
-                <div className="text-[11px] font-medium text-slate-500 tracking-wide mt-0.5">
-                  Local Home & Tech Services
+                <div className="text-[11px] font-medium text-emerald-200/80 tracking-wide mt-0.5">
+                  Local Home &amp; Tech Services
                 </div>
               </div>
             </Link>
 
             {/* Desktop Center Navigation */}
-            <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-700 whitespace-nowrap">
+            <nav className="hidden lg:flex items-center gap-1.5 text-xs xl:text-sm font-bold text-slate-200 whitespace-nowrap bg-white/5 border border-white/10 rounded-full px-2 py-1.5 backdrop-blur-md">
               <Link
                 href="/"
-                className={`py-2 relative transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/'
-                    ? 'text-blue-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-blue-700 after:rounded-full'
-                    : 'hover:text-blue-700'
+                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
+                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
                 }`}
               >
                 {t('nav.home', 'Home')}
+              </Link>
+
+              <Link
+                href="/about"
+                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
+                  pathname === '/about'
+                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
+                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
+                }`}
+              >
+                {t('nav.about', 'About Us')}
               </Link>
 
               {/* Services Dropdown */}
@@ -147,25 +158,25 @@ export function Navbar() {
               >
                 <button
                   onClick={() => router.push('/services')}
-                  className={`flex items-center gap-1 py-2 relative transition whitespace-nowrap ${
+                  className={`flex items-center gap-1 px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                     pathname?.startsWith('/services')
-                      ? 'text-blue-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-blue-700 after:rounded-full'
-                      : 'hover:text-blue-700'
+                      ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
+                      : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
                   }`}
                 >
                   <span>{t('nav.services', 'Services')}</span>
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className="w-3.5 h-3.5" />
                 </button>
 
                 {servicesOpen && (
-                  <div className="absolute left-0 top-full pt-2 w-80 z-50">
-                    <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 p-3 grid gap-1">
+                  <div className="absolute left-0 top-full pt-3 w-[420px] z-50 whitespace-normal">
+                    <div className="bg-[#061c22] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.65)] border border-emerald-400/40 p-3 grid gap-1 text-white">
                       <Link
                         href="/services"
                         onClick={() => setServicesOpen(false)}
-                        className="px-3 py-2 rounded-xl bg-blue-50/70 text-blue-700 font-bold text-xs flex items-center justify-between hover:bg-blue-100/70 transition"
+                        className="px-3 py-2 rounded-xl bg-emerald-400/20 text-emerald-300 font-bold text-xs flex items-center justify-between hover:bg-emerald-400 hover:text-slate-950 transition"
                       >
-                        <span>Browse All 5 Categories & 40 Services</span>
+                        <span>Browse All 5 Categories &amp; 40 Services</span>
                         <span>→</span>
                       </Link>
                       {categories.map((cat) => (
@@ -173,16 +184,16 @@ export function Navbar() {
                           key={cat.id}
                           href={`/services/${cat.slug}`}
                           onClick={() => setServicesOpen(false)}
-                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition group"
+                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/10 transition group"
                         >
-                          <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition">
+                          <div className="w-9 h-9 rounded-lg bg-emerald-400/15 text-emerald-300 flex items-center justify-center shrink-0 group-hover:bg-emerald-400 group-hover:text-slate-950 transition">
                             <Wrench className="w-4 h-4" />
                           </div>
                           <div>
-                            <div className="font-bold text-slate-900 text-sm group-hover:text-blue-700">
+                            <div className="font-bold text-white text-sm group-hover:text-emerald-300">
                               {cat.name[language]}
                             </div>
-                            <div className="text-xs text-slate-500 line-clamp-1">
+                            <div className="text-xs text-slate-300 line-clamp-1">
                               {cat.tagline[language]}
                             </div>
                           </div>
@@ -195,10 +206,10 @@ export function Navbar() {
 
               <Link
                 href="/how-it-works"
-                className={`py-2 relative transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/how-it-works'
-                    ? 'text-blue-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-blue-700 after:rounded-full'
-                    : 'hover:text-blue-700'
+                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
+                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
                 }`}
               >
                 {t('nav.howItWorks', 'How it Works')}
@@ -206,10 +217,10 @@ export function Navbar() {
 
               <Link
                 href="/become-a-professional"
-                className={`py-2 relative transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/become-a-professional'
-                    ? 'text-blue-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-blue-700 after:rounded-full'
-                    : 'hover:text-blue-700'
+                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
+                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
                 }`}
               >
                 {t('nav.forProfessionals', 'For Professionals')}
@@ -217,10 +228,10 @@ export function Navbar() {
 
               <Link
                 href="/offers"
-                className={`py-2 relative transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/offers'
-                    ? 'text-blue-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-blue-700 after:rounded-full'
-                    : 'hover:text-blue-700'
+                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
+                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
                 }`}
               >
                 {t('nav.offers', 'Offers')}
@@ -228,10 +239,10 @@ export function Navbar() {
 
               <Link
                 href="/support"
-                className={`py-2 relative transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/support'
-                    ? 'text-blue-700 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-blue-700 after:rounded-full'
-                    : 'hover:text-blue-700'
+                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
+                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
                 }`}
               >
                 {t('nav.support', 'Support')}
@@ -242,7 +253,7 @@ export function Navbar() {
             <div className="flex items-center gap-2.5 shrink-0">
               <Link
                 href="/search"
-                className="p-2.5 rounded-full text-slate-600 hover:text-blue-700 hover:bg-slate-100 transition"
+                className="p-2.5 rounded-full bg-white/10 border border-white/15 text-emerald-200 hover:text-slate-950 hover:bg-emerald-400 transition"
                 title="Search Services"
               >
                 <Search className="w-4 h-4" />
@@ -252,14 +263,14 @@ export function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setLangOpen(!langOpen)}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-100 hover:bg-slate-200/80 text-slate-800 text-xs font-bold transition border border-slate-200 whitespace-nowrap"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition border border-white/15 whitespace-nowrap"
                 >
-                  <Globe className="w-3.5 h-3.5 text-blue-700" />
+                  <Globe className="w-3.5 h-3.5 text-emerald-300" />
                   <span>{langBadge[language]}</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
+                  <ChevronDown className="w-3.5 h-3.5 text-emerald-200" />
                 </button>
                 {langOpen && (
-                  <div className="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-xl border border-slate-200 py-1.5 z-50">
+                  <div className="absolute right-0 mt-2 w-44 bg-[#061c22]/95 backdrop-blur-xl rounded-xl shadow-2xl border border-emerald-400/35 py-1.5 z-50 text-white">
                     {(
                       [
                         { code: 'en', label: 'English (EN)' },
@@ -273,15 +284,15 @@ export function Navbar() {
                           setLanguage(item.code);
                           setLangOpen(false);
                         }}
-                        className={`w-full text-left px-3.5 py-2 text-xs flex items-center justify-between hover:bg-blue-50 ${
+                        className={`w-full text-left px-3.5 py-2 text-xs flex items-center justify-between hover:bg-white/10 ${
                           language === item.code
-                            ? 'bg-blue-50/70 text-blue-700 font-bold'
-                            : 'text-slate-700 font-medium'
+                            ? 'bg-emerald-400/20 text-emerald-300 font-bold'
+                            : 'text-slate-200 font-medium'
                         }`}
                       >
                         <span>{item.label}</span>
                         {language === item.code && (
-                          <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
                         )}
                       </button>
                     ))}
@@ -293,7 +304,7 @@ export function Navbar() {
               {!isLoggedIn ? (
                 <Link
                   href="/login"
-                  className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full border border-blue-600 text-blue-700 hover:bg-blue-50 text-xs font-bold transition whitespace-nowrap"
+                  className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 text-xs font-extrabold shadow-[0_0_16px_rgba(16,185,129,0.4)] transition whitespace-nowrap"
                 >
                   <User className="w-3.5 h-3.5" />
                   <span>{t('nav.login', 'Login')}</span>
@@ -303,12 +314,12 @@ export function Navbar() {
                   {/* Notifications Bell (Only when logged in) */}
                   <Link
                     href="/account/notifications"
-                    className="relative p-2.5 rounded-full text-slate-600 hover:text-blue-700 hover:bg-slate-100 transition"
+                    className="relative p-2.5 rounded-full bg-white/10 border border-white/15 text-emerald-200 hover:text-white hover:bg-white/20 transition"
                     title="Notifications"
                   >
                     <Bell className="w-4 h-4" />
                     {unreadCount > 0 && (
-                      <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-rose-600 text-white text-[10px] font-bold flex items-center justify-center">
+                      <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center">
                         {unreadCount}
                       </span>
                     )}
@@ -318,18 +329,18 @@ export function Navbar() {
                   <div className="relative">
                     <button
                       onClick={() => setAccountOpen(!accountOpen)}
-                      className="flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full bg-blue-50 hover:bg-blue-100 border border-blue-200 transition whitespace-nowrap"
+                      className="flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-emerald-300/35 transition whitespace-nowrap"
                       title="Customer Account Menu"
                     >
                       <img
                         src={currentCustomer.avatar}
                         alt={currentCustomer.name}
-                        className="w-7 h-7 rounded-full object-cover"
+                        className="w-7 h-7 rounded-full object-cover ring-2 ring-emerald-400/60"
                       />
-                      <span className="text-xs font-bold text-blue-950">
+                      <span className="text-xs font-bold text-white">
                         {currentCustomer.name.split(' ')[0]}
                       </span>
-                      <ChevronDown className="w-3.5 h-3.5 text-blue-700" />
+                      <ChevronDown className="w-3.5 h-3.5 text-emerald-300" />
                     </button>
 
                     {accountOpen && (
@@ -346,7 +357,7 @@ export function Navbar() {
                           <Link
                             href="/account"
                             onClick={() => setAccountOpen(false)}
-                            className="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium"
+                            className="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium"
                           >
                             <LayoutDashboard className="w-4 h-4" />
                             <span>Customer Dashboard</span>
@@ -354,7 +365,7 @@ export function Navbar() {
                           <Link
                             href="/account/bookings"
                             onClick={() => setAccountOpen(false)}
-                            className="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium"
+                            className="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium"
                           >
                             <Calendar className="w-4 h-4" />
                             <span>My Bookings & Estimates</span>
@@ -362,7 +373,7 @@ export function Navbar() {
                           <Link
                             href="/account/addresses"
                             onClick={() => setAccountOpen(false)}
-                            className="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium"
+                            className="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium"
                           >
                             <MapPin className="w-4 h-4" />
                             <span>Saved Addresses</span>
@@ -370,7 +381,7 @@ export function Navbar() {
                           <Link
                             href="/account/invoices"
                             onClick={() => setAccountOpen(false)}
-                            className="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium"
+                            className="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium"
                           >
                             <ShieldCheck className="w-4 h-4" />
                             <span>Payments & Invoices</span>
@@ -396,7 +407,7 @@ export function Navbar() {
               {/* Mobile Hamburger */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100"
+                className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition"
                 aria-label="Open menu"
               >
                 {mobileMenuOpen ? (
@@ -460,7 +471,7 @@ export function Navbar() {
                   <Link
                     href="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex-1 text-center py-2.5 rounded-xl border border-blue-600 text-blue-700 font-bold text-xs"
+                    className="flex-1 text-center py-2.5 rounded-xl border border-emerald-600 text-emerald-700 font-bold text-xs"
                   >
                     Login
                   </Link>
@@ -468,7 +479,7 @@ export function Navbar() {
                   <Link
                     href="/account"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex-1 text-center py-2.5 rounded-xl border border-blue-600 text-blue-700 font-bold text-xs"
+                    className="flex-1 text-center py-2.5 rounded-xl border border-emerald-600 text-emerald-700 font-bold text-xs"
                   >
                     My Account ({currentCustomer.name.split(' ')[0]})
                   </Link>
@@ -476,7 +487,7 @@ export function Navbar() {
                 <Link
                   href="/book"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex-1 text-center py-2.5 rounded-xl bg-blue-700 text-white font-bold text-xs"
+                  className="flex-1 text-center py-2.5 rounded-xl bg-emerald-700 text-white font-bold text-xs"
                 >
                   Book Now
                 </Link>

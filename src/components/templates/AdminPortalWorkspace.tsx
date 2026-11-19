@@ -101,7 +101,7 @@ const PROFILE_META: Record<
       'Unrestricted access across all 22 modules: Operations, KYC Verification, Finance, CMS, Multilingual Translations & System Security.',
   },
   'Operations Manager': {
-    badgeColor: 'from-blue-500 via-indigo-500 to-cyan-500',
+    badgeColor: 'from-emerald-500 via-teal-500 to-cyan-500',
     tagline: 'Live Dispatch, Bookings & Service Operations',
     focusDesc:
       'Focused workspace for managing live bookings, customers, providers, categories, subcategories, services, and Punjab city coverage.',
@@ -125,7 +125,7 @@ const PROFILE_META: Record<
       'Focused workspace for resolving customer complaints, estimate disputes, booking issues, refund requests, and review moderation.',
   },
   'Content Manager': {
-    badgeColor: 'from-cyan-500 via-blue-600 to-indigo-600',
+    badgeColor: 'from-cyan-500 via-emerald-600 to-teal-600',
     tagline: 'CMS, Banners, Local SEO & Trilingual Dictionary',
     focusDesc:
       'Focused workspace for managing homepage sections, promotional banners, city SEO landing pages, and English/Punjabi/Hindi translations.',
@@ -481,9 +481,9 @@ export function AdminPortalWorkspace({
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0b132b] via-[#111d42] to-[#1b2a5e] text-slate-900 pb-16">
+    <div className="min-h-screen bg-gradient-to-br from-[#0b132b] via-[#092930] to-[#0f1c38] text-slate-900 pb-16">
       {/* Glowing Admin Top Command Bar */}
-      <div className="bg-gradient-to-r from-[#060d21] via-[#0c1b40] to-[#152759] text-white border-b border-blue-500/30 shadow-[0_8px_32px_rgba(37,99,235,0.28)] sticky top-0 z-40 backdrop-blur-xl">
+      <div className="bg-gradient-to-r from-[#041418] via-[#092930] to-[#0f1c38] text-white border-b border-emerald-500/30 shadow-[0_8px_32px_rgba(37,99,235,0.28)] sticky top-0 z-40 backdrop-blur-xl">
         <div className="w-full px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-center gap-3">
           {/* Controls: Search + Active Role Switcher + Portal Links */}
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -497,11 +497,11 @@ export function AdminPortalWorkspace({
                   setSearchQuery(e.target.value);
                 }}
                 placeholder="Filter records..."
-                className="bg-slate-900/90 border border-blue-400/40 rounded-xl pl-8 pr-3 py-2 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:border-cyan-400 w-44 shadow-inner"
+                className="bg-slate-900/90 border border-emerald-400/40 rounded-xl pl-8 pr-3 py-2 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:border-cyan-400 w-44 shadow-inner"
               />
             </div>
 
-            <div className="flex items-center gap-2 bg-gradient-to-r from-blue-950/90 to-indigo-950/90 border border-cyan-400/40 rounded-xl px-3.5 py-2 shadow-[0_0_18px_rgba(6,182,212,0.2)]">
+            <div className="flex items-center gap-2 bg-gradient-to-r from-emerald-950/90 to-teal-950/90 border border-cyan-400/40 rounded-xl px-3.5 py-2 shadow-[0_0_18px_rgba(6,182,212,0.2)]">
               <Shield className="w-4 h-4 text-amber-400 shrink-0" />
               <div className="text-xs flex items-center gap-1.5">
                 <span className="text-cyan-300 text-[11px] font-extrabold uppercase tracking-wider">
@@ -525,13 +525,13 @@ export function AdminPortalWorkspace({
 
             <Link
               href="/provider/dashboard"
-              className="text-xs font-bold bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-4 py-2.5 rounded-xl shadow-[0_0_16px_rgba(124,58,237,0.45)] transition"
+              className="text-xs font-bold bg-gradient-to-r from-purple-600 to-teal-600 hover:from-purple-500 hover:to-teal-500 text-white px-4 py-2.5 rounded-xl shadow-[0_0_16px_rgba(124,58,237,0.45)] transition"
             >
               Provider Portal →
             </Link>
             <Link
               href="/"
-              className="text-xs font-bold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-4 py-2.5 rounded-xl shadow-[0_0_16px_rgba(6,182,212,0.45)] transition"
+              className="text-xs font-bold bg-gradient-to-r from-cyan-500 to-emerald-600 hover:from-cyan-400 hover:to-emerald-500 text-white px-4 py-2.5 rounded-xl shadow-[0_0_16px_rgba(6,182,212,0.45)] transition"
             >
               Customer Website →
             </Link>
@@ -543,15 +543,15 @@ export function AdminPortalWorkspace({
       <div className="w-full px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Sidebar Navigation (Dynamically filtered by Active Permission Profile!) */}
         <aside className="lg:col-span-3 space-y-4">
-          <div className="bg-gradient-to-b from-[#111e42] to-[#0d1736] text-white rounded-3xl border border-blue-400/30 shadow-[0_12px_36px_rgba(0,0,0,0.45)] p-4 space-y-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto">
-            <div className="p-3 rounded-2xl bg-gradient-to-r from-blue-600/25 to-indigo-600/25 border border-blue-400/30">
+          <div className="bg-gradient-to-b from-[#111e42] to-[#0d1736] text-white rounded-3xl border border-emerald-400/30 shadow-[0_12px_36px_rgba(0,0,0,0.45)] p-4 space-y-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto">
+            <div className="p-3 rounded-2xl bg-gradient-to-r from-emerald-600/25 to-teal-600/25 border border-emerald-400/30">
               <div className="text-[10px] font-extrabold uppercase tracking-wider text-cyan-300">
                 Active Role Scope
               </div>
               <div className="text-sm font-extrabold text-white mt-0.5">
                 {activeAdminProfile}
               </div>
-              <div className="text-[11px] text-blue-200 mt-0.5">
+              <div className="text-[11px] text-emerald-200 mt-0.5">
                 Showing {allowedSections.length} authorized modules
               </div>
             </div>
@@ -576,7 +576,7 @@ export function AdminPortalWorkspace({
                           href={item.href}
                           className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
                             active
-                              ? 'bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.55)] translate-x-1'
+                              ? 'bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.55)] translate-x-1'
                               : 'text-slate-200 hover:bg-white/10 hover:text-white'
                           }`}
                         >
@@ -628,7 +628,7 @@ export function AdminPortalWorkspace({
               <div className="mt-6 flex flex-wrap justify-center gap-3">
                 <button
                   onClick={() => handleProfileSwitch('Super Admin')}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm shadow-lg"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-sm shadow-lg"
                 >
                   Switch to Super Admin (Full Access)
                 </button>
@@ -656,7 +656,7 @@ export function AdminPortalWorkspace({
                         {activeAdminProfile} Mode
                       </span>
                       <span className="text-cyan-300">{profileInfo.tagline}</span>
-                      <span className="text-blue-400">•</span>
+                      <span className="text-emerald-400">•</span>
                       <span className="text-white">{profileInfo.focusDesc}</span>
                     </div>
                   </div>
@@ -669,14 +669,14 @@ export function AdminPortalWorkspace({
                         value: totalCustomers,
                         sub: 'Click to manage customers →',
                         href: '/admin/customers',
-                        grad: 'from-blue-600 via-blue-700 to-indigo-800',
+                        grad: 'from-emerald-600 via-emerald-700 to-teal-800',
                       },
                       {
                         label: 'Total Providers',
                         value: totalProviders,
                         sub: 'Click to view directory →',
                         href: '/admin/providers',
-                        grad: 'from-indigo-600 via-purple-700 to-violet-800',
+                        grad: 'from-teal-600 via-purple-700 to-violet-800',
                       },
                       {
                         label: 'Verified Providers',
@@ -697,14 +697,14 @@ export function AdminPortalWorkspace({
                         value: totalBookings,
                         sub: 'Open Master Bookings →',
                         href: '/admin/bookings',
-                        grad: 'from-cyan-600 via-blue-600 to-indigo-700',
+                        grad: 'from-cyan-600 via-emerald-600 to-teal-700',
                       },
                       {
                         label: "Today's Bookings",
                         value: todaysBookings,
                         sub: 'View today schedule →',
                         href: '/admin/bookings',
-                        grad: 'from-sky-500 via-blue-600 to-blue-800',
+                        grad: 'from-teal-500 via-emerald-600 to-emerald-800',
                       },
                       {
                         label: 'Active Jobs in Field',
@@ -739,7 +739,7 @@ export function AdminPortalWorkspace({
                         value: `₹${totalPlatformCommission.toLocaleString('en-IN')}`,
                         sub: 'Configure rates →',
                         href: '/admin/pricing',
-                        grad: 'from-blue-600 via-indigo-600 to-purple-800',
+                        grad: 'from-emerald-600 via-teal-600 to-purple-800',
                       },
                       {
                         label: 'Open Support Tickets',
@@ -772,7 +772,7 @@ export function AdminPortalWorkspace({
 
                   {/* 6 Visual Charts Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                    <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                       <div className="flex items-center justify-between mb-4">
                         <div>
                           <h3 className="font-extrabold text-sm text-slate-900">
@@ -784,15 +784,15 @@ export function AdminPortalWorkspace({
                         </div>
                         <Link
                           href="/admin/categories"
-                          className="text-xs font-bold text-blue-600 hover:underline"
+                          className="text-xs font-bold text-emerald-600 hover:underline"
                         >
                           Manage Categories →
                         </Link>
                       </div>
                       <div className="space-y-3">
                         {[
-                          { name: 'Electrician', pct: 34, count: 142, color: 'from-blue-500 to-indigo-600' },
-                          { name: 'Plumber', pct: 24, count: 98, color: 'from-cyan-500 to-blue-600' },
+                          { name: 'Electrician', pct: 34, count: 142, color: 'from-emerald-500 to-teal-600' },
+                          { name: 'Plumber', pct: 24, count: 98, color: 'from-cyan-500 to-emerald-600' },
                           {
                             name: 'Computer & Laptop Repair',
                             pct: 18,
@@ -807,7 +807,7 @@ export function AdminPortalWorkspace({
                             key={row.name}
                             className="block group"
                           >
-                            <div className="flex justify-between text-xs font-bold text-slate-700 group-hover:text-blue-700 mb-1">
+                            <div className="flex justify-between text-xs font-bold text-slate-700 group-hover:text-emerald-700 mb-1">
                               <span>{row.name}</span>
                               <span>
                                 {row.count} bookings ({row.pct}%)
@@ -824,7 +824,7 @@ export function AdminPortalWorkspace({
                       </div>
                     </div>
 
-                    <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                    <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                       <div className="flex items-center justify-between mb-4">
                         <div>
                           <h3 className="font-extrabold text-sm text-slate-900">
@@ -836,7 +836,7 @@ export function AdminPortalWorkspace({
                         </div>
                         <Link
                           href="/admin/cities"
-                          className="text-xs font-bold text-blue-600 hover:underline"
+                          className="text-xs font-bold text-emerald-600 hover:underline"
                         >
                           Manage Cities →
                         </Link>
@@ -848,7 +848,7 @@ export function AdminPortalWorkspace({
                             pct: 46,
                             count: 192,
                             gmv: '₹1,48,500',
-                            color: 'from-blue-600 to-cyan-500',
+                            color: 'from-emerald-600 to-cyan-500',
                           },
                           {
                             city: 'Mohali',
@@ -868,11 +868,11 @@ export function AdminPortalWorkspace({
                           <Link
                             href="/admin/cities"
                             key={item.city}
-                            className="block p-3 rounded-xl bg-gradient-to-r from-blue-50/80 to-indigo-50/50 border border-blue-200/70 hover:border-blue-400 transition"
+                            className="block p-3 rounded-xl bg-gradient-to-r from-emerald-50/80 to-teal-50/50 border border-emerald-200/70 hover:border-emerald-400 transition"
                           >
                             <div className="flex justify-between items-center text-xs font-extrabold text-slate-800 mb-1.5">
                               <span>{item.city}</span>
-                              <span className="text-blue-700">
+                              <span className="text-emerald-700">
                                 {item.count} jobs • {item.gmv}
                               </span>
                             </div>
@@ -890,14 +890,14 @@ export function AdminPortalWorkspace({
 
                   {/* Recent Activity Widgets */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                    <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                    <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="font-extrabold text-sm text-slate-900">
                           Recent Bookings (Click to Inspect)
                         </h3>
                         <Link
                           href="/admin/bookings"
-                          className="text-xs font-bold text-blue-600 hover:underline"
+                          className="text-xs font-bold text-emerald-600 hover:underline"
                         >
                           Open Master Bookings →
                         </Link>
@@ -907,7 +907,7 @@ export function AdminPortalWorkspace({
                           <Link
                             href="/admin/bookings"
                             key={b.id}
-                            className="p-3 rounded-xl bg-gradient-to-r from-slate-50 to-blue-50/60 border border-blue-100 hover:border-blue-400 flex items-center justify-between gap-2 transition"
+                            className="p-3 rounded-xl bg-gradient-to-r from-slate-50 to-emerald-50/60 border border-emerald-100 hover:border-emerald-400 flex items-center justify-between gap-2 transition"
                           >
                             <div>
                               <div className="text-xs font-extrabold text-slate-900">
@@ -917,7 +917,7 @@ export function AdminPortalWorkspace({
                                 {b.customerName} → {b.providerName} ({b.address.city})
                               </div>
                             </div>
-                            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-600 text-white shadow-sm">
+                            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-600 text-white shadow-sm">
                               {b.status}
                             </span>
                           </Link>
@@ -925,14 +925,14 @@ export function AdminPortalWorkspace({
                       </div>
                     </div>
 
-                    <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                    <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="font-extrabold text-sm text-slate-900">
                           Pending Provider Verifications
                         </h3>
                         <Link
                           href="/admin/verification"
-                          className="text-xs font-bold text-blue-600 hover:underline"
+                          className="text-xs font-bold text-emerald-600 hover:underline"
                         >
                           Open KYC Queue →
                         </Link>
@@ -970,7 +970,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'customers' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
                       <h2 className="text-lg font-extrabold text-slate-900">
                         Customer Directory & Account Governance
@@ -1000,11 +1000,11 @@ export function AdminPortalWorkspace({
                     </div>
                   </div>
 
-                  <div className="bg-white rounded-2xl border border-blue-200 overflow-hidden shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-lg">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse">
                         <thead>
-                          <tr className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white text-[11px] font-extrabold uppercase">
+                          <tr className="bg-gradient-to-r from-emerald-900 to-teal-900 text-white text-[11px] font-extrabold uppercase">
                             <th className="p-3.5">Customer</th>
                             <th className="p-3.5">City</th>
                             <th className="p-3.5">Contact (Demo)</th>
@@ -1022,7 +1022,7 @@ export function AdminPortalWorkspace({
                                   c.phone.toLowerCase().includes(searchQuery.toLowerCase()))
                             )
                             .map((cust) => (
-                              <tr key={cust.id} className="hover:bg-blue-50/50">
+                              <tr key={cust.id} className="hover:bg-emerald-50/50">
                                 <td className="p-3.5 font-bold text-slate-900">
                                   {cust.name}
                                   <div className="text-[11px] font-normal text-slate-500">
@@ -1036,7 +1036,7 @@ export function AdminPortalWorkspace({
                                   <div>{cust.phone}</div>
                                   <div className="text-[11px] text-slate-400">{cust.email}</div>
                                 </td>
-                                <td className="p-3.5 font-bold text-blue-700">
+                                <td className="p-3.5 font-bold text-emerald-700">
                                   {cust.totalBookings} bookings
                                 </td>
                                 <td className="p-3.5">
@@ -1053,7 +1053,7 @@ export function AdminPortalWorkspace({
                                 <td className="p-3.5 text-right space-x-2">
                                   <button
                                     onClick={() => setSelectedCustomerId(cust.id)}
-                                    className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold shadow-sm"
+                                    className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold shadow-sm"
                                   >
                                     Inspect 360°
                                   </button>
@@ -1090,7 +1090,7 @@ export function AdminPortalWorkspace({
                   </div>
 
                   {selectedCustomerId && (
-                    <div className="bg-white rounded-2xl border-2 border-blue-400 p-5 shadow-xl space-y-4">
+                    <div className="bg-white rounded-2xl border-2 border-emerald-400 p-5 shadow-xl space-y-4">
                       {(() => {
                         const cust = customers.find((c) => c.id === selectedCustomerId);
                         if (!cust) return null;
@@ -1100,7 +1100,7 @@ export function AdminPortalWorkspace({
                           <>
                             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
                               <div>
-                                <span className="text-[11px] font-extrabold uppercase text-blue-600">
+                                <span className="text-[11px] font-extrabold uppercase text-emerald-600">
                                   Customer 360° Profile & Ledger
                                 </span>
                                 <h3 className="font-extrabold text-base text-slate-900">
@@ -1115,8 +1115,8 @@ export function AdminPortalWorkspace({
                               </button>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                              <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200">
-                                <div className="text-xs font-extrabold text-blue-900 mb-2">
+                              <div className="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200">
+                                <div className="text-xs font-extrabold text-emerald-900 mb-2">
                                   Saved Addresses
                                 </div>
                                 {cust.addresses.map((addr) => (
@@ -1167,7 +1167,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'providers' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
                       <h2 className="text-lg font-extrabold text-slate-900">
                         Service Provider Directory (Individual & Business)
@@ -1211,11 +1211,11 @@ export function AdminPortalWorkspace({
                     </div>
                   </div>
 
-                  <div className="bg-white rounded-2xl border border-blue-200 overflow-hidden shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-lg">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse">
                         <thead>
-                          <tr className="bg-gradient-to-r from-indigo-900 to-blue-900 text-white text-[11px] font-extrabold uppercase">
+                          <tr className="bg-gradient-to-r from-teal-900 to-emerald-900 text-white text-[11px] font-extrabold uppercase">
                             <th className="p-3.5">Provider</th>
                             <th className="p-3.5">Type</th>
                             <th className="p-3.5">Category & City</th>
@@ -1235,13 +1235,13 @@ export function AdminPortalWorkspace({
                                 (categoryFilter === 'all' || p.categorySlug === categoryFilter)
                             )
                             .map((prov) => (
-                              <tr key={prov.id} className="hover:bg-indigo-50/40">
+                              <tr key={prov.id} className="hover:bg-teal-50/40">
                                 <td className="p-3.5 font-bold text-slate-900">
                                   <div className="flex items-center gap-2.5">
                                     <img
                                       src={prov.avatar}
                                       alt={prov.name}
-                                      className="w-9 h-9 rounded-xl object-cover ring-2 ring-blue-200"
+                                      className="w-9 h-9 rounded-xl object-cover ring-2 ring-emerald-200"
                                     />
                                     <div>
                                       <div>{prov.name}</div>
@@ -1256,7 +1256,7 @@ export function AdminPortalWorkspace({
                                     className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold capitalize ${
                                       prov.providerType === 'business'
                                         ? 'bg-purple-100 text-purple-800'
-                                        : 'bg-blue-100 text-blue-800'
+                                        : 'bg-emerald-100 text-emerald-800'
                                     }`}
                                   >
                                     {prov.providerType}
@@ -1275,7 +1275,7 @@ export function AdminPortalWorkspace({
                                     {prov.completedJobs} jobs done
                                   </div>
                                 </td>
-                                <td className="p-3.5 font-extrabold text-blue-700">
+                                <td className="p-3.5 font-extrabold text-emerald-700">
                                   ₹{prov.visitingCharge}
                                 </td>
                                 <td className="p-3.5">
@@ -1292,7 +1292,7 @@ export function AdminPortalWorkspace({
                                 <td className="p-3.5 text-right space-x-1.5">
                                   <button
                                     onClick={() => setSelectedProviderDetailId(prov.id)}
-                                    className="px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold"
+                                    className="px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold"
                                   >
                                     Dossier
                                   </button>
@@ -1347,8 +1347,8 @@ export function AdminPortalWorkspace({
                           onClick={() => setSelectedProviderId(prov.id)}
                           className={`w-full text-left p-4 rounded-2xl border-2 transition-all ${
                             selectedProviderId === prov.id
-                              ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white border-cyan-400 shadow-[0_0_24px_rgba(59,130,246,0.5)]'
-                              : 'bg-white border-slate-200 hover:border-blue-400 text-slate-900'
+                              ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white border-cyan-400 shadow-[0_0_24px_rgba(59,130,246,0.5)]'
+                              : 'bg-white border-slate-200 hover:border-emerald-400 text-slate-900'
                           }`}
                         >
                           <div className="flex items-center justify-between">
@@ -1368,7 +1368,7 @@ export function AdminPortalWorkspace({
                           <div
                             className={`text-xs mt-1 capitalize ${
                               selectedProviderId === prov.id
-                                ? 'text-blue-100'
+                                ? 'text-emerald-100'
                                 : 'text-slate-500'
                             }`}
                           >
@@ -1383,13 +1383,13 @@ export function AdminPortalWorkspace({
                         const prov =
                           providers.find((p) => p.id === selectedProviderId) || providers[0];
                         return (
-                          <div className="bg-white rounded-3xl border border-blue-200 p-6 shadow-xl space-y-5">
+                          <div className="bg-white rounded-3xl border border-emerald-200 p-6 shadow-xl space-y-5">
                             <div className="flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
                               <div className="flex items-center gap-3.5">
                                 <img
                                   src={prov.avatar}
                                   alt={prov.name}
-                                  className="w-16 h-16 rounded-2xl object-cover ring-4 ring-blue-100"
+                                  className="w-16 h-16 rounded-2xl object-cover ring-4 ring-emerald-100"
                                 />
                                 <div>
                                   <h3 className="text-lg font-extrabold text-slate-900">
@@ -1398,7 +1398,7 @@ export function AdminPortalWorkspace({
                                   <p className="text-xs text-slate-500 capitalize">
                                     {prov.categoryName} • {prov.cityName} • {prov.experienceYears} Years Exp ({prov.providerType})
                                   </p>
-                                  <span className="inline-block mt-1.5 px-3 py-0.5 rounded-full text-xs font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                                  <span className="inline-block mt-1.5 px-3 py-0.5 rounded-full text-xs font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
                                     Status: {prov.verificationStatus}
                                   </span>
                                 </div>
@@ -1406,14 +1406,14 @@ export function AdminPortalWorkspace({
                             </div>
 
                             <div>
-                              <h4 className="text-xs font-extrabold uppercase tracking-wider text-blue-700 mb-2.5">
+                              <h4 className="text-xs font-extrabold uppercase tracking-wider text-emerald-700 mb-2.5">
                                 Submitted KYC & Trade Documents ({prov.documents.length})
                               </h4>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                 {prov.documents.map((doc) => (
                                   <div
                                     key={doc.id}
-                                    className="p-3 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 flex items-center justify-between"
+                                    className="p-3 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 flex items-center justify-between"
                                   >
                                     <div>
                                       <div className="text-xs font-bold text-slate-900">
@@ -1432,7 +1432,7 @@ export function AdminPortalWorkspace({
                             </div>
 
                             <div>
-                              <h4 className="text-xs font-extrabold uppercase tracking-wider text-blue-700 mb-2.5">
+                              <h4 className="text-xs font-extrabold uppercase tracking-wider text-emerald-700 mb-2.5">
                                 Mandatory Compliance Checklist
                               </h4>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
@@ -1457,7 +1457,7 @@ export function AdminPortalWorkspace({
                                           [item.key]: e.target.checked,
                                         }))
                                       }
-                                      className="rounded text-blue-600"
+                                      className="rounded text-emerald-600"
                                     />
                                     <span className="font-semibold text-slate-800">
                                       {item.label}
@@ -1522,7 +1522,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'categories' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                     <h2 className="text-lg font-extrabold text-slate-900">
                       5 Primary Marketplace Service Categories Studio
                     </h2>
@@ -1534,8 +1534,8 @@ export function AdminPortalWorkspace({
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {categories.map((cat, idx) => {
                       const cardGrads = [
-                        'from-blue-600 to-indigo-700',
-                        'from-cyan-600 to-blue-700',
+                        'from-emerald-600 to-teal-700',
+                        'from-cyan-600 to-emerald-700',
                         'from-amber-500 to-orange-600',
                         'from-violet-600 to-purple-700',
                         'from-emerald-500 to-teal-700',
@@ -1543,7 +1543,7 @@ export function AdminPortalWorkspace({
                       return (
                         <div
                           key={cat.id}
-                          className="bg-white rounded-3xl border border-blue-200 overflow-hidden shadow-lg flex flex-col justify-between"
+                          className="bg-white rounded-3xl border border-emerald-200 overflow-hidden shadow-lg flex flex-col justify-between"
                         >
                           <div
                             className={`p-4 text-white bg-gradient-to-r ${
@@ -1573,8 +1573,8 @@ export function AdminPortalWorkspace({
                           <div className="p-4 space-y-3 text-xs">
                             <p className="text-slate-600">{cat.tagline.en}</p>
                             <div className="grid grid-cols-2 gap-2">
-                              <div className="p-2.5 rounded-xl bg-blue-50 border border-blue-200">
-                                <label className="text-[10px] font-bold text-blue-700 block">
+                              <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                                <label className="text-[10px] font-bold text-emerald-700 block">
                                   Base Visiting Fee (₹)
                                 </label>
                                 <input
@@ -1588,7 +1588,7 @@ export function AdminPortalWorkspace({
                                       )
                                     );
                                   }}
-                                  className="w-full mt-1 px-2 py-1 rounded bg-white border border-blue-300 font-extrabold text-slate-900"
+                                  className="w-full mt-1 px-2 py-1 rounded bg-white border border-emerald-300 font-extrabold text-slate-900"
                                 />
                               </div>
                               <div className="p-2.5 rounded-xl bg-purple-50 border border-purple-200">
@@ -1621,7 +1621,7 @@ export function AdminPortalWorkspace({
                                   );
                                   showToast(`Toggled status for ${cat.name.en}`, 'info');
                                 }}
-                                className="flex-1 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold"
+                                className="flex-1 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold"
                               >
                                 {cat.active ? 'Archive Category' : 'Activate Category'}
                               </button>
@@ -1645,7 +1645,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'subcategories' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                     <h2 className="text-lg font-extrabold text-slate-900">
                       40 Specialized Subcategories & Local SEO Directory
                     </h2>
@@ -1655,8 +1655,8 @@ export function AdminPortalWorkspace({
                   </div>
 
                   {/* Add New Subcategory Card */}
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg space-y-3">
-                    <h3 className="font-extrabold text-sm text-blue-900">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-3">
+                    <h3 className="font-extrabold text-sm text-emerald-900">
                       + Create New Subcategory Page
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
@@ -1732,7 +1732,7 @@ export function AdminPortalWorkspace({
                           setNewSubcatName('');
                           showToast(`Published new subcategory "${newSubcatName}"`, 'success');
                         }}
-                        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold shadow-md"
+                        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold shadow-md"
                       >
                         + Add Subcategory
                       </button>
@@ -1740,7 +1740,7 @@ export function AdminPortalWorkspace({
                   </div>
 
                   {/* Filterable Subcategories Table */}
-                  <div className="bg-white rounded-2xl border border-blue-200 overflow-hidden shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-lg">
                     <div className="p-4 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
                       <span className="text-xs font-extrabold text-slate-700">
                         Showing {subcategories.length} Subcategories
@@ -1761,7 +1761,7 @@ export function AdminPortalWorkspace({
                     <div className="overflow-x-auto max-h-[480px]">
                       <table className="w-full text-left border-collapse text-xs">
                         <thead>
-                          <tr className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white text-[11px] font-extrabold uppercase">
+                          <tr className="bg-gradient-to-r from-emerald-900 to-teal-900 text-white text-[11px] font-extrabold uppercase">
                             <th className="p-3.5">Subcategory (EN / PA / HI)</th>
                             <th className="p-3.5">Parent Category</th>
                             <th className="p-3.5">SEO Route</th>
@@ -1776,7 +1776,7 @@ export function AdminPortalWorkspace({
                                 categoryFilter === 'all' || s.categorySlug === categoryFilter
                             )
                             .map((sub) => (
-                              <tr key={sub.id} className="hover:bg-blue-50/50">
+                              <tr key={sub.id} className="hover:bg-emerald-50/50">
                                 <td className="p-3.5">
                                   <div className="font-extrabold text-slate-900">
                                     {sub.name.en}
@@ -1785,7 +1785,7 @@ export function AdminPortalWorkspace({
                                     {sub.name.pa} • {sub.name.hi}
                                   </div>
                                 </td>
-                                <td className="p-3.5 capitalize font-bold text-indigo-700">
+                                <td className="p-3.5 capitalize font-bold text-teal-700">
                                   {sub.categorySlug}
                                 </td>
                                 <td className="p-3.5 font-mono text-[11px] text-slate-500">
@@ -1797,7 +1797,7 @@ export function AdminPortalWorkspace({
                                 <td className="p-3.5 text-right space-x-2">
                                   <Link
                                     href={`/services/${sub.categorySlug}/${sub.slug}`}
-                                    className="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800 font-bold"
+                                    className="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold"
                                   >
                                     Open Page →
                                   </Link>
@@ -1833,7 +1833,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'services' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                     <h2 className="text-lg font-extrabold text-slate-900">
                       Individual Service Rate Cards, Visiting Fees & Duration Matrix
                     </h2>
@@ -1843,8 +1843,8 @@ export function AdminPortalWorkspace({
                   </div>
 
                   {/* Add New Service Line-Item to any Subcategory */}
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg space-y-3">
-                    <h3 className="font-extrabold text-sm text-indigo-900">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-3">
+                    <h3 className="font-extrabold text-sm text-teal-900">
                       + Add New Service Package / Rate Card Option
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
@@ -1910,11 +1910,11 @@ export function AdminPortalWorkspace({
                     {subcategories.slice(0, 10).map((sub) => (
                       <div
                         key={sub.id}
-                        className="bg-white rounded-2xl border border-blue-200 p-4 shadow-md space-y-2.5"
+                        className="bg-white rounded-2xl border border-emerald-200 p-4 shadow-md space-y-2.5"
                       >
                         <div className="flex items-center justify-between border-b border-slate-100 pb-2">
                           <div>
-                            <span className="text-[10px] font-extrabold uppercase text-indigo-600">
+                            <span className="text-[10px] font-extrabold uppercase text-teal-600">
                               {sub.categorySlug}
                             </span>
                             <h4 className="text-sm font-extrabold text-slate-900">
@@ -1937,7 +1937,7 @@ export function AdminPortalWorkspace({
                                   Duration: {opt.duration} • Mohali, Chandigarh, Hoshiarpur
                                 </div>
                               </div>
-                              <span className="font-extrabold text-blue-700">
+                              <span className="font-extrabold text-emerald-700">
                                 ₹{opt.price}
                               </span>
                             </div>
@@ -1954,7 +1954,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'cities' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                     <h2 className="text-lg font-extrabold text-slate-900">
                       Punjab Launch Cities Command Center (Mohali • Chandigarh • Hoshiarpur)
                     </h2>
@@ -1966,14 +1966,14 @@ export function AdminPortalWorkspace({
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     {cities.map((city, i) => {
                       const cityGrads = [
-                        'from-blue-600 to-indigo-800',
                         'from-emerald-600 to-teal-800',
-                        'from-purple-600 to-indigo-800',
+                        'from-emerald-600 to-teal-800',
+                        'from-purple-600 to-teal-800',
                       ];
                       return (
                         <div
                           key={city.id}
-                          className="bg-white rounded-3xl border border-blue-200 overflow-hidden shadow-xl flex flex-col justify-between"
+                          className="bg-white rounded-3xl border border-emerald-200 overflow-hidden shadow-xl flex flex-col justify-between"
                         >
                           <div
                             className={`p-5 text-white bg-gradient-to-br ${
@@ -2007,9 +2007,9 @@ export function AdminPortalWorkspace({
                           <div className="p-5 space-y-3 text-xs">
                             <p className="text-slate-600">{city.tagline}</p>
                             <div className="grid grid-cols-2 gap-2">
-                              <div className="p-2.5 rounded-xl bg-blue-50 border border-blue-100">
+                              <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-100">
                                 <div className="text-[10px] text-slate-500">Verified Pros</div>
-                                <div className="text-base font-extrabold text-blue-800">
+                                <div className="text-base font-extrabold text-emerald-800">
                                   {city.providerCount}
                                 </div>
                               </div>
@@ -2023,13 +2023,13 @@ export function AdminPortalWorkspace({
                             <div className="pt-2 flex items-center justify-between">
                               <Link
                                 href="/admin/service-areas"
-                                className="font-bold text-indigo-600 hover:underline"
+                                className="font-bold text-teal-600 hover:underline"
                               >
                                 Manage Sectors →
                               </Link>
                               <Link
                                 href={`/${city.slug}`}
-                                className="px-3 py-1.5 rounded-xl bg-blue-600 text-white font-bold"
+                                className="px-3 py-1.5 rounded-xl bg-emerald-600 text-white font-bold"
                               >
                                 Open City Hub →
                               </Link>
@@ -2047,7 +2047,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'service-areas' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                     <h2 className="text-lg font-extrabold text-slate-900">
                       Hyperlocal Sector, Phase & Locality Coverage Matrix
                     </h2>
@@ -2057,7 +2057,7 @@ export function AdminPortalWorkspace({
                   </div>
 
                   {/* Add New Sector / Locality */}
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                     <h3 className="font-extrabold text-sm text-slate-900 mb-3">
                       + Add New Sector / Locality to Serviceable Zone
                     </h3>
@@ -2096,7 +2096,7 @@ export function AdminPortalWorkspace({
                             'success'
                           );
                         }}
-                        className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-extrabold shadow-md"
+                        className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-extrabold shadow-md"
                       >
                         + Add Service Locality
                       </button>
@@ -2108,7 +2108,7 @@ export function AdminPortalWorkspace({
                     {cities.map((city) => (
                       <div
                         key={city.id}
-                        className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg space-y-3"
+                        className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-3"
                       >
                         <div className="flex items-center justify-between">
                           <h3 className="text-base font-extrabold text-slate-900">
@@ -2122,9 +2122,9 @@ export function AdminPortalWorkspace({
                           {city.localities.map((loc) => (
                             <div
                               key={loc}
-                              className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 text-xs font-bold text-blue-900 flex items-center gap-2"
+                              className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 text-xs font-bold text-emerald-900 flex items-center gap-2"
                             >
-                              <MapPin className="w-3.5 h-3.5 text-blue-600" />
+                              <MapPin className="w-3.5 h-3.5 text-emerald-600" />
                               <span>{loc}</span>
                               <button
                                 onClick={() => {
@@ -2159,7 +2159,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'bookings' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
                       <h2 className="text-lg font-extrabold text-slate-900">
                         Master Booking Operations & 12-Step Lifecycle Control
@@ -2224,11 +2224,11 @@ export function AdminPortalWorkspace({
                     </div>
                   </div>
 
-                  <div className="bg-white rounded-2xl border border-blue-200 overflow-hidden shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-lg">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse text-xs">
                         <thead>
-                          <tr className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white text-[11px] font-extrabold uppercase">
+                          <tr className="bg-gradient-to-r from-emerald-900 to-teal-900 text-white text-[11px] font-extrabold uppercase">
                             <th className="p-3.5">Booking ID</th>
                             <th className="p-3.5">Service & City</th>
                             <th className="p-3.5">Customer → Provider</th>
@@ -2246,8 +2246,8 @@ export function AdminPortalWorkspace({
                                 (cityFilter === 'all' || b.address.citySlug === cityFilter)
                             )
                             .map((b) => (
-                              <tr key={b.id} className="hover:bg-blue-50/50">
-                                <td className="p-3.5 font-extrabold text-blue-700">{b.id}</td>
+                              <tr key={b.id} className="hover:bg-emerald-50/50">
+                                <td className="p-3.5 font-extrabold text-emerald-700">{b.id}</td>
                                 <td className="p-3.5">
                                   <div className="font-bold text-slate-900">
                                     {b.subcategoryName}
@@ -2277,14 +2277,14 @@ export function AdminPortalWorkspace({
                                   </div>
                                 </td>
                                 <td className="p-3.5">
-                                  <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-100 text-blue-800">
+                                  <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">
                                     {b.status}
                                   </span>
                                 </td>
                                 <td className="p-3.5 text-right space-x-2">
                                   <button
                                     onClick={() => setSelectedBookingId(b.id)}
-                                    className="px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold"
+                                    className="px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold"
                                   >
                                     Inspect
                                   </button>
@@ -2316,7 +2316,7 @@ export function AdminPortalWorkspace({
 
                   {/* Selected Booking Deep Inspector */}
                   {selectedBookingId && (
-                    <div className="bg-white rounded-2xl border-2 border-blue-400 p-5 shadow-xl space-y-4">
+                    <div className="bg-white rounded-2xl border-2 border-emerald-400 p-5 shadow-xl space-y-4">
                       {(() => {
                         const b =
                           bookings.find((item) => item.id === selectedBookingId) ||
@@ -2326,7 +2326,7 @@ export function AdminPortalWorkspace({
                           <>
                             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
                               <div>
-                                <span className="text-[11px] font-extrabold uppercase text-blue-600">
+                                <span className="text-[11px] font-extrabold uppercase text-emerald-600">
                                   Booking Timeline, Hybrid Estimate & Reassignment Inspector
                                 </span>
                                 <h3 className="text-base font-extrabold text-slate-900">
@@ -2370,8 +2370,8 @@ export function AdminPortalWorkspace({
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                              <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200 space-y-2">
-                                <div className="font-extrabold text-blue-950">
+                              <div className="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200 space-y-2">
+                                <div className="font-extrabold text-emerald-950">
                                   Audit Timeline ({b.timeline.length} events)
                                 </div>
                                 {b.timeline.map((ev, idx) => (
@@ -2380,8 +2380,8 @@ export function AdminPortalWorkspace({
                                   </div>
                                 ))}
                               </div>
-                              <div className="p-3.5 rounded-xl bg-indigo-50/70 border border-indigo-200 space-y-2">
-                                <div className="font-extrabold text-indigo-950">
+                              <div className="p-3.5 rounded-xl bg-teal-50/70 border border-teal-200 space-y-2">
+                                <div className="font-extrabold text-teal-950">
                                   Estimate & Admin Internal Notes
                                 </div>
                                 {b.estimate ? (
@@ -2415,7 +2415,7 @@ export function AdminPortalWorkspace({
                                       setAdminNoteDraft('');
                                       showToast(`Saved admin note on ${b.id}`, 'success');
                                     }}
-                                    className="px-3 py-1.5 rounded-lg bg-blue-600 text-white font-bold"
+                                    className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold"
                                   >
                                     Save Note
                                   </button>
@@ -2436,14 +2436,14 @@ export function AdminPortalWorkspace({
               {section === 'pricing' && (
                 <div className="space-y-5">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                    <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg space-y-3">
+                    <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-3">
                       <h3 className="font-extrabold text-sm text-slate-900">
                         Category Visiting Fee & Platform Commission
                       </h3>
                       {categories.map((cat) => (
                         <div
                           key={cat.id}
-                          className="p-3 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 flex items-center justify-between gap-3"
+                          className="p-3 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 flex items-center justify-between gap-3"
                         >
                           <div>
                             <div className="text-xs font-extrabold text-slate-900">
@@ -2454,7 +2454,7 @@ export function AdminPortalWorkspace({
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-indigo-800">
+                            <span className="text-xs font-bold text-teal-800">
                               Commission %:
                             </span>
                             <input
@@ -2468,14 +2468,14 @@ export function AdminPortalWorkspace({
                                   )
                                 );
                               }}
-                              className="w-16 px-2 py-1 rounded-lg border border-indigo-300 bg-white text-xs font-extrabold text-center"
+                              className="w-16 px-2 py-1 rounded-lg border border-teal-300 bg-white text-xs font-extrabold text-center"
                             />
                           </div>
                         </div>
                       ))}
                     </div>
 
-                    <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg space-y-4">
+                    <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-4">
                       <h3 className="font-extrabold text-sm text-slate-900">
                         Interactive Hybrid Pricing & Commission Simulator
                       </h3>
@@ -2515,19 +2515,19 @@ export function AdminPortalWorkspace({
                         const gst = Math.round(calcServiceAmt * 0.05);
                         const netProvider = calcServiceAmt - comm;
                         return (
-                          <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-800 text-white space-y-2 text-xs shadow-lg">
+                          <div className="p-4 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-800 text-white space-y-2 text-xs shadow-lg">
                             <div className="flex justify-between">
-                              <span className="text-blue-100">Approved Estimate Amount:</span>
+                              <span className="text-emerald-100">Approved Estimate Amount:</span>
                               <span className="font-bold">₹{calcServiceAmt}</span>
                             </div>
                             <div className="flex justify-between">
-                              <span className="text-blue-100">
+                              <span className="text-emerald-100">
                                 Platform Commission ({Math.round(rate * 100)}%):
                               </span>
                               <span className="font-bold text-amber-300">- ₹{comm}</span>
                             </div>
                             <div className="flex justify-between">
-                              <span className="text-blue-100">Customer GST (5%):</span>
+                              <span className="text-emerald-100">Customer GST (5%):</span>
                               <span className="font-bold">+ ₹{gst}</span>
                             </div>
                             <div className="border-t border-white/20 pt-2 flex justify-between text-sm font-extrabold text-emerald-300">
@@ -2577,7 +2577,7 @@ export function AdminPortalWorkspace({
                               setNewCouponCode('');
                               showToast(`Created promo code ${newCouponCode}`, 'success');
                             }}
-                            className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold"
+                            className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold"
                           >
                             + Add Coupon
                           </button>
@@ -2605,7 +2605,7 @@ export function AdminPortalWorkspace({
                         UPI (Demo) • Card • Cash After Service
                       </div>
                     </div>
-                    <div className="rounded-2xl p-5 text-white bg-gradient-to-br from-blue-600 to-indigo-800 shadow-lg">
+                    <div className="rounded-2xl p-5 text-white bg-gradient-to-br from-emerald-600 to-teal-800 shadow-lg">
                       <div className="text-xs font-bold uppercase opacity-85">
                         Platform Commission Earned
                       </div>
@@ -2632,7 +2632,7 @@ export function AdminPortalWorkspace({
                     </div>
                   </div>
 
-                  <div className="bg-white rounded-2xl border border-blue-200 overflow-hidden shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-lg">
                     <div className="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                       <h3 className="font-extrabold text-sm text-slate-900">
                         Customer Payment Transactions Ledger
@@ -2652,7 +2652,7 @@ export function AdminPortalWorkspace({
                             ])
                           )
                         }
-                        className="px-3.5 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                        className="px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold"
                       >
                         Export Finance CSV
                       </button>
@@ -2660,7 +2660,7 @@ export function AdminPortalWorkspace({
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse text-xs">
                         <thead>
-                          <tr className="bg-gradient-to-r from-slate-900 to-blue-950 text-white text-[11px] font-extrabold uppercase">
+                          <tr className="bg-gradient-to-r from-slate-900 to-emerald-950 text-white text-[11px] font-extrabold uppercase">
                             <th className="p-3.5">Transaction Ref</th>
                             <th className="p-3.5">Booking & Service</th>
                             <th className="p-3.5">Customer</th>
@@ -2671,8 +2671,8 @@ export function AdminPortalWorkspace({
                         </thead>
                         <tbody className="divide-y divide-slate-200">
                           {bookings.map((b) => (
-                            <tr key={b.id} className="hover:bg-blue-50/50">
-                              <td className="p-3.5 font-mono font-bold text-blue-700">
+                            <tr key={b.id} className="hover:bg-emerald-50/50">
+                              <td className="p-3.5 font-mono font-bold text-emerald-700">
                                 {b.transactionRef}
                               </td>
                               <td className="p-3.5">
@@ -2705,7 +2705,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'reconciliation' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div>
                       <h2 className="text-lg font-extrabold text-slate-900">
                         Automated Financial Reconciliation & Discrepancy Resolver
@@ -2740,18 +2740,18 @@ export function AdminPortalWorkspace({
                           ])
                         )
                       }
-                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-extrabold flex items-center gap-1.5 shadow-md"
+                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-extrabold flex items-center gap-1.5 shadow-md"
                     >
                       <Download className="w-3.5 h-3.5" />
                       Export Reconciliation CSV
                     </button>
                   </div>
 
-                  <div className="bg-white rounded-2xl border border-blue-200 overflow-hidden shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-lg">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse text-xs">
                         <thead>
-                          <tr className="bg-gradient-to-r from-violet-900 to-indigo-900 text-white text-[11px] font-extrabold uppercase">
+                          <tr className="bg-gradient-to-r from-violet-900 to-teal-900 text-white text-[11px] font-extrabold uppercase">
                             <th className="p-3.5">Recon ID / Booking</th>
                             <th className="p-3.5">Expected vs Recorded</th>
                             <th className="p-3.5">Commission</th>
@@ -2765,7 +2765,7 @@ export function AdminPortalWorkspace({
                             <tr key={rec.id} className="hover:bg-purple-50/40">
                               <td className="p-3.5">
                                 <div className="font-extrabold text-slate-900">{rec.id}</div>
-                                <div className="text-[11px] text-blue-600 font-semibold">
+                                <div className="text-[11px] text-emerald-600 font-semibold">
                                   Booking: {rec.bookingId}
                                 </div>
                               </td>
@@ -2787,7 +2787,7 @@ export function AdminPortalWorkspace({
                                     rec.status === 'Matched'
                                       ? 'bg-emerald-100 text-emerald-800'
                                       : rec.status === 'Discrepancy Resolved'
-                                      ? 'bg-blue-100 text-blue-800'
+                                      ? 'bg-emerald-100 text-emerald-800'
                                       : 'bg-amber-100 text-amber-800'
                                   }`}
                                 >
@@ -2847,7 +2847,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'payouts' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                     <h2 className="text-lg font-extrabold text-slate-900">
                       Provider Payout Settlement Queue & Disbursal Controls
                     </h2>
@@ -2856,7 +2856,7 @@ export function AdminPortalWorkspace({
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-2xl border border-blue-200 overflow-hidden shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-lg">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse text-xs">
                         <thead>
@@ -2936,7 +2936,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'refunds' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
                     <h2 className="text-lg font-extrabold text-slate-900">
                       Customer Cancellations & Refund Resolution Desk
                     </h2>
@@ -2949,7 +2949,7 @@ export function AdminPortalWorkspace({
                     {bookings.map((b) => (
                       <div
                         key={b.id}
-                        className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg flex flex-col justify-between gap-4"
+                        className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg flex flex-col justify-between gap-4"
                       >
                         <div className="flex items-start justify-between">
                           <div>
@@ -3021,14 +3021,14 @@ export function AdminPortalWorkspace({
                           onClick={() => setSelectedTicketId(tkt.id)}
                           className={`w-full text-left p-4 rounded-2xl border-2 transition ${
                             selectedTicketId === tkt.id
-                              ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white border-cyan-400 shadow-lg'
-                              : 'bg-white border-slate-200 hover:border-blue-400 text-slate-900'
+                              ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white border-cyan-400 shadow-lg'
+                              : 'bg-white border-slate-200 hover:border-emerald-400 text-slate-900'
                           }`}
                         >
                           <div className="flex justify-between items-center">
                             <span
                               className={`text-xs font-extrabold ${
-                                selectedTicketId === tkt.id ? 'text-cyan-300' : 'text-blue-700'
+                                selectedTicketId === tkt.id ? 'text-cyan-300' : 'text-emerald-700'
                               }`}
                             >
                               {tkt.id} • {tkt.priority} Priority
@@ -3040,7 +3040,7 @@ export function AdminPortalWorkspace({
                           <div className="font-bold text-sm mt-1">{tkt.subject}</div>
                           <div
                             className={`text-xs mt-0.5 ${
-                              selectedTicketId === tkt.id ? 'text-blue-100' : 'text-slate-500'
+                              selectedTicketId === tkt.id ? 'text-emerald-100' : 'text-slate-500'
                             }`}
                           >
                             {tkt.userName} ({tkt.userType}) • Booking: {tkt.bookingId || 'N/A'}
@@ -3054,7 +3054,7 @@ export function AdminPortalWorkspace({
                         const tkt =
                           tickets.find((t) => t.id === selectedTicketId) || tickets[0];
                         return (
-                          <div className="bg-white rounded-3xl border border-blue-200 p-5 shadow-xl space-y-4">
+                          <div className="bg-white rounded-3xl border border-emerald-200 p-5 shadow-xl space-y-4">
                             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
                               <div>
                                 <h3 className="font-extrabold text-base text-slate-900">
@@ -3088,7 +3088,7 @@ export function AdminPortalWorkspace({
                                   className={`p-3 rounded-xl text-xs ${
                                     m.role === 'User'
                                       ? 'bg-white border border-slate-200'
-                                      : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white ml-6'
+                                      : 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white ml-6'
                                   }`}
                                 >
                                   <div className="font-bold mb-0.5">
@@ -3118,7 +3118,7 @@ export function AdminPortalWorkspace({
                                   );
                                   setTicketReplyText('');
                                 }}
-                                className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-extrabold shadow"
+                                className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-extrabold shadow"
                               >
                                 Send Reply
                               </button>
@@ -3139,7 +3139,7 @@ export function AdminPortalWorkspace({
                   {reviews.map((rev) => (
                     <div
                       key={rev.id}
-                      className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                      className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
                     >
                       <div>
                         <div className="flex items-center gap-2">
@@ -3188,7 +3188,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'cms' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg space-y-3">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-3">
                     <h3 className="text-sm font-extrabold text-slate-900">
                       + Create New CMS Banner / SEO Content Block
                     </h3>
@@ -3239,7 +3239,7 @@ export function AdminPortalWorkspace({
                           setNewCmsSeoTitle('');
                           showToast('Published new CMS content block.', 'success');
                         }}
-                        className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold shadow"
+                        className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold shadow"
                       >
                         Create & Publish
                       </button>
@@ -3250,11 +3250,11 @@ export function AdminPortalWorkspace({
                     {cmsSections.map((cms) => (
                       <div
                         key={cms.id}
-                        className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg space-y-3"
+                        className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-3"
                       >
                         <div className="flex items-center justify-between">
                           <div>
-                            <span className="text-[11px] font-extrabold uppercase text-blue-600">
+                            <span className="text-[11px] font-extrabold uppercase text-emerald-600">
                               {cms.page} • {cms.sectionKey}
                             </span>
                             <h3 className="text-sm font-extrabold text-slate-900">
@@ -3315,7 +3315,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'translations' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
                       <h2 className="text-lg font-extrabold text-slate-900">
                         Live Trilingual Dictionary Editor (English • ਪੰਜਾਬੀ • हिन्दी)
@@ -3333,11 +3333,11 @@ export function AdminPortalWorkspace({
                     />
                   </div>
 
-                  <div className="bg-white rounded-2xl border border-blue-200 overflow-hidden shadow-lg">
+                  <div className="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-lg">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse text-xs">
                         <thead>
-                          <tr className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white text-[11px] font-extrabold uppercase">
+                          <tr className="bg-gradient-to-r from-emerald-900 to-teal-900 text-white text-[11px] font-extrabold uppercase">
                             <th className="p-3.5">Key & Page</th>
                             <th className="p-3.5">English (EN)</th>
                             <th className="p-3.5">Punjabi (ਪੰਜਾਬੀ Gurmukhi)</th>
@@ -3361,9 +3361,9 @@ export function AdminPortalWorkspace({
                             .map((tr) => {
                               const isEditing = editingTranslationKey === tr.key;
                               return (
-                                <tr key={tr.key} className="hover:bg-blue-50/40">
+                                <tr key={tr.key} className="hover:bg-emerald-50/40">
                                   <td className="p-3.5">
-                                    <div className="font-mono font-bold text-blue-700">
+                                    <div className="font-mono font-bold text-emerald-700">
                                       {tr.key}
                                     </div>
                                     <div className="text-[11px] text-slate-400">{tr.page}</div>
@@ -3374,7 +3374,7 @@ export function AdminPortalWorkspace({
                                         type="text"
                                         value={transEn}
                                         onChange={(e) => setTransEn(e.target.value)}
-                                        className="w-full px-2 py-1 rounded border border-blue-400"
+                                        className="w-full px-2 py-1 rounded border border-emerald-400"
                                       />
                                     ) : (
                                       tr.en
@@ -3386,7 +3386,7 @@ export function AdminPortalWorkspace({
                                         type="text"
                                         value={transPa}
                                         onChange={(e) => setTransPa(e.target.value)}
-                                        className="w-full px-2 py-1 rounded border border-blue-400"
+                                        className="w-full px-2 py-1 rounded border border-emerald-400"
                                       />
                                     ) : (
                                       tr.pa
@@ -3398,7 +3398,7 @@ export function AdminPortalWorkspace({
                                         type="text"
                                         value={transHi}
                                         onChange={(e) => setTransHi(e.target.value)}
-                                        className="w-full px-2 py-1 rounded border border-blue-400"
+                                        className="w-full px-2 py-1 rounded border border-emerald-400"
                                       />
                                     ) : (
                                       tr.hi
@@ -3428,7 +3428,7 @@ export function AdminPortalWorkspace({
                                           setTransPa(tr.pa);
                                           setTransHi(tr.hi);
                                         }}
-                                        className="px-3 py-1 rounded-lg bg-blue-100 text-blue-800 font-bold"
+                                        className="px-3 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold"
                                       >
                                         Edit
                                       </button>
@@ -3469,7 +3469,7 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'roles' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg space-y-4">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-4">
                     <h3 className="text-sm font-extrabold text-slate-900">
                       Authorized Admin Team Members ({adminUsers.length}) — Click to Activate Role
                     </h3>
@@ -3477,7 +3477,7 @@ export function AdminPortalWorkspace({
                       {adminUsers.map((adm) => (
                         <div
                           key={adm.id}
-                          className="p-4 rounded-2xl border border-blue-200 bg-gradient-to-r from-white to-blue-50/60 flex items-center justify-between gap-3 shadow-sm"
+                          className="p-4 rounded-2xl border border-emerald-200 bg-gradient-to-r from-white to-emerald-50/60 flex items-center justify-between gap-3 shadow-sm"
                         >
                           <div>
                             <div className="font-extrabold text-sm text-slate-900">
@@ -3486,20 +3486,20 @@ export function AdminPortalWorkspace({
                             <div className="text-xs text-slate-500">
                               {adm.email} • Scope: {adm.cityScope}
                             </div>
-                            <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-600 text-white">
+                            <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-600 text-white">
                               {adm.roleProfile}
                             </span>
                           </div>
                           <div className="flex gap-2">
                             <button
                               onClick={() => setSelectedAdminUserId(adm.id)}
-                              className="px-3 py-1.5 rounded-xl bg-blue-100 text-blue-800 text-xs font-bold"
+                              className="px-3 py-1.5 rounded-xl bg-emerald-100 text-emerald-800 text-xs font-bold"
                             >
                               Matrix
                             </button>
                             <button
                               onClick={() => handleProfileSwitch(adm.roleProfile)}
-                              className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold shadow"
+                              className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold shadow"
                             >
                               Launch Role →
                             </button>
@@ -3510,7 +3510,7 @@ export function AdminPortalWorkspace({
                   </div>
 
                   {/* Module-Wise Permission Matrix */}
-                  <div className="bg-white rounded-2xl border border-blue-200 p-5 shadow-lg space-y-3">
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-3">
                     {(() => {
                       const adm =
                         adminUsers.find((u) => u.id === selectedAdminUserId) || adminUsers[0];
@@ -3523,7 +3523,7 @@ export function AdminPortalWorkspace({
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse text-xs">
                               <thead>
-                                <tr className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white text-[11px] font-extrabold uppercase">
+                                <tr className="bg-gradient-to-r from-emerald-900 to-teal-900 text-white text-[11px] font-extrabold uppercase">
                                   <th className="p-3">Module</th>
                                   <th className="p-3 text-center">View</th>
                                   <th className="p-3 text-center">Create</th>
@@ -3535,7 +3535,7 @@ export function AdminPortalWorkspace({
                               </thead>
                               <tbody className="divide-y divide-slate-200">
                                 {adm.permissions.map((perm, pIdx) => (
-                                  <tr key={perm.module} className="hover:bg-blue-50/40">
+                                  <tr key={perm.module} className="hover:bg-emerald-50/40">
                                     <td className="p-3 font-bold text-slate-900">
                                       {perm.module}
                                     </td>
@@ -3575,7 +3575,7 @@ export function AdminPortalWorkspace({
                                               'info'
                                             );
                                           }}
-                                          className="rounded text-blue-600 cursor-pointer"
+                                          className="rounded text-emerald-600 cursor-pointer"
                                         />
                                       </td>
                                     ))}
@@ -3595,7 +3595,7 @@ export function AdminPortalWorkspace({
                   8.18 PLATFORM SETTINGS (/admin/settings)
                  ========================================================= */}
               {section === 'settings' && (
-                <div className="bg-white rounded-2xl border border-blue-200 p-6 shadow-lg space-y-4">
+                <div className="bg-white rounded-2xl border border-emerald-200 p-6 shadow-lg space-y-4">
                   <h2 className="text-lg font-extrabold text-slate-900">
                     Global Platform Configuration & Policy Controls
                   </h2>
@@ -3631,7 +3631,7 @@ export function AdminPortalWorkspace({
                     onClick={() =>
                       showToast('Saved global platform settings successfully.', 'success')
                     }
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-extrabold shadow-lg"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-extrabold shadow-lg"
                   >
                     Save Platform Configuration
                   </button>

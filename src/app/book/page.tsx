@@ -188,7 +188,7 @@ export default function BookingWizardPage() {
     <div className="min-h-screen bg-[#f0f5ff] py-8 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto space-y-5">
         {/* Quick Step Switcher Pill Bar so evaluator can inspect any of the 5 screens immediately */}
-        <div className="flex flex-wrap items-center justify-between gap-2 bg-blue-950 text-white px-4 py-2.5 rounded-2xl shadow-md text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-2 bg-emerald-950 text-white px-4 py-2.5 rounded-2xl shadow-md text-xs">
           <div className="flex items-center gap-2 font-bold text-cyan-300">
             <Sparkles className="w-4 h-4" />
             <span>
@@ -206,7 +206,7 @@ export default function BookingWizardPage() {
                 onClick={() => setStep(s.num as 1 | 2 | 3 | 4 | 5)}
                 className={`px-2.5 py-1 rounded-lg font-bold transition ${
                   step === s.num
-                    ? 'bg-blue-500 text-white'
+                    ? 'bg-emerald-500 text-white'
                     : 'bg-white/10 text-slate-300 hover:bg-white/20'
                 }`}
               >
@@ -217,12 +217,12 @@ export default function BookingWizardPage() {
         </div>
 
         {/* MAIN BOOKING WIZARD CARD matching Image 5 */}
-        <div className="bg-white rounded-3xl border border-blue-100 shadow-2xl p-6 sm:p-8 space-y-7">
+        <div className="bg-white rounded-3xl border border-emerald-100 shadow-2xl p-6 sm:p-8 space-y-7">
           {/* Top 5-Step Progress Indicator matching Image 5 */}
           <div className="relative flex items-center justify-between max-w-2xl mx-auto pt-1">
             <div className="absolute top-4 left-6 right-6 h-0.5 bg-slate-200 -z-0" />
             <div
-              className="absolute top-4 left-6 h-0.5 bg-blue-600 transition-all duration-300 -z-0"
+              className="absolute top-4 left-6 h-0.5 bg-emerald-600 transition-all duration-300 -z-0"
               style={{ width: `${((step - 1) / 4) * 88}%` }}
             />
 
@@ -239,9 +239,9 @@ export default function BookingWizardPage() {
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-extrabold transition ${
                       isCompleted
-                        ? 'bg-blue-600 text-white shadow-sm'
+                        ? 'bg-emerald-600 text-white shadow-sm'
                         : isCurrent
-                        ? 'bg-blue-600 text-white ring-4 ring-blue-100 shadow-md'
+                        ? 'bg-emerald-600 text-white ring-4 ring-emerald-100 shadow-md'
                         : 'bg-slate-100 text-slate-500 border border-slate-300'
                     }`}
                   >
@@ -276,7 +276,7 @@ export default function BookingWizardPage() {
               </div>
 
               {/* Selected Category Banner with Change button */}
-              <div className="p-4 rounded-2xl bg-blue-50/70 border border-blue-100 flex items-center justify-between gap-4">
+              <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3.5">
                   <div className="w-12 h-12 rounded-2xl bg-amber-100/80 text-amber-600 flex items-center justify-center shrink-0">
                     <Zap className="w-6 h-6 fill-amber-500" />
@@ -293,7 +293,7 @@ export default function BookingWizardPage() {
                 <button
                   type="button"
                   onClick={() => setShowCategoryPicker(!showCategoryPicker)}
-                  className="px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-blue-600 text-blue-700 font-bold text-xs shadow-sm transition"
+                  className="px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-emerald-600 text-emerald-700 font-bold text-xs shadow-sm transition"
                 >
                   Change
                 </button>
@@ -323,8 +323,8 @@ export default function BookingWizardPage() {
                       }}
                       className={`p-3 rounded-xl border text-left transition ${
                         cat.slug === currentCategory.slug
-                          ? 'border-blue-600 bg-blue-50 font-bold text-blue-900'
-                          : 'border-slate-200 bg-white hover:border-blue-400 text-xs'
+                          ? 'border-emerald-600 bg-emerald-50 font-bold text-emerald-900'
+                          : 'border-slate-200 bg-white hover:border-emerald-400 text-xs'
                       }`}
                     >
                       <div className="text-xs font-extrabold">{cat.name.en}</div>
@@ -361,16 +361,16 @@ export default function BookingWizardPage() {
                         }
                         className={`relative p-4 rounded-2xl border-2 text-center flex flex-col items-center justify-center gap-2.5 transition min-h-[115px] ${
                           isSelected
-                            ? 'border-blue-600 bg-blue-50/60 shadow-sm'
-                            : 'border-slate-200/90 bg-white hover:border-blue-300'
+                            ? 'border-emerald-600 bg-emerald-50/60 shadow-sm'
+                            : 'border-slate-200/90 bg-white hover:border-emerald-300'
                         }`}
                       >
                         {isSelected && (
-                          <span className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center">
+                          <span className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center">
                             <Check className="w-3 h-3 stroke-[3]" />
                           </span>
                         )}
-                        <div className="w-10 h-10 rounded-xl bg-blue-100/80 text-blue-700 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-100/80 text-emerald-700 flex items-center justify-center">
                           <Wrench className="w-5 h-5" />
                         </div>
                         <span className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
@@ -386,7 +386,7 @@ export default function BookingWizardPage() {
                 <button
                   type="button"
                   onClick={() => setStep(2)}
-                  className="px-7 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 transition inline-flex items-center gap-2"
+                  className="px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 transition inline-flex items-center gap-2"
                 >
                   <span>Continue</span>
                   <ArrowRight className="w-4 h-4" />
@@ -426,7 +426,7 @@ export default function BookingWizardPage() {
                       })
                     }
                     placeholder="Describe the issue (e.g., Main switch is tripping frequently. Need inspection and wiring check in 2 rooms.)"
-                    className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white transition"
+                    className="w-full p-4 rounded-2xl border border-slate-200 bg-slate-50/60 text-sm text-slate-900 focus:outline-none focus:border-emerald-600 focus:bg-white transition"
                   />
                   <div className="text-right text-[11px] text-slate-400 mt-1 font-medium">
                     {bookingDraft.problemDescription.length} / 500
@@ -466,7 +466,7 @@ export default function BookingWizardPage() {
                     <button
                       type="button"
                       onClick={handleAddPhoto}
-                      className="h-24 rounded-2xl border-2 border-dashed border-blue-300 hover:border-blue-600 bg-blue-50/40 hover:bg-blue-50 flex flex-col items-center justify-center gap-1 text-blue-700 transition"
+                      className="h-24 rounded-2xl border-2 border-dashed border-emerald-300 hover:border-emerald-600 bg-emerald-50/40 hover:bg-emerald-50 flex flex-col items-center justify-center gap-1 text-emerald-700 transition"
                     >
                       <ImagePlus className="w-6 h-6" />
                       <span className="text-xs font-bold">Add More</span>
@@ -479,8 +479,8 @@ export default function BookingWizardPage() {
               </div>
 
               {/* Info Alert matching Image 5 */}
-              <div className="p-3.5 rounded-2xl bg-blue-50/80 border border-blue-100 flex items-center gap-3 text-xs text-slate-700">
-                <Info className="w-5 h-5 text-blue-600 shrink-0" />
+              <div className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-100 flex items-center gap-3 text-xs text-slate-700">
+                <Info className="w-5 h-5 text-emerald-600 shrink-0" />
                 <span>
                   Adding photos helps the professional understand the issue
                   better and bring the right tools.
@@ -508,7 +508,7 @@ export default function BookingWizardPage() {
                     }
                     setStep(3);
                   }}
-                  className="px-7 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 transition inline-flex items-center gap-2"
+                  className="px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 transition inline-flex items-center gap-2"
                 >
                   <span>Continue</span>
                   <ArrowRight className="w-4 h-4" />
@@ -541,8 +541,8 @@ export default function BookingWizardPage() {
                       onClick={() => updateBookingDraft({ addressId: addr.id })}
                       className={`p-4 rounded-2xl border-2 cursor-pointer transition flex items-center justify-between gap-4 ${
                         isSelected
-                          ? 'border-blue-600 bg-blue-50/40 shadow-sm'
-                          : 'border-slate-200 hover:border-blue-300'
+                          ? 'border-emerald-600 bg-emerald-50/40 shadow-sm'
+                          : 'border-slate-200 hover:border-emerald-300'
                       }`}
                     >
                       <div className="flex items-start gap-3.5">
@@ -550,7 +550,7 @@ export default function BookingWizardPage() {
                           <div
                             className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                               isSelected
-                                ? 'border-blue-600 bg-blue-600'
+                                ? 'border-emerald-600 bg-emerald-600'
                                 : 'border-slate-300'
                             }`}
                           >
@@ -600,7 +600,7 @@ export default function BookingWizardPage() {
                               'info'
                             )
                           }
-                          className="p-2 rounded-lg text-blue-600 hover:bg-blue-50 transition"
+                          className="p-2 rounded-lg text-emerald-600 hover:bg-emerald-50 transition"
                           aria-label="Edit address"
                         >
                           <Edit3 className="w-4 h-4" />
@@ -625,7 +625,7 @@ export default function BookingWizardPage() {
               <button
                 type="button"
                 onClick={() => setShowAddAddressModal(!showAddAddressModal)}
-                className="w-full py-3.5 rounded-2xl border-2 border-dashed border-blue-300 hover:border-blue-600 text-blue-700 font-bold text-xs flex items-center justify-center gap-2 bg-blue-50/20 hover:bg-blue-50/60 transition"
+                className="w-full py-3.5 rounded-2xl border-2 border-dashed border-emerald-300 hover:border-emerald-600 text-emerald-700 font-bold text-xs flex items-center justify-center gap-2 bg-emerald-50/20 hover:bg-emerald-50/60 transition"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add New Address</span>
@@ -658,7 +658,7 @@ export default function BookingWizardPage() {
                         onClick={() => setNewAddrLabel(lbl)}
                         className={`px-3.5 py-1.5 rounded-xl text-xs font-bold border ${
                           newAddrLabel === lbl
-                            ? 'bg-blue-600 text-white border-blue-600'
+                            ? 'bg-emerald-600 text-white border-emerald-600'
                             : 'bg-white text-slate-700 border-slate-200'
                         }`}
                       >
@@ -712,7 +712,7 @@ export default function BookingWizardPage() {
 
                   <button
                     type="submit"
-                    className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold"
+                    className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold"
                   >
                     Save & Use This Address
                   </button>
@@ -731,7 +731,7 @@ export default function BookingWizardPage() {
                 <button
                   type="button"
                   onClick={() => setStep(4)}
-                  className="px-7 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 transition inline-flex items-center gap-2"
+                  className="px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 transition inline-flex items-center gap-2"
                 >
                   <span>Continue</span>
                   <ArrowRight className="w-4 h-4" />
@@ -766,8 +766,8 @@ export default function BookingWizardPage() {
                       }
                       className={`p-4 rounded-2xl border-2 text-center flex flex-col items-center gap-1.5 transition ${
                         bookingDraft.bookingType === 'Instant'
-                          ? 'border-blue-600 bg-blue-50/70'
-                          : 'border-slate-200 hover:border-blue-300'
+                          ? 'border-emerald-600 bg-emerald-50/70'
+                          : 'border-slate-200 hover:border-emerald-300'
                       }`}
                     >
                       <Zap className="w-6 h-6 text-amber-500 fill-amber-400" />
@@ -786,11 +786,11 @@ export default function BookingWizardPage() {
                       }
                       className={`p-4 rounded-2xl border-2 text-center flex flex-col items-center gap-1.5 transition ${
                         bookingDraft.bookingType === 'Scheduled'
-                          ? 'border-blue-600 bg-blue-50/70'
-                          : 'border-slate-200 hover:border-blue-300'
+                          ? 'border-emerald-600 bg-emerald-50/70'
+                          : 'border-slate-200 hover:border-emerald-300'
                       }`}
                     >
-                      <Calendar className="w-6 h-6 text-blue-600" />
+                      <Calendar className="w-6 h-6 text-emerald-600" />
                       <span className="text-sm font-extrabold text-slate-900">
                         Schedule for Later
                       </span>
@@ -803,7 +803,7 @@ export default function BookingWizardPage() {
                   {/* Select Date */}
                   <div className="space-y-2">
                     <label className="text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
-                      <Calendar className="w-4 h-4 text-blue-600" />
+                      <Calendar className="w-4 h-4 text-emerald-600" />
                       <span>Select Date</span>
                     </label>
                     <select
@@ -812,7 +812,7 @@ export default function BookingWizardPage() {
                       onChange={(e) =>
                         updateBookingDraft({ date: e.target.value })
                       }
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm font-bold text-slate-800 bg-slate-50/70 focus:outline-none focus:border-blue-600"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm font-bold text-slate-800 bg-slate-50/70 focus:outline-none focus:border-emerald-600"
                     >
                       <option value="2026-11-14">Fri, 14 Nov 2026 (Today)</option>
                       <option value="2026-11-15">Sat, 15 Nov 2026 (Tomorrow)</option>
@@ -824,7 +824,7 @@ export default function BookingWizardPage() {
                   {/* Select Time Slot Pills matching Image 5 */}
                   <div className="space-y-2">
                     <label className="text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
-                      <Clock className="w-4 h-4 text-blue-600" />
+                      <Clock className="w-4 h-4 text-emerald-600" />
                       <span>Select Time Slot</span>
                     </label>
 
@@ -849,8 +849,8 @@ export default function BookingWizardPage() {
                             }
                             className={`py-2.5 px-3 rounded-xl text-xs font-bold border transition ${
                               isSelected
-                                ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                                : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-400'
+                                ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
+                                : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-emerald-400'
                             }`}
                           >
                             {slot}
@@ -884,8 +884,8 @@ export default function BookingWizardPage() {
                           }
                           className={`p-3.5 rounded-2xl border-2 cursor-pointer transition flex items-center justify-between gap-3 ${
                             isChosen
-                              ? 'border-blue-600 bg-blue-50/40 shadow-sm'
-                              : 'border-slate-200 hover:border-blue-300'
+                              ? 'border-emerald-600 bg-emerald-50/40 shadow-sm'
+                              : 'border-slate-200 hover:border-emerald-300'
                           }`}
                         >
                           <div className="flex items-center gap-3 min-w-0">
@@ -898,7 +898,7 @@ export default function BookingWizardPage() {
                               <div className="font-extrabold text-slate-900 text-sm flex items-center gap-1 truncate">
                                 <span className="truncate">{prov.name}</span>
                                 {prov.verified && (
-                                  <BadgeCheck className="w-4 h-4 text-blue-600 fill-blue-100 shrink-0" />
+                                  <BadgeCheck className="w-4 h-4 text-emerald-600 fill-emerald-100 shrink-0" />
                                 )}
                               </div>
 
@@ -920,7 +920,7 @@ export default function BookingWizardPage() {
                               </div>
 
                               <div className="text-[11px] text-slate-500 flex items-center gap-1">
-                                <MapPin className="w-3 h-3 text-blue-600" />
+                                <MapPin className="w-3 h-3 text-emerald-600" />
                                 <span>
                                   {prov.distanceKm} km away • {prov.cityName}
                                 </span>
@@ -941,7 +941,7 @@ export default function BookingWizardPage() {
                             <div
                               className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                                 isChosen
-                                  ? 'border-blue-600 bg-blue-600 text-white'
+                                  ? 'border-emerald-600 bg-emerald-600 text-white'
                                   : 'border-slate-300'
                               }`}
                             >
@@ -969,7 +969,7 @@ export default function BookingWizardPage() {
                 <button
                   type="button"
                   onClick={() => setStep(5)}
-                  className="px-7 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 transition inline-flex items-center gap-2"
+                  className="px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 transition inline-flex items-center gap-2"
                 >
                   <span>Continue</span>
                   <ArrowRight className="w-4 h-4" />
@@ -1022,7 +1022,7 @@ export default function BookingWizardPage() {
                       className="w-full p-4 flex items-start justify-between gap-3 hover:bg-slate-50 transition text-left"
                     >
                       <div className="flex items-start gap-3">
-                        <MessageSquare className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                        <MessageSquare className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                         <span className="text-xs font-bold text-slate-500 w-24 shrink-0">
                           Requirement
                         </span>
@@ -1054,7 +1054,7 @@ export default function BookingWizardPage() {
                       className="w-full p-4 flex items-center justify-between gap-3 hover:bg-slate-50 transition text-left"
                     >
                       <div className="flex items-center gap-3">
-                        <MapPin className="w-4 h-4 text-blue-600 shrink-0" />
+                        <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
                         <span className="text-xs font-bold text-slate-500 w-24 shrink-0">
                           Address
                         </span>
@@ -1075,7 +1075,7 @@ export default function BookingWizardPage() {
                       className="w-full p-4 flex items-center justify-between gap-3 hover:bg-slate-50 transition text-left"
                     >
                       <div className="flex items-center gap-3">
-                        <Calendar className="w-4 h-4 text-blue-600 shrink-0" />
+                        <Calendar className="w-4 h-4 text-emerald-600 shrink-0" />
                         <span className="text-xs font-bold text-slate-500 w-24 shrink-0">
                           Date & Time
                         </span>
@@ -1099,7 +1099,7 @@ export default function BookingWizardPage() {
                       className="w-full p-4 flex items-center justify-between gap-3 hover:bg-slate-50 transition text-left"
                     >
                       <div className="flex items-center gap-3">
-                        <User className="w-4 h-4 text-blue-600 shrink-0" />
+                        <User className="w-4 h-4 text-emerald-600 shrink-0" />
                         <span className="text-xs font-bold text-slate-500 w-24 shrink-0">
                           Professional
                         </span>
@@ -1112,7 +1112,7 @@ export default function BookingWizardPage() {
                           <div>
                             <div className="text-xs font-extrabold text-slate-900 flex items-center gap-1">
                               <span>{selectedProvider.name}</span>
-                              <BadgeCheck className="w-3.5 h-3.5 text-blue-600 fill-blue-100" />
+                              <BadgeCheck className="w-3.5 h-3.5 text-emerald-600 fill-emerald-100" />
                             </div>
                             <div className="text-[11px] text-slate-500 flex items-center gap-1">
                               <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
@@ -1131,19 +1131,19 @@ export default function BookingWizardPage() {
                   {/* Optional Coupon Code Box */}
                   <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
                     <div className="flex items-center gap-2 flex-1">
-                      <Tag className="w-4 h-4 text-blue-600 shrink-0" />
+                      <Tag className="w-4 h-4 text-emerald-600 shrink-0" />
                       <input
                         type="text"
                         value={couponInput}
                         onChange={(e) => setCouponInput(e.target.value)}
                         placeholder="Have a coupon? (Try PUNJAB100)"
-                        className="w-full text-xs font-bold uppercase bg-white px-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600"
+                        className="w-full text-xs font-bold uppercase bg-white px-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-emerald-600"
                       />
                     </div>
                     <button
                       type="button"
                       onClick={handleApplyCoupon}
-                      className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 text-white text-xs font-bold transition"
+                      className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-emerald-700 text-white text-xs font-bold transition"
                     >
                       Apply Coupon
                     </button>
@@ -1175,7 +1175,7 @@ export default function BookingWizardPage() {
                   </div>
 
                   <div className="flex items-start gap-2 text-[11px] text-slate-500 leading-relaxed">
-                    <Info className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                    <Info className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                     <span>
                       This is the inspection/visit charge. Final service cost
                       will be shared after inspection.
@@ -1201,7 +1201,7 @@ export default function BookingWizardPage() {
                   <button
                     type="button"
                     onClick={handleConfirmBooking}
-                    className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-lg shadow-blue-600/25 transition flex items-center justify-center gap-2"
+                    className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-blue-600/25 transition flex items-center justify-center gap-2"
                   >
                     <Calendar className="w-4 h-4" />
                     <span>Confirm Booking</span>

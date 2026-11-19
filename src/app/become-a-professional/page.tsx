@@ -22,8 +22,8 @@ export default function BecomeProfessionalPage() {
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-16">
       {/* Hero */}
-      <section className="bg-gradient-to-r from-[#081d4a] via-[#133882] to-[#1e4db7] text-white py-14">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <section className="bg-gradient-to-r from-[#041418] via-[#133882] to-[#0f1c38] text-white py-14">
+        <div className="w-full px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-5">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-400 text-slate-950 text-xs font-extrabold">
               <Sparkles className="w-3.5 h-3.5" /> Partner with Punjab Services
@@ -31,7 +31,7 @@ export default function BecomeProfessionalPage() {
             <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight">
               Grow Your Income as a Verified Local Professional
             </h1>
-            <p className="text-sm sm:text-base text-blue-100 max-w-xl leading-relaxed">
+            <p className="text-sm sm:text-base text-emerald-100 max-w-xl leading-relaxed">
               Join 430+ Electricians, Plumbers, Carpenters, Computer & Mobile
               repair specialists across Mohali, Chandigarh & Hoshiarpur. Set
               your own visiting charges, work in your chosen radius, and get
@@ -50,7 +50,7 @@ export default function BecomeProfessionalPage() {
               </Link>
               <Link
                 href="/provider/register?type=business"
-                className="px-6 py-3.5 rounded-xl bg-white hover:bg-blue-50 text-blue-900 font-extrabold text-xs sm:text-sm shadow-lg transition inline-flex items-center gap-2"
+                className="px-6 py-3.5 rounded-xl bg-white hover:bg-emerald-50 text-emerald-900 font-extrabold text-xs sm:text-sm shadow-lg transition inline-flex items-center gap-2"
               >
                 <Building2 className="w-4 h-4" />
                 <span>Register as Business / Agency</span>
@@ -63,7 +63,7 @@ export default function BecomeProfessionalPage() {
               <h2 className="text-lg font-extrabold text-amber-300">
                 Why Skilled Pros Prefer Punjab Services
               </h2>
-              <ul className="space-y-3 text-xs sm:text-sm text-blue-50">
+              <ul className="space-y-3 text-xs sm:text-sm text-emerald-50">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
                   <span>
@@ -107,11 +107,11 @@ export default function BecomeProfessionalPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 space-y-12">
+      <div className="w-full px-4 sm:px-6 pt-12 space-y-12">
         {/* Individual vs Business Comparison */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-3xl border border-slate-200 p-7 shadow-card space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
               <Briefcase className="w-6 h-6" />
             </div>
             <h2 className="text-xl font-extrabold text-slate-900">
@@ -137,7 +137,7 @@ export default function BecomeProfessionalPage() {
             </ul>
             <Link
               href="/provider/register?type=individual"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold"
             >
               <span>Start Individual Registration</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -145,7 +145,7 @@ export default function BecomeProfessionalPage() {
           </div>
 
           <div className="bg-white rounded-3xl border border-slate-200 p-7 shadow-card space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center">
               <Users className="w-6 h-6" />
             </div>
             <h2 className="text-xl font-extrabold text-slate-900">
@@ -157,21 +157,21 @@ export default function BecomeProfessionalPage() {
             </p>
             <ul className="space-y-2 text-xs text-slate-700">
               <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-indigo-600" /> Dedicated
+                <CheckCircle2 className="w-4 h-4 text-teal-600" /> Dedicated
                 Team Management Module (/provider/team)
               </li>
               <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-indigo-600" /> Assign
+                <CheckCircle2 className="w-4 h-4 text-teal-600" /> Assign
                 Available Technicians to Accepted Bookings
               </li>
               <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-indigo-600" /> Consolidated
+                <CheckCircle2 className="w-4 h-4 text-teal-600" /> Consolidated
                 Business Earnings & Payout Statements
               </li>
             </ul>
             <Link
               href="/provider/register?type=business"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold"
             >
               <span>Start Business Registration</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -211,7 +211,7 @@ export default function BecomeProfessionalPage() {
                 key={s.step}
                 className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2"
               >
-                <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-extrabold">
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-extrabold">
                   {s.step}
                 </span>
                 <div className="font-extrabold text-slate-900 text-sm">

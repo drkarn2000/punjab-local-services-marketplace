@@ -148,10 +148,10 @@ export default function ProviderProfilePage() {
       )}
 
       {/* 1. HERO PROFILE COVER matching Image 4 */}
-      <section className="relative bg-gradient-to-r from-[#081d4a] via-[#12357a] to-[#1d4ed8] text-white py-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <section className="relative bg-gradient-to-r from-[#041418] via-[#12357a] to-[#1d4ed8] text-white py-8 overflow-hidden">
+        <div className="w-full px-4 sm:px-6 relative z-10">
           {/* Breadcrumb */}
-          <nav className="flex flex-wrap items-center gap-1.5 text-xs text-blue-200 font-medium mb-5">
+          <nav className="flex flex-wrap items-center gap-1.5 text-xs text-emerald-200 font-medium mb-5">
             <Link href="/" className="hover:text-white">
               Home
             </Link>
@@ -192,7 +192,7 @@ export default function ProviderProfilePage() {
                     {provider.name}
                   </h1>
                   {provider.verified && (
-                    <BadgeCheck className="w-7 h-7 text-sky-300 fill-blue-600" />
+                    <BadgeCheck className="w-7 h-7 text-teal-300 fill-emerald-600" />
                   )}
                   <span className="px-2.5 py-0.5 rounded-full bg-white/15 text-xs font-bold uppercase tracking-wider text-cyan-200">
                     {provider.providerType === 'business'
@@ -201,7 +201,7 @@ export default function ProviderProfilePage() {
                   </span>
                 </div>
 
-                <p className="text-sm sm:text-base text-blue-100">
+                <p className="text-sm sm:text-base text-emerald-100">
                   Professional {provider.categoryName} Services in{' '}
                   {provider.serviceAreas.slice(0, 3).join(', ')} & Nearby
                 </p>
@@ -210,17 +210,17 @@ export default function ProviderProfilePage() {
                   <div className="flex items-center gap-1.5 font-bold">
                     <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
                     <span>{provider.rating}</span>
-                    <span className="text-blue-200 font-medium">
+                    <span className="text-emerald-200 font-medium">
                       ({provider.reviewCount} reviews)
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-blue-100">
+                  <div className="flex items-center gap-1.5 text-emerald-100">
                     <Briefcase className="w-4 h-4 text-cyan-300" />
                     <span>{provider.experienceYears}+ years experience</span>
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-blue-100">
+                  <div className="flex items-center gap-1.5 text-emerald-100">
                     <MapPin className="w-4 h-4 text-cyan-300" />
                     <span>
                       {provider.cityName}, {provider.distanceKm} km away
@@ -246,7 +246,7 @@ export default function ProviderProfilePage() {
                   <div className="text-xs font-extrabold text-white">
                     Verified Professional
                   </div>
-                  <div className="text-[11px] text-blue-200">
+                  <div className="text-[11px] text-emerald-200">
                     ID, Address & Skills Verified
                   </div>
                 </div>
@@ -260,7 +260,7 @@ export default function ProviderProfilePage() {
                   <div className="text-xs font-extrabold text-white">
                     {provider.completedJobs}+ Happy Customers
                   </div>
-                  <div className="text-[11px] text-blue-200">
+                  <div className="text-[11px] text-emerald-200">
                     High quality, reliable service
                   </div>
                 </div>
@@ -274,7 +274,7 @@ export default function ProviderProfilePage() {
                   <div className="text-xs font-extrabold text-white">
                     Same Day Service
                   </div>
-                  <div className="text-[11px] text-blue-200">
+                  <div className="text-[11px] text-emerald-200">
                     Quick and on-time response
                   </div>
                 </div>
@@ -285,7 +285,7 @@ export default function ProviderProfilePage() {
       </section>
 
       {/* 2. MAIN CONTENT: Left 8 Cols (Tabs & Sections) + Right 4 Cols (Sticky Booking Card) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-7">
+      <div className="w-full px-4 sm:px-6 pt-7">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
           {/* LEFT 8 COLUMNS */}
           <div className="lg:col-span-8 space-y-7">
@@ -332,7 +332,7 @@ export default function ProviderProfilePage() {
                   }
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition ${
                     activeTab === tab.id
-                      ? 'bg-blue-600 text-white shadow-sm'
+                      ? 'bg-emerald-600 text-white shadow-sm'
                       : 'text-slate-700 hover:bg-slate-100'
                   }`}
                 >
@@ -355,8 +355,8 @@ export default function ProviderProfilePage() {
 
                   {/* 4 Stat Badges matching Image 4 */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
-                    <div className="p-2.5 rounded-xl bg-blue-50/60 border border-blue-100 flex items-center gap-2">
-                      <Award className="w-5 h-5 text-blue-600 shrink-0" />
+                    <div className="p-2.5 rounded-xl bg-emerald-50/60 border border-emerald-100 flex items-center gap-2">
+                      <Award className="w-5 h-5 text-emerald-600 shrink-0" />
                       <div>
                         <div className="text-xs font-extrabold text-slate-900">
                           {provider.experienceYears}+ Years
@@ -367,8 +367,8 @@ export default function ProviderProfilePage() {
                       </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl bg-blue-50/60 border border-blue-100 flex items-center gap-2">
-                      <Users className="w-5 h-5 text-blue-600 shrink-0" />
+                    <div className="p-2.5 rounded-xl bg-emerald-50/60 border border-emerald-100 flex items-center gap-2">
+                      <Users className="w-5 h-5 text-emerald-600 shrink-0" />
                       <div>
                         <div className="text-xs font-extrabold text-slate-900">
                           {provider.completedJobs}+
@@ -379,8 +379,8 @@ export default function ProviderProfilePage() {
                       </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl bg-blue-50/60 border border-blue-100 flex items-center gap-2">
-                      <ThumbsUp className="w-5 h-5 text-blue-600 shrink-0" />
+                    <div className="p-2.5 rounded-xl bg-emerald-50/60 border border-emerald-100 flex items-center gap-2">
+                      <ThumbsUp className="w-5 h-5 text-emerald-600 shrink-0" />
                       <div>
                         <div className="text-xs font-extrabold text-slate-900">
                           {provider.rating}
@@ -391,8 +391,8 @@ export default function ProviderProfilePage() {
                       </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl bg-blue-50/60 border border-blue-100 flex items-center gap-2">
-                      <ShieldCheck className="w-5 h-5 text-blue-600 shrink-0" />
+                    <div className="p-2.5 rounded-xl bg-emerald-50/60 border border-emerald-100 flex items-center gap-2">
+                      <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
                       <div>
                         <div className="text-xs font-extrabold text-slate-900">
                           Verified
@@ -409,10 +409,10 @@ export default function ProviderProfilePage() {
                 <div className="md:col-span-5 bg-white rounded-2xl border border-slate-200/90 p-5 shadow-card space-y-4">
                   <div className="flex items-center justify-between">
                     <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-1.5">
-                      <MapPin className="w-4 h-4 text-blue-600" />
+                      <MapPin className="w-4 h-4 text-emerald-600" />
                       <span>Service Areas</span>
                     </h3>
-                    <span className="text-[11px] font-semibold text-blue-700">
+                    <span className="text-[11px] font-semibold text-emerald-700">
                       {provider.serviceRadiusKm} km radius
                     </span>
                   </div>
@@ -421,9 +421,9 @@ export default function ProviderProfilePage() {
                     {provider.serviceAreas.map((area) => (
                       <span
                         key={area}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-blue-50/80 text-blue-900 text-xs font-semibold border border-blue-100"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-50/80 text-emerald-900 text-xs font-semibold border border-emerald-100"
                       >
-                        <MapPin className="w-3 h-3 text-blue-600" />
+                        <MapPin className="w-3 h-3 text-emerald-600" />
                         {area}
                       </span>
                     ))}
@@ -431,14 +431,14 @@ export default function ProviderProfilePage() {
 
                   <div className="pt-2 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
                     <div className="flex items-center gap-2">
-                      <Globe className="w-3.5 h-3.5 text-blue-600" />
+                      <Globe className="w-3.5 h-3.5 text-emerald-600" />
                       <span>
                         <strong>Languages:</strong>{' '}
                         {provider.languagesSpoken.join(', ')}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Clock className="w-3.5 h-3.5 text-blue-600" />
+                      <Clock className="w-3.5 h-3.5 text-emerald-600" />
                       <span>
                         <strong>Hours:</strong> {provider.workingHours} (
                         {provider.workingDays.join(', ')})
@@ -475,11 +475,11 @@ export default function ProviderProfilePage() {
                         }}
                         className={`p-3.5 rounded-2xl border text-center flex flex-col items-center justify-center gap-2 transition ${
                           isSelected
-                            ? 'border-blue-600 bg-blue-50/70 ring-2 ring-blue-600/20'
-                            : 'border-slate-200 hover:border-blue-400 bg-slate-50/40'
+                            ? 'border-emerald-600 bg-emerald-50/70 ring-2 ring-emerald-600/20'
+                            : 'border-slate-200 hover:border-emerald-400 bg-slate-50/40'
                         }`}
                       >
-                        <div className="w-10 h-10 rounded-xl bg-blue-100/70 text-blue-700 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-100/70 text-emerald-700 flex items-center justify-center">
                           <Sparkles className="w-5 h-5" />
                         </div>
                         <span className="text-xs font-bold text-slate-800 leading-tight">
@@ -497,12 +497,12 @@ export default function ProviderProfilePage() {
               <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-card space-y-4">
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-                    <ImageIcon className="w-5 h-5 text-blue-600" />
+                    <ImageIcon className="w-5 h-5 text-emerald-600" />
                     <span>Recent Work (Portfolio)</span>
                   </h2>
                   <button
                     onClick={() => setActiveTab('portfolio')}
-                    className="text-xs font-bold text-blue-700 hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-bold text-emerald-700 hover:underline inline-flex items-center gap-1"
                   >
                     <span>
                       View All Photos ({defaultPortfolioImages.length})
@@ -545,7 +545,7 @@ export default function ProviderProfilePage() {
                   </h2>
                   <button
                     onClick={() => setActiveTab('reviews')}
-                    className="text-xs font-bold text-blue-700 hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-bold text-emerald-700 hover:underline inline-flex items-center gap-1"
                   >
                     <span>View All Reviews</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -593,8 +593,8 @@ export default function ProviderProfilePage() {
                       </div>
 
                       {rev.providerReply && (
-                        <div className="p-2.5 rounded-xl bg-blue-50/70 border border-blue-100 text-[11px] text-slate-700">
-                          <strong className="text-blue-900 block">
+                        <div className="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-100 text-[11px] text-slate-700">
+                          <strong className="text-emerald-900 block">
                             Reply from {provider.name}:
                           </strong>
                           {rev.providerReply}
@@ -634,8 +634,8 @@ export default function ProviderProfilePage() {
                       }}
                       className={`p-3 rounded-xl border text-xs font-bold transition ${
                         selectedSlot === slot
-                          ? 'bg-blue-600 text-white border-blue-600'
-                          : 'bg-emerald-50/60 text-emerald-900 border-emerald-200 hover:border-blue-500'
+                          ? 'bg-emerald-600 text-white border-emerald-600'
+                          : 'bg-emerald-50/60 text-emerald-900 border-emerald-200 hover:border-emerald-500'
                       }`}
                     >
                       {slot}
@@ -651,7 +651,7 @@ export default function ProviderProfilePage() {
             {/* SIMILAR PROFESSIONALS NEAR YOU matching Image 4 */}
             <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-card space-y-4">
               <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-                <Users className="w-5 h-5 text-blue-600" />
+                <Users className="w-5 h-5 text-emerald-600" />
                 <span>Similar Professionals Near You</span>
               </h2>
 
@@ -659,7 +659,7 @@ export default function ProviderProfilePage() {
                 {similarProviders.map((sim) => (
                   <div
                     key={sim.id}
-                    className="p-3.5 rounded-2xl border border-slate-200 flex items-center justify-between gap-3 hover:border-blue-400 transition"
+                    className="p-3.5 rounded-2xl border border-slate-200 flex items-center justify-between gap-3 hover:border-emerald-400 transition"
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <img
@@ -684,7 +684,7 @@ export default function ProviderProfilePage() {
 
                     <Link
                       href={`/professionals/${sim.slug}`}
-                      className="px-3 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white text-[11px] font-bold shrink-0 transition"
+                      className="px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white text-[11px] font-bold shrink-0 transition"
                     >
                       View Profile
                     </Link>
@@ -698,7 +698,7 @@ export default function ProviderProfilePage() {
           <aside className="lg:col-span-4 space-y-4 lg:sticky lg:top-24">
             <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl p-6 space-y-4">
               <div className="flex items-center gap-2 font-extrabold text-slate-900 text-lg">
-                <Calendar className="w-5 h-5 text-blue-600" />
+                <Calendar className="w-5 h-5 text-emerald-600" />
                 <span>Book This Professional</span>
               </div>
 
@@ -709,7 +709,7 @@ export default function ProviderProfilePage() {
                   onClick={() => setBookingMode('Instant')}
                   className={`py-2.5 px-3 rounded-xl text-xs font-bold transition text-center ${
                     bookingMode === 'Instant'
-                      ? 'bg-blue-600 text-white shadow-sm'
+                      ? 'bg-emerald-600 text-white shadow-sm'
                       : 'text-slate-700 hover:text-slate-900'
                   }`}
                 >
@@ -723,7 +723,7 @@ export default function ProviderProfilePage() {
                   onClick={() => setBookingMode('Scheduled')}
                   className={`py-2.5 px-3 rounded-xl text-xs font-bold transition text-center ${
                     bookingMode === 'Scheduled'
-                      ? 'bg-blue-600 text-white shadow-sm'
+                      ? 'bg-emerald-600 text-white shadow-sm'
                       : 'text-slate-700 hover:text-slate-900'
                   }`}
                 >
@@ -776,7 +776,7 @@ export default function ProviderProfilePage() {
                   aria-label="Select Service"
                   value={selectedService}
                   onChange={(e) => setSelectedService(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 bg-slate-50 focus:outline-none focus:border-blue-600"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 bg-slate-50 focus:outline-none focus:border-emerald-600"
                 >
                   {provider.subcategories.map((sub) => (
                     <option key={sub} value={sub}>
@@ -796,7 +796,7 @@ export default function ProviderProfilePage() {
                   value={requirement}
                   onChange={(e) => setRequirement(e.target.value)}
                   placeholder="e.g. Fan not working, new wiring, switch repair..."
-                  className="w-full p-3 rounded-xl border border-slate-200 text-xs text-slate-800 bg-slate-50 focus:outline-none focus:border-blue-600"
+                  className="w-full p-3 rounded-xl border border-slate-200 text-xs text-slate-800 bg-slate-50 focus:outline-none focus:border-emerald-600"
                 />
               </div>
 
@@ -805,9 +805,9 @@ export default function ProviderProfilePage() {
                 <button
                   type="button"
                   onClick={handleAddDemoPhoto}
-                  className="w-full p-3 rounded-xl border-2 border-dashed border-blue-200 hover:border-blue-500 bg-blue-50/40 flex items-center gap-3 text-left transition"
+                  className="w-full p-3 rounded-xl border-2 border-dashed border-emerald-200 hover:border-emerald-500 bg-emerald-50/40 flex items-center gap-3 text-left transition"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
                     <Upload className="w-4 h-4" />
                   </div>
                   <div>
@@ -850,11 +850,11 @@ export default function ProviderProfilePage() {
               </div>
 
               {/* Visiting Charge Box matching Image 4 */}
-              <div className="p-3.5 rounded-2xl bg-blue-50/70 border border-blue-100 flex items-center justify-between">
+              <div className="p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between">
                 <div>
                   <div className="text-xs font-bold text-slate-900 flex items-center gap-1">
                     <span>Visiting Charge</span>
-                    <Info className="w-3.5 h-3.5 text-blue-600" />
+                    <Info className="w-3.5 h-3.5 text-emerald-600" />
                   </div>
                   <div className="text-[11px] text-slate-500">
                     (Adjustable in final bill based on actual work)
@@ -869,7 +869,7 @@ export default function ProviderProfilePage() {
               <button
                 type="button"
                 onClick={handleContinueToBook}
-                className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-lg shadow-blue-600/25 transition flex items-center justify-center gap-2"
+                className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-blue-600/25 transition flex items-center justify-center gap-2"
               >
                 <Calendar className="w-4 h-4" />
                 <span>Book Now</span>

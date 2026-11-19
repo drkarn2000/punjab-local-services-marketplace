@@ -11,8 +11,6 @@ import {
   Linkedin,
   MapPin,
   Send,
-  ShieldCheck,
-  Sparkles,
   Youtube,
   Zap,
 } from 'lucide-react';
@@ -48,32 +46,16 @@ export function Footer() {
         alt="Punjab Services Footer Background"
         className="absolute inset-0 w-full h-full object-cover object-center scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-[#040c1f]/95 via-[#081a3e]/90 to-[#0f2b63]/90 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#041418]/95 via-[#092930]/90 to-[#0f1c38]/90 backdrop-blur-[2px]" />
       <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-14">
-        {/* Top Highlight Strip inside Footer */}
-        <div className="mb-10 pb-6 border-b border-white/15 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-300 text-slate-950 text-[11px] font-extrabold uppercase tracking-wider shadow">
-              <Sparkles className="w-3.5 h-3.5" /> Punjab&apos;s Trusted Marketplace
-            </span>
-            <span className="text-xs text-cyan-200 font-semibold hidden sm:inline">
-              Verified Professionals • Transparent Estimates • 30-Day Service Warranty
-            </span>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-blue-100">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Serving Mohali, Chandigarh &amp; Hoshiarpur</span>
-          </div>
-        </div>
-
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
           {/* Column 1: Brand Info (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="inline-flex items-center gap-3 group">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-500 via-indigo-600 to-cyan-400 flex items-center justify-center text-white shadow-[0_0_20px_rgba(56,189,248,0.45)] group-hover:scale-105 transition">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-400 flex items-center justify-center text-white shadow-[0_0_20px_rgba(56,189,248,0.45)] group-hover:scale-105 transition">
                 <div className="relative flex items-center justify-center">
                   <Home className="w-5 h-5" />
                   <Zap className="w-3 h-3 text-amber-300 fill-amber-300 absolute -bottom-0.5 -right-1" />
@@ -88,7 +70,7 @@ export function Footer() {
                 </div>
               </div>
             </Link>
-            <p className="text-xs text-blue-100/85 leading-relaxed max-w-sm">
+            <p className="text-xs text-emerald-100/85 leading-relaxed max-w-sm">
               Your trusted hyperlocal platform to discover, compare, and book
               verified electricians, plumbers, carpenters, laptop and mobile
               repair specialists at your doorstep.
@@ -96,7 +78,7 @@ export function Footer() {
             <div className="flex items-center gap-2.5 pt-1">
               <button
                 onClick={() => showToast('Opening Punjab Services Facebook Page (Demo)', 'info')}
-                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-blue-600 text-blue-200 hover:text-white border border-white/15 hover:border-blue-400 hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(59,130,246,0.6)] flex items-center justify-center transition-all"
+                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-emerald-600 text-emerald-200 hover:text-white border border-white/15 hover:border-emerald-400 hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(59,130,246,0.6)] flex items-center justify-center transition-all"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -117,7 +99,7 @@ export function Footer() {
               </button>
               <button
                 onClick={() => showToast('Opening Punjab Services LinkedIn Page (Demo)', 'info')}
-                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-sky-600 text-sky-200 hover:text-white border border-white/15 hover:border-sky-400 hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(14,165,233,0.6)] flex items-center justify-center transition-all"
+                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-teal-600 text-teal-200 hover:text-white border border-white/15 hover:border-teal-400 hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(14,165,233,0.6)] flex items-center justify-center transition-all"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -130,7 +112,7 @@ export function Footer() {
             <h3 className="text-amber-300 font-extrabold text-xs uppercase tracking-wider mb-4">
               Quick Links
             </h3>
-            <ul className="space-y-2.5 text-xs text-blue-100/85">
+            <ul className="space-y-2.5 text-xs text-emerald-100/85">
               {[
                 { label: 'Home', href: '/' },
                 { label: 'All Services', href: '/services' },
@@ -157,7 +139,7 @@ export function Footer() {
             <h3 className="text-amber-300 font-extrabold text-xs uppercase tracking-wider mb-4">
               Our Services
             </h3>
-            <ul className="space-y-2.5 text-xs text-blue-100/85">
+            <ul className="space-y-2.5 text-xs text-emerald-100/85">
               {[
                 { label: 'Electrician Services', href: '/services/electrician' },
                 { label: 'Plumber Services', href: '/services/plumber' },
@@ -184,7 +166,7 @@ export function Footer() {
             <h3 className="text-amber-300 font-extrabold text-xs uppercase tracking-wider mb-4">
               Support &amp; Cities
             </h3>
-            <ul className="space-y-2.5 text-xs text-blue-100/85">
+            <ul className="space-y-2.5 text-xs text-emerald-100/85">
               {[
                 { label: 'Help Center', href: '/support' },
                 { label: 'Contact Us', href: '/contact' },
@@ -239,13 +221,13 @@ export function Footer() {
                   />
                   <button
                     type="submit"
-                    className="p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shrink-0 transition"
+                    className="p-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white shrink-0 transition"
                     aria-label="Subscribe"
                   >
                     <Send className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <p className="text-[11px] text-blue-100/80 leading-snug">
+                <p className="text-[11px] text-emerald-100/80 leading-snug">
                   Seasonal offers &amp; Tricity updates.
                 </p>
               </form>
@@ -271,7 +253,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Legal Bar */}
-        <div className="mt-10 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-blue-100/75">
+        <div className="mt-10 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-emerald-100/75">
           <div>© 2026 Punjab Services. All Rights Reserved.</div>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link

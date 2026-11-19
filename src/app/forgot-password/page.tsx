@@ -14,9 +14,9 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="min-h-screen bg-[#f0f5ff] py-12 px-4 sm:px-6 flex items-center justify-center">
-      <div className="max-w-md w-full bg-white rounded-3xl border border-blue-100 shadow-2xl p-6 sm:p-8 space-y-5">
+      <div className="max-w-md w-full bg-white rounded-3xl border border-emerald-100 shadow-2xl p-6 sm:p-8 space-y-5">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mx-auto">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center mx-auto">
             <KeyRound className="w-6 h-6" />
           </div>
           <h1 className="text-2xl font-extrabold text-slate-900">
@@ -45,7 +45,7 @@ export default function ForgotPasswordPage() {
                 setStep('verify');
                 showToast('Demo recovery code 123456 generated!', 'info');
               }}
-              className="w-full py-3 rounded-xl bg-blue-600 text-white text-xs sm:text-sm font-bold"
+              className="w-full py-3 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-bold"
             >
               Send Verification Code
             </button>
@@ -54,18 +54,18 @@ export default function ForgotPasswordPage() {
 
         {step === 'verify' && (
           <div className="space-y-4">
-            <div className="p-3 rounded-xl bg-blue-50 border border-blue-100 text-xs text-blue-900">
+            <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-100 text-xs text-emerald-900">
               Recovery instructions sent to <strong>{identifier}</strong>. Demo verification code: <strong>123456</strong>.
             </div>
             <input
               type="text"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-blue-600 text-center font-extrabold tracking-widest"
+              className="w-full px-4 py-2.5 rounded-xl border border-emerald-600 text-center font-extrabold tracking-widest"
             />
             <button
               onClick={() => setStep('reset')}
-              className="w-full py-3 rounded-xl bg-blue-600 text-white text-xs sm:text-sm font-bold"
+              className="w-full py-3 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-bold"
             >
               Verify Code
             </button>
@@ -109,7 +109,7 @@ export default function ForgotPasswordPage() {
             </p>
             <Link
               href="/login"
-              className="block w-full py-3 rounded-xl bg-blue-600 text-white text-xs font-bold"
+              className="block w-full py-3 rounded-xl bg-emerald-600 text-white text-xs font-bold"
             >
               Return to Login
             </Link>
@@ -117,7 +117,7 @@ export default function ForgotPasswordPage() {
         )}
 
         <div className="text-center text-xs text-slate-500 pt-2 border-t border-slate-100">
-          <Link href="/login" className="font-bold text-blue-600 hover:underline">
+          <Link href="/login" className="font-bold text-emerald-600 hover:underline">
             ← Back to Login
           </Link>
         </div>

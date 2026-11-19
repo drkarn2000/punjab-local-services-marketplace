@@ -248,9 +248,9 @@ export function CustomerAccountWorkspace({
 
   return (
     <div className="min-h-screen bg-[#f8fafc] py-8 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
         {/* Left Sidebar Navigation (3 cols) */}
-        <aside className="lg:col-span-3 bg-gradient-to-b from-[#0f1c3f] to-[#0a132c] text-white rounded-3xl border border-indigo-900/60 p-5 shadow-2xl space-y-5 sticky top-24">
+        <aside className="lg:col-span-3 bg-gradient-to-b from-[#041418] to-[#0f1c38] text-white rounded-3xl border border-teal-900/60 p-5 shadow-2xl space-y-5 sticky top-24">
           <div className="flex items-center gap-3 pb-4 border-b border-white/10">
             <img
               src={currentCustomer.avatar}
@@ -278,7 +278,7 @@ export function CustomerAccountWorkspace({
                   href={item.href}
                   className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
                     active
-                      ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-600/30 translate-x-1'
+                      ? 'bg-gradient-to-r from-emerald-600 to-cyan-500 text-white shadow-lg shadow-blue-600/30 translate-x-1'
                       : 'text-slate-300 hover:bg-white/10 hover:text-white'
                   }`}
                 >
@@ -305,7 +305,7 @@ export function CustomerAccountWorkspace({
           {/* 1. DASHBOARD OVERVIEW (/account) */}
           {section === 'overview' && (
             <div className="space-y-6">
-              <div className="bg-gradient-to-r from-[#092154] via-[#133b94] to-[#0ea5e9] text-white rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl glow-blue">
+              <div className="bg-gradient-to-r from-[#041418] via-[#092930] to-[#0ea5e9] text-white rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl glow-blue">
                 <div>
                   <span className="inline-block px-3 py-1 rounded-full bg-white/15 text-cyan-200 text-[11px] font-extrabold uppercase tracking-wider mb-2">
                     Verified Customer Portal • {currentCustomer.citySlug.toUpperCase()}
@@ -313,7 +313,7 @@ export function CustomerAccountWorkspace({
                   <h1 className="text-2xl sm:text-3xl font-extrabold">
                     Sat Sri Akal, {currentCustomer.name}!
                   </h1>
-                  <p className="text-xs sm:text-sm text-blue-100 mt-1">
+                  <p className="text-xs sm:text-sm text-emerald-100 mt-1">
                     Manage your bookings, approve technician estimates, and download invoices from your personal dashboard.
                   </p>
                 </div>
@@ -329,9 +329,9 @@ export function CustomerAccountWorkspace({
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <Link
                   href="/account/bookings"
-                  className="bg-gradient-to-br from-blue-600 to-indigo-800 text-white rounded-2xl p-5 shadow-lg hover:-translate-y-1 transition-all glow-blue group"
+                  className="bg-gradient-to-br from-emerald-600 to-teal-800 text-white rounded-2xl p-5 shadow-lg hover:-translate-y-1 transition-all glow-blue group"
                 >
-                  <div className="text-xs text-blue-100 font-bold">
+                  <div className="text-xs text-emerald-100 font-bold">
                     Total Bookings
                   </div>
                   <div className="text-3xl font-extrabold mt-1">
@@ -411,7 +411,7 @@ export function CustomerAccountWorkspace({
                   </h2>
                   <Link
                     href="/account/bookings"
-                    className="text-xs font-bold text-blue-700 hover:underline"
+                    className="text-xs font-bold text-emerald-700 hover:underline"
                   >
                     View All Bookings →
                   </Link>
@@ -425,10 +425,10 @@ export function CustomerAccountWorkspace({
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-extrabold text-blue-700">
+                          <span className="text-xs font-extrabold text-emerald-700">
                             {b.id}
                           </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 text-[11px] font-bold">
+                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-bold">
                             {b.status}
                           </span>
                         </div>
@@ -443,13 +443,13 @@ export function CustomerAccountWorkspace({
                       <div className="flex flex-wrap gap-2">
                         <Link
                           href={`/account/bookings/${b.id}`}
-                          className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:border-blue-600"
+                          className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:border-emerald-600"
                         >
                           Details
                         </Link>
                         <Link
                           href={`/booking/tracking?bookingId=${b.id}`}
-                          className="px-3.5 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                          className="px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold"
                         >
                           Track Live
                         </Link>
@@ -526,7 +526,7 @@ export function CustomerAccountWorkspace({
                       email: emailInput,
                     })
                   }
-                  className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold"
+                  className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold"
                 >
                   Save Profile Changes
                 </button>
@@ -553,7 +553,7 @@ export function CustomerAccountWorkspace({
                             {addr.label}
                           </span>
                           {addr.isDefault && (
-                            <span className="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-bold">
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">
                               Default Address
                             </span>
                           )}
@@ -573,7 +573,7 @@ export function CustomerAccountWorkspace({
                         {!addr.isDefault && (
                           <button
                             onClick={() => setDefaultAddress(addr.id)}
-                            className="px-3 py-1.5 rounded-lg border border-blue-200 text-blue-700 text-xs font-bold hover:bg-blue-50"
+                            className="px-3 py-1.5 rounded-lg border border-emerald-200 text-emerald-700 text-xs font-bold hover:bg-emerald-50"
                           >
                             Set Default
                           </button>
@@ -606,7 +606,7 @@ export function CustomerAccountWorkspace({
                       onClick={() => setAddrLabel(l)}
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-bold border ${
                         addrLabel === l
-                          ? 'bg-blue-600 text-white border-blue-600'
+                          ? 'bg-emerald-600 text-white border-emerald-600'
                           : 'bg-slate-50 text-slate-700 border-slate-200'
                       }`}
                     >
@@ -682,7 +682,7 @@ export function CustomerAccountWorkspace({
                     setStreet('');
                     setLandmark('');
                   }}
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold inline-flex items-center gap-1.5"
+                  className="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold inline-flex items-center gap-1.5"
                 >
                   <Plus className="w-4 h-4" /> Save Address
                 </button>
@@ -738,7 +738,7 @@ export function CustomerAccountWorkspace({
                     onClick={() => setBookingTab(t)}
                     className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition ${
                       bookingTab === t
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-emerald-600 text-white'
                         : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
                   >
@@ -751,14 +751,14 @@ export function CustomerAccountWorkspace({
                 {filteredBookings.map((b) => (
                   <div
                     key={b.id}
-                    className="p-4 rounded-2xl border border-slate-200 space-y-3 hover:border-blue-400 transition"
+                    className="p-4 rounded-2xl border border-slate-200 space-y-3 hover:border-emerald-400 transition"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="font-extrabold text-blue-700 text-xs">
+                        <span className="font-extrabold text-emerald-700 text-xs">
                           {b.id}
                         </span>
-                        <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 text-[11px] font-bold">
+                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-900 text-[11px] font-bold">
                           {b.status}
                         </span>
                         <span className="text-xs text-slate-400">
@@ -785,13 +785,13 @@ export function CustomerAccountWorkspace({
                       <div className="flex flex-wrap gap-2">
                         <Link
                           href={`/account/bookings/${b.id}`}
-                          className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:border-blue-600"
+                          className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:border-emerald-600"
                         >
                           Booking Details
                         </Link>
                         <Link
                           href={`/booking/tracking?bookingId=${b.id}`}
-                          className="px-3.5 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                          className="px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold"
                         >
                           Track Booking
                         </Link>
@@ -816,7 +816,7 @@ export function CustomerAccountWorkspace({
                 <div>
                   <Link
                     href="/account/bookings"
-                    className="text-xs font-bold text-blue-600 hover:underline"
+                    className="text-xs font-bold text-emerald-600 hover:underline"
                   >
                     ← Back to My Bookings
                   </Link>
@@ -824,7 +824,7 @@ export function CustomerAccountWorkspace({
                     Booking Details — {detailBooking.id}
                   </h1>
                 </div>
-                <span className="px-3.5 py-1.5 rounded-full bg-blue-600 text-white text-xs font-bold">
+                <span className="px-3.5 py-1.5 rounded-full bg-emerald-600 text-white text-xs font-bold">
                   {detailBooking.status}
                 </span>
               </div>
@@ -874,7 +874,7 @@ export function CustomerAccountWorkspace({
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={`/booking/tracking?bookingId=${detailBooking.id}`}
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                  className="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold"
                 >
                   Open Live Tracker
                 </Link>
@@ -897,7 +897,7 @@ export function CustomerAccountWorkspace({
           {/* 6. PAYMENTS & METHODS (/account/payments) */}
           {section === 'payments' && (
             <div className="space-y-6">
-              <div className="bg-gradient-to-r from-indigo-900 via-blue-800 to-cyan-700 text-white rounded-3xl p-6 sm:p-8 shadow-xl glow-blue flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="bg-gradient-to-r from-teal-900 via-emerald-800 to-cyan-700 text-white rounded-3xl p-6 sm:p-8 shadow-xl glow-blue flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <span className="inline-block px-3 py-1 rounded-full bg-white/15 text-cyan-200 text-[11px] font-extrabold uppercase tracking-wider mb-2">
                     Customer Wallet & UPI Vault
@@ -905,13 +905,13 @@ export function CustomerAccountWorkspace({
                   <h1 className="text-2xl font-extrabold">
                     Payments, Saved UPI & Transaction Ledger
                   </h1>
-                  <p className="text-xs text-blue-100 mt-1">
+                  <p className="text-xs text-emerald-100 mt-1">
                     Manage your saved payment methods and track every booking transaction in real time.
                   </p>
                 </div>
                 <Link
                   href="/account/invoices"
-                  className="px-4 py-2.5 rounded-xl bg-white text-slate-900 font-extrabold text-xs shadow-md hover:bg-blue-50 transition shrink-0"
+                  className="px-4 py-2.5 rounded-xl bg-white text-slate-900 font-extrabold text-xs shadow-md hover:bg-emerald-50 transition shrink-0"
                 >
                   Open GST Tax Invoices →
                 </Link>
@@ -919,7 +919,7 @@ export function CustomerAccountWorkspace({
 
               {/* Saved Payment Methods */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-800 text-white p-5 shadow-lg glow-blue">
+                <div className="rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-800 text-white p-5 shadow-lg glow-blue">
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] font-extrabold uppercase tracking-wider text-cyan-200">
                       Primary UPI ID
@@ -931,7 +931,7 @@ export function CustomerAccountWorkspace({
                   <div className="text-lg font-extrabold mt-3">
                     jaspreet.kaur@okhdfcbank
                   </div>
-                  <div className="text-xs text-blue-200 mt-1">
+                  <div className="text-xs text-emerald-200 mt-1">
                     Google Pay / PhonePe Auto-Approve Enabled
                   </div>
                 </div>
@@ -956,9 +956,9 @@ export function CustomerAccountWorkspace({
                       'success'
                     )
                   }
-                  className="rounded-2xl border-2 border-dashed border-blue-300 bg-blue-50/50 hover:bg-blue-100/60 text-blue-700 p-5 flex flex-col items-center justify-center gap-2 font-extrabold text-xs transition"
+                  className="rounded-2xl border-2 border-dashed border-emerald-300 bg-emerald-50/50 hover:bg-emerald-100/60 text-emerald-700 p-5 flex flex-col items-center justify-center gap-2 font-extrabold text-xs transition"
                 >
-                  <CreditCard className="w-6 h-6 text-blue-600" />
+                  <CreditCard className="w-6 h-6 text-emerald-600" />
                   <span>+ Add New UPI ID or Card</span>
                 </button>
               </div>
@@ -970,7 +970,7 @@ export function CustomerAccountWorkspace({
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs border-collapse">
                     <thead>
-                      <tr className="bg-gradient-to-r from-slate-900 to-indigo-950 text-white">
+                      <tr className="bg-gradient-to-r from-slate-900 to-teal-950 text-white">
                         <th className="p-3.5 text-left rounded-tl-xl">Transaction Ref</th>
                         <th className="p-3.5 text-left">Booking & Service</th>
                         <th className="p-3.5 text-left">Payment Mode</th>
@@ -980,8 +980,8 @@ export function CustomerAccountWorkspace({
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {bookings.map((b) => (
-                        <tr key={b.id} className="hover:bg-blue-50/40 transition">
-                          <td className="p-3.5 font-extrabold text-indigo-700">
+                        <tr key={b.id} className="hover:bg-emerald-50/40 transition">
+                          <td className="p-3.5 font-extrabold text-teal-700">
                             {b.transactionRef}
                             <span className="block text-[11px] text-slate-500">
                               {b.date}
@@ -1054,7 +1054,7 @@ export function CustomerAccountWorkspace({
                         <span className="px-2.5 py-0.5 rounded-lg bg-teal-50 text-teal-800 font-extrabold text-xs border border-teal-200">
                           {b.invoiceId}
                         </span>
-                        <span className="text-xs font-bold text-blue-600">
+                        <span className="text-xs font-bold text-emerald-600">
                           Booking #{b.id}
                         </span>
                         <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-extrabold">
@@ -1163,7 +1163,7 @@ export function CustomerAccountWorkspace({
                 </h1>
                 <button
                   onClick={() => markAllNotificationsRead('customer')}
-                  className="px-3.5 py-1.5 rounded-xl bg-blue-50 text-blue-700 text-xs font-bold"
+                  className="px-3.5 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-bold"
                 >
                   Mark All as Read
                 </button>
@@ -1177,7 +1177,7 @@ export function CustomerAccountWorkspace({
                       onClick={() => setNotifFilter(c)}
                       className={`px-3 py-1 rounded-full text-xs font-bold ${
                         notifFilter === c
-                          ? 'bg-blue-600 text-white'
+                          ? 'bg-emerald-600 text-white'
                           : 'bg-slate-100 text-slate-700'
                       }`}
                     >
@@ -1194,12 +1194,12 @@ export function CustomerAccountWorkspace({
                     className={`p-4 rounded-2xl border flex items-start justify-between gap-3 ${
                       n.read
                         ? 'bg-white border-slate-200'
-                        : 'bg-blue-50/50 border-blue-200'
+                        : 'bg-emerald-50/50 border-emerald-200'
                     }`}
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded bg-blue-100 text-blue-800 text-[10px] font-bold">
+                        <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">
                           {n.category}
                         </span>
                         <span className="font-extrabold text-slate-900 text-sm">
@@ -1214,7 +1214,7 @@ export function CustomerAccountWorkspace({
                     {n.link && (
                       <Link
                         href={n.link}
-                        className="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-bold shrink-0"
+                        className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold shrink-0"
                       >
                         Open
                       </Link>
@@ -1281,7 +1281,7 @@ export function CustomerAccountWorkspace({
                             },
                           })
                         }
-                        className="w-5 h-5 rounded text-blue-600"
+                        className="w-5 h-5 rounded text-emerald-600"
                       />
                     </label>
                   );
@@ -1413,7 +1413,7 @@ export function CustomerAccountWorkspace({
                   onClick={() =>
                     requestRefund(refundTargetId, refundReason, refundAmount)
                   }
-                  className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold"
+                  className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold"
                 >
                   Submit Refund Request
                 </button>

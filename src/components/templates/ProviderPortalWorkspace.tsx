@@ -325,7 +325,7 @@ export function ProviderPortalWorkspace({
     <div className="min-h-screen bg-[#f1f5f9] flex flex-col">
       {/* Provider Portal Dedicated Topbar */}
       <header className="bg-[#091e42] text-white border-b border-slate-800 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link
               href="/provider/dashboard"
@@ -388,7 +388,7 @@ export function ProviderPortalWorkspace({
 
             <Link
               href={`/professionals/${currentProvider.slug}`}
-              className="hidden md:inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-bold"
+              className="hidden md:inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold"
             >
               <span>Public Profile</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -398,9 +398,9 @@ export function ProviderPortalWorkspace({
       </header>
 
       {/* Main Layout */}
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-7 grid grid-cols-1 lg:grid-cols-12 gap-7 items-start flex-1">
+      <div className="w-full w-full px-4 sm:px-6 py-7 grid grid-cols-1 lg:grid-cols-12 gap-7 items-start flex-1">
         {/* Left Sidebar (3 cols) */}
-        <aside className="lg:col-span-3 bg-gradient-to-b from-[#0f1c3f] to-[#0a132c] text-white rounded-3xl border border-blue-400/30 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.35)] space-y-4">
+        <aside className="lg:col-span-3 bg-gradient-to-b from-[#041418] to-[#0f1c38] text-white rounded-3xl border border-emerald-400/30 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.35)] space-y-4">
           <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 border border-white/15 pb-3.5">
             <img
               src={currentProvider.avatar}
@@ -414,7 +414,7 @@ export function ProviderPortalWorkspace({
                   <BadgeCheck className="w-4 h-4 text-cyan-400 shrink-0" />
                 )}
               </div>
-              <div className="text-[11px] text-blue-200">
+              <div className="text-[11px] text-emerald-200">
                 {currentProvider.providerType === 'business'
                   ? 'Business Agency'
                   : 'Individual Professional'}{' '}
@@ -437,7 +437,7 @@ export function ProviderPortalWorkspace({
                   href={item.href}
                   className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
                     isActive
-                      ? 'bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.55)] translate-x-1'
+                      ? 'bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.55)] translate-x-1'
                       : 'text-slate-200 hover:bg-white/10 hover:text-white'
                   }`}
                 >
@@ -471,7 +471,7 @@ export function ProviderPortalWorkspace({
                   <h1 className="text-2xl sm:text-3xl font-extrabold mt-1.5">
                     Welcome, {currentProvider.name}
                   </h1>
-                  <p className="text-xs text-blue-100 mt-0.5">
+                  <p className="text-xs text-emerald-100 mt-0.5">
                     Visiting Fee: ₹{currentProvider.visitingCharge} • Operating
                     Radius: {currentProvider.serviceRadiusKm} km around{' '}
                     {currentProvider.cityName}
@@ -501,7 +501,7 @@ export function ProviderPortalWorkspace({
                     val: currentProvider.completedJobs + 12,
                     sub: 'Open job history →',
                     href: '/provider/history',
-                    grad: 'from-blue-600 to-indigo-800',
+                    grad: 'from-emerald-600 to-teal-800',
                   },
                   {
                     label: 'New Requests',
@@ -553,14 +553,14 @@ export function ProviderPortalWorkspace({
                     val: '₹1,452',
                     sub: 'Open payout ledger →',
                     href: '/provider/payouts',
-                    grad: 'from-cyan-600 to-blue-800',
+                    grad: 'from-cyan-600 to-emerald-800',
                   },
                   {
                     label: 'Average Rating',
                     val: `${currentProvider.rating} ★ (${currentProvider.reviewCount})`,
                     sub: 'Read & reply reviews →',
                     href: '/provider/reviews',
-                    grad: 'from-indigo-600 to-purple-800',
+                    grad: 'from-teal-600 to-purple-800',
                   },
                 ].map((kpi) => (
                   <Link
@@ -610,7 +610,7 @@ export function ProviderPortalWorkspace({
                           {bar.amt}
                         </span>
                         <div
-                          className="w-full rounded-t-xl bg-gradient-to-t from-blue-700 to-cyan-500"
+                          className="w-full rounded-t-xl bg-gradient-to-t from-emerald-700 to-cyan-500"
                           style={{ height: bar.pct }}
                         />
                         <span className="text-[11px] font-bold text-slate-700 pb-1">
@@ -628,7 +628,7 @@ export function ProviderPortalWorkspace({
                     </h2>
                     <Link
                       href="/provider/active-jobs"
-                      className="text-xs font-bold text-blue-600 hover:underline"
+                      className="text-xs font-bold text-emerald-600 hover:underline"
                     >
                       Manage →
                     </Link>
@@ -641,7 +641,7 @@ export function ProviderPortalWorkspace({
                       >
                         <div className="flex justify-between font-bold text-slate-900">
                           <span>{b.subcategoryName}</span>
-                          <span className="text-blue-600">{b.id}</span>
+                          <span className="text-emerald-600">{b.id}</span>
                         </div>
                         <div className="text-slate-600">
                           {b.customerName} • {b.address.streetLocality},{' '}
@@ -679,7 +679,7 @@ export function ProviderPortalWorkspace({
                   onClick={() => setRegType('individual')}
                   className={`py-2.5 rounded-xl text-xs font-extrabold transition ${
                     regType === 'individual'
-                      ? 'bg-blue-600 text-white shadow'
+                      ? 'bg-emerald-600 text-white shadow'
                       : 'text-slate-700'
                   }`}
                 >
@@ -690,7 +690,7 @@ export function ProviderPortalWorkspace({
                   onClick={() => setRegType('business')}
                   className={`py-2.5 rounded-xl text-xs font-extrabold transition ${
                     regType === 'business'
-                      ? 'bg-blue-600 text-white shadow'
+                      ? 'bg-emerald-600 text-white shadow'
                       : 'text-slate-700'
                   }`}
                 >
@@ -876,9 +876,9 @@ export function ProviderPortalWorkspace({
                         'info'
                       )
                     }
-                    className="p-4 rounded-2xl border-2 border-dashed border-blue-200 hover:border-blue-500 bg-blue-50/40 text-left space-y-1 transition"
+                    className="p-4 rounded-2xl border-2 border-dashed border-emerald-200 hover:border-emerald-500 bg-emerald-50/40 text-left space-y-1 transition"
                   >
-                    <Upload className="w-5 h-5 text-blue-600" />
+                    <Upload className="w-5 h-5 text-emerald-600" />
                     <div className="text-xs font-bold text-slate-800">
                       {docLabel}
                     </div>
@@ -915,7 +915,7 @@ export function ProviderPortalWorkspace({
                   });
                   router.push('/provider/verification');
                 }}
-                className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-extrabold shadow-md"
+                className="px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-extrabold shadow-md"
               >
                 Submit Partner Registration & View Verification Status →
               </button>
@@ -936,7 +936,7 @@ export function ProviderPortalWorkspace({
                     Track document verification and test all 6 verification states interactively
                   </p>
                 </div>
-                <span className="px-4 py-1.5 rounded-full bg-blue-600 text-white text-xs font-extrabold">
+                <span className="px-4 py-1.5 rounded-full bg-emerald-600 text-white text-xs font-extrabold">
                   Current State: {currentProvider.verificationStatus}
                 </span>
               </div>
@@ -968,8 +968,8 @@ export function ProviderPortalWorkspace({
                       }
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition ${
                         currentProvider.verificationStatus === st
-                          ? 'bg-blue-600 text-white shadow'
-                          : 'bg-white border border-slate-200 text-slate-700 hover:border-blue-400'
+                          ? 'bg-emerald-600 text-white shadow'
+                          : 'bg-white border border-slate-200 text-slate-700 hover:border-emerald-400'
                       }`}
                     >
                       {st}
@@ -1024,7 +1024,7 @@ export function ProviderPortalWorkspace({
                     'Provider re-uploaded requested documents.'
                   )
                 }
-                className="px-5 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                className="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold"
               >
                 Resubmit Updated Documents (Demo)
               </button>
@@ -1055,14 +1055,14 @@ export function ProviderPortalWorkspace({
                   .map((b) => (
                     <div
                       key={b.id}
-                      className="p-5 rounded-2xl border border-slate-200 space-y-4 hover:border-blue-400 transition"
+                      className="p-5 rounded-2xl border border-slate-200 space-y-4 hover:border-emerald-400 transition"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <span className="font-extrabold text-blue-700 text-xs">
+                          <span className="font-extrabold text-emerald-700 text-xs">
                             {b.id}
                           </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 text-[11px] font-bold">
+                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-bold">
                             {b.status}
                           </span>
                           <span className="text-xs text-slate-500">
@@ -1083,7 +1083,7 @@ export function ProviderPortalWorkspace({
                             {b.problemDescription}
                           </p>
                           <div className="text-xs text-slate-500 flex items-center gap-1.5 pt-1">
-                            <MapPin className="w-3.5 h-3.5 text-blue-600" />
+                            <MapPin className="w-3.5 h-3.5 text-emerald-600" />
                             <span>
                               Customer: <strong>{b.customerName}</strong> •{' '}
                               {b.address.houseFlat}, {b.address.streetLocality},{' '}
@@ -1162,7 +1162,7 @@ export function ProviderPortalWorkspace({
                                     );
                                   }
                                 }}
-                                className="w-full px-2.5 py-1.5 rounded-xl border border-blue-200 bg-blue-50 text-blue-900 text-xs font-bold"
+                                className="w-full px-2.5 py-1.5 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-900 text-xs font-bold"
                               >
                                 <option value="">
                                   Assign Team Technician...
@@ -1211,7 +1211,7 @@ export function ProviderPortalWorkspace({
                       >
                         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
                           <div>
-                            <span className="text-xs font-extrabold text-blue-600">
+                            <span className="text-xs font-extrabold text-emerald-600">
                               {b.id} • {b.customerName}
                             </span>
                             <h3 className="text-lg font-extrabold text-slate-900">
@@ -1219,7 +1219,7 @@ export function ProviderPortalWorkspace({
                               {b.address.city})
                             </h3>
                           </div>
-                          <span className="px-3.5 py-1 rounded-full bg-blue-600 text-white text-xs font-bold">
+                          <span className="px-3.5 py-1 rounded-full bg-emerald-600 text-white text-xs font-bold">
                             Status: {b.status}
                           </span>
                         </div>
@@ -1234,7 +1234,7 @@ export function ProviderPortalWorkspace({
                                 'Technician started journey to customer location.'
                               )
                             }
-                            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-800 text-xs font-bold transition"
+                            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-emerald-600 hover:text-white text-slate-800 text-xs font-bold transition"
                           >
                             1. Start Journey
                           </button>
@@ -1247,7 +1247,7 @@ export function ProviderPortalWorkspace({
                                 'Technician arrived at customer doorstep.'
                               )
                             }
-                            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-800 text-xs font-bold transition"
+                            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-emerald-600 hover:text-white text-slate-800 text-xs font-bold transition"
                           >
                             2. Mark Arrived
                           </button>
@@ -1260,7 +1260,7 @@ export function ProviderPortalWorkspace({
                                 'Started fault inspection and diagnosis.'
                               )
                             }
-                            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-800 text-xs font-bold transition"
+                            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-emerald-600 hover:text-white text-slate-800 text-xs font-bold transition"
                           >
                             3. Start Inspection
                           </button>
@@ -1283,7 +1283,7 @@ export function ProviderPortalWorkspace({
                             }
                             className={`px-3.5 py-2 rounded-xl text-xs font-bold transition ${
                               estimateApproved
-                                ? 'bg-blue-600 text-white hover:bg-blue-700'
+                                ? 'bg-emerald-600 text-white hover:bg-emerald-700'
                                 : 'bg-slate-200 text-slate-500'
                             }`}
                           >
@@ -1345,7 +1345,7 @@ export function ProviderPortalWorkspace({
                                 'info'
                               )
                             }
-                            className="sm:col-span-3 py-2 px-3 rounded-xl border border-blue-200 bg-blue-50 text-blue-700 text-xs font-bold flex items-center justify-center gap-1"
+                            className="sm:col-span-3 py-2 px-3 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-700 text-xs font-bold flex items-center justify-center gap-1"
                           >
                             <Upload className="w-3.5 h-3.5" /> Add Work Photo
                           </button>
@@ -1422,7 +1422,7 @@ export function ProviderPortalWorkspace({
                         },
                       ])
                     }
-                    className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1"
+                    className="text-xs font-bold text-emerald-600 hover:underline flex items-center gap-1"
                   >
                     <Plus className="w-3.5 h-3.5" /> Add Labour Item
                   </button>
@@ -1512,7 +1512,7 @@ export function ProviderPortalWorkspace({
                         },
                       ])
                     }
-                    className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1"
+                    className="text-xs font-bold text-emerald-600 hover:underline flex items-center gap-1"
                   >
                     <Plus className="w-3.5 h-3.5" /> Add Material Item
                   </button>
@@ -1619,7 +1619,7 @@ export function ProviderPortalWorkspace({
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-blue-50/70 border border-blue-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="text-xs text-slate-700 space-y-0.5">
                   <div>
                     Visiting Fee: ₹{currentProvider.visitingCharge} + Labour: ₹
@@ -1654,7 +1654,7 @@ export function ProviderPortalWorkspace({
                     };
                     submitEstimate(estBookingId, newEst);
                   }}
-                  className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-extrabold shadow-md inline-flex items-center gap-2"
+                  className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-extrabold shadow-md inline-flex items-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   <span>Send Estimate to Customer</span>
@@ -1686,7 +1686,7 @@ export function ProviderPortalWorkspace({
                       onClick={() => setCalendarView(v)}
                       className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${
                         calendarView === v
-                          ? 'bg-blue-600 text-white'
+                          ? 'bg-emerald-600 text-white'
                           : 'text-slate-700'
                       }`}
                     >
@@ -1782,9 +1782,9 @@ export function ProviderPortalWorkspace({
                 {bookings.map((b) => (
                   <div
                     key={b.id}
-                    className="p-4 rounded-2xl border border-blue-200 bg-blue-50/40 space-y-1 text-xs"
+                    className="p-4 rounded-2xl border border-emerald-200 bg-emerald-50/40 space-y-1 text-xs"
                   >
-                    <div className="font-extrabold text-blue-900">
+                    <div className="font-extrabold text-emerald-900">
                       {b.date} • {b.timeSlot}
                     </div>
                     <div className="font-bold text-slate-900">
@@ -1816,7 +1816,7 @@ export function ProviderPortalWorkspace({
                         onClick={() => setHistoryTab(tab)}
                         className={`px-3.5 py-1.5 rounded-xl text-xs font-bold ${
                           historyTab === tab
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-emerald-600 text-white'
                             : 'bg-slate-100 text-slate-700'
                         }`}
                       >
@@ -1860,7 +1860,7 @@ export function ProviderPortalWorkspace({
                         <div className="text-sm font-extrabold text-slate-900">
                           ₹{b.finalTotal}
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-bold text-[10px]">
+                        <span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-bold text-[10px]">
                           {b.status}
                         </span>
                       </div>
@@ -1874,10 +1874,10 @@ export function ProviderPortalWorkspace({
               7.9A DEDICATED EARNINGS OVERVIEW (/provider/earnings)
              ========================================================= */}
           {section === 'earnings' && (
-            <div className="bg-white rounded-3xl border border-blue-200 p-6 shadow-xl space-y-6">
+            <div className="bg-white rounded-3xl border border-emerald-200 p-6 shadow-xl space-y-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <span className="text-xs font-extrabold uppercase text-blue-600">
+                  <span className="text-xs font-extrabold uppercase text-emerald-600">
                     Partner Revenue Intelligence
                   </span>
                   <h1 className="text-2xl font-extrabold text-slate-900">
@@ -1889,14 +1889,14 @@ export function ProviderPortalWorkspace({
                 </div>
                 <Link
                   href="/provider/payouts"
-                  className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-extrabold shadow-lg"
+                  className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-extrabold shadow-lg"
                 >
                   Open Bank Payout Ledger →
                 </Link>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-5 rounded-2xl text-white bg-gradient-to-br from-blue-600 to-indigo-800 shadow-lg">
+                <div className="p-5 rounded-2xl text-white bg-gradient-to-br from-emerald-600 to-teal-800 shadow-lg">
                   <div className="text-xs font-bold uppercase opacity-85">
                     Gross Booking Earnings
                   </div>
@@ -1932,11 +1932,11 @@ export function ProviderPortalWorkspace({
               </div>
 
               {/* Monthly Earnings Trend Bars */}
-              <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 space-y-4">
+              <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 space-y-4">
                 <h3 className="text-sm font-extrabold text-slate-900">
                   Month-on-Month Net Partner Earnings (2026)
                 </h3>
-                <div className="grid grid-cols-6 gap-3 items-end h-40 pt-4 px-3 bg-white rounded-2xl border border-blue-100">
+                <div className="grid grid-cols-6 gap-3 items-end h-40 pt-4 px-3 bg-white rounded-2xl border border-emerald-100">
                   {[
                     { m: 'Jun', pct: '45%', val: '₹24.5k' },
                     { m: 'Jul', pct: '58%', val: '₹31.2k' },
@@ -1970,7 +1970,7 @@ export function ProviderPortalWorkspace({
               7.9B DEDICATED PAYOUT SETTLEMENT LEDGER (/provider/payouts)
              ========================================================= */}
           {section === 'payouts' && (
-            <div className="bg-white rounded-3xl border border-blue-200 p-6 shadow-xl space-y-6">
+            <div className="bg-white rounded-3xl border border-emerald-200 p-6 shadow-xl space-y-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <span className="text-xs font-extrabold uppercase text-emerald-600">
@@ -2003,7 +2003,7 @@ export function ProviderPortalWorkspace({
                     onClick={() => setPayoutStatusFilter(st)}
                     className={`px-4 py-2 rounded-xl text-xs font-extrabold ${
                       payoutStatusFilter === st
-                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow'
+                        ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow'
                         : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
                   >
@@ -2012,10 +2012,10 @@ export function ProviderPortalWorkspace({
                 ))}
               </div>
 
-              <div className="overflow-x-auto rounded-2xl border border-blue-200">
+              <div className="overflow-x-auto rounded-2xl border border-emerald-200">
                 <table className="w-full text-xs border-collapse">
                   <thead>
-                    <tr className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white text-[11px] font-extrabold uppercase">
+                    <tr className="bg-gradient-to-r from-emerald-900 to-teal-900 text-white text-[11px] font-extrabold uppercase">
                       <th className="p-3.5 text-left">Payout / Date</th>
                       <th className="p-3.5 text-left">Booking & Service</th>
                       <th className="p-3.5 text-right">Gross</th>
@@ -2032,7 +2032,7 @@ export function ProviderPortalWorkspace({
                           p.status === payoutStatusFilter
                       )
                       .map((p) => (
-                        <tr key={p.id} className="hover:bg-blue-50/40">
+                        <tr key={p.id} className="hover:bg-emerald-50/40">
                           <td className="p-3.5 font-extrabold text-slate-900">
                             {p.id}
                             <span className="block text-[10px] text-slate-500 font-normal">
@@ -2040,7 +2040,7 @@ export function ProviderPortalWorkspace({
                             </span>
                           </td>
                           <td className="p-3.5">
-                            <div className="font-bold text-blue-700">
+                            <div className="font-bold text-emerald-700">
                               {p.bookingId}
                             </div>
                             <div className="text-[11px] text-slate-500">
@@ -2097,7 +2097,7 @@ export function ProviderPortalWorkspace({
                     </div>
                     <p className="text-xs text-slate-600">{r.comment}</p>
                     {r.providerReply && (
-                      <div className="p-3 rounded-xl bg-blue-50 text-xs text-blue-950">
+                      <div className="p-3 rounded-xl bg-emerald-50 text-xs text-emerald-950">
                         <strong>Your Response:</strong> {r.providerReply}
                       </div>
                     )}
@@ -2120,7 +2120,7 @@ export function ProviderPortalWorkspace({
                           replyToReview(r.id, replyTexts[r.id].trim());
                           setReplyTexts((prev) => ({ ...prev, [r.id]: '' }));
                         }}
-                        className="px-4 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                        className="px-4 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold"
                       >
                         Post Reply
                       </button>
@@ -2171,7 +2171,7 @@ export function ProviderPortalWorkspace({
                     setPortTitle('');
                     setPortDesc('');
                   }}
-                  className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                  className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold"
                 >
                   + Add Portfolio Item
                 </button>
@@ -2224,7 +2224,7 @@ export function ProviderPortalWorkspace({
                 </h1>
                 <Link
                   href={`/professionals/${currentProvider.slug}`}
-                  className="text-xs font-bold text-blue-600 hover:underline"
+                  className="text-xs font-bold text-emerald-600 hover:underline"
                 >
                   Preview Public Profile →
                 </Link>
@@ -2287,7 +2287,7 @@ export function ProviderPortalWorkspace({
                     about: profAbout,
                   })
                 }
-                className="px-6 py-3 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                className="px-6 py-3 rounded-xl bg-emerald-600 text-white text-xs font-bold"
               >
                 Save Profile & Publish Live
               </button>
@@ -2357,7 +2357,7 @@ export function ProviderPortalWorkspace({
                     });
                     setTechName('');
                   }}
-                  className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                  className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold"
                 >
                   + Add Technician
                 </button>
@@ -2383,7 +2383,7 @@ export function ProviderPortalWorkspace({
                         <div className="text-xs text-slate-500">
                           {tech.role} • {tech.experienceYears} yrs exp
                         </div>
-                        <div className="text-[11px] text-blue-600 font-bold">
+                        <div className="text-[11px] text-emerald-600 font-bold">
                           Assigned Jobs: {tech.assignedJobsCount}
                         </div>
                       </div>
@@ -2410,7 +2410,7 @@ export function ProviderPortalWorkspace({
                             tech.name
                           )
                         }
-                        className="text-[11px] font-bold text-blue-600 hover:underline"
+                        className="text-[11px] font-bold text-emerald-600 hover:underline"
                       >
                         Assign to #PB-2026-8901
                       </button>

@@ -107,12 +107,12 @@ export default function SitemapPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-16">
-      <section className="bg-gradient-to-r from-[#081d4a] via-[#133882] to-[#1e4db7] text-white py-11">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-2">
+      <section className="bg-gradient-to-r from-[#041418] via-[#133882] to-[#0f1c38] text-white py-11">
+        <div className="w-full px-4 sm:px-6 space-y-2">
           <h1 className="text-3xl sm:text-5xl font-extrabold">
             Complete Marketplace Sitemap
           </h1>
-          <p className="text-xs sm:text-sm text-blue-100">
+          <p className="text-xs sm:text-sm text-emerald-100">
             Interactive index of all implemented Customer Public, Customer
             Account, Service Provider Portal, Admin Dashboard, City SEO, and 40
             Subcategory routes.
@@ -120,12 +120,12 @@ export default function SitemapPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
+      <div className="w-full px-4 sm:px-6 pt-8 space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* 1. Customer Public */}
           <div className="bg-white rounded-3xl border border-slate-200 p-5 shadow-card space-y-3">
             <div className="flex items-center gap-2 font-extrabold text-slate-900 text-sm border-b border-slate-100 pb-2.5">
-              <Globe className="w-4 h-4 text-blue-600" />
+              <Globe className="w-4 h-4 text-emerald-600" />
               <span>1. Customer Public ({publicRoutes.length})</span>
             </div>
             <ul className="space-y-1.5 text-xs">
@@ -133,7 +133,7 @@ export default function SitemapPage() {
                 <li key={r.href}>
                   <Link
                     href={r.href}
-                    className="text-slate-700 hover:text-blue-700 font-medium flex items-center justify-between py-0.5"
+                    className="text-slate-700 hover:text-emerald-700 font-medium flex items-center justify-between py-0.5"
                   >
                     <span>{r.label}</span>
                     <ExternalLink className="w-3 h-3 text-slate-400" />
@@ -154,7 +154,7 @@ export default function SitemapPage() {
                 <li key={r.href}>
                   <Link
                     href={r.href}
-                    className="text-slate-700 hover:text-blue-700 font-medium flex items-center justify-between py-0.5"
+                    className="text-slate-700 hover:text-emerald-700 font-medium flex items-center justify-between py-0.5"
                   >
                     <span>{r.label}</span>
                     <ExternalLink className="w-3 h-3 text-slate-400" />
@@ -175,7 +175,7 @@ export default function SitemapPage() {
                 <li key={r.href}>
                   <Link
                     href={r.href}
-                    className="text-slate-700 hover:text-blue-700 font-medium flex items-center justify-between py-0.5"
+                    className="text-slate-700 hover:text-emerald-700 font-medium flex items-center justify-between py-0.5"
                   >
                     <span>{r.label}</span>
                     <ExternalLink className="w-3 h-3 text-slate-400" />
@@ -188,7 +188,7 @@ export default function SitemapPage() {
           {/* 4. Admin Dashboard */}
           <div className="bg-white rounded-3xl border border-slate-200 p-5 shadow-card space-y-3">
             <div className="flex items-center gap-2 font-extrabold text-slate-900 text-sm border-b border-slate-100 pb-2.5">
-              <ShieldCheck className="w-4 h-4 text-indigo-600" />
+              <ShieldCheck className="w-4 h-4 text-teal-600" />
               <span>4. Admin Console ({adminRoutes.length})</span>
             </div>
             <ul className="space-y-1.5 text-xs">
@@ -196,7 +196,7 @@ export default function SitemapPage() {
                 <li key={r.href}>
                   <Link
                     href={r.href}
-                    className="text-slate-700 hover:text-blue-700 font-medium flex items-center justify-between py-0.5"
+                    className="text-slate-700 hover:text-emerald-700 font-medium flex items-center justify-between py-0.5"
                   >
                     <span>{r.label}</span>
                     <ExternalLink className="w-3 h-3 text-slate-400" />
@@ -210,7 +210,7 @@ export default function SitemapPage() {
         {/* City Landing Pages & SEO City/Category Combinations */}
         <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-card space-y-4">
           <div className="flex items-center gap-2 font-extrabold text-slate-900 text-base">
-            <MapPin className="w-5 h-5 text-blue-600" />
+            <MapPin className="w-5 h-5 text-emerald-600" />
             <span>City Hubs & 15 SEO City + Service Landing Pages</span>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -218,7 +218,7 @@ export default function SitemapPage() {
               <Link
                 key={c.id}
                 href={`/${c.slug}`}
-                className="px-3.5 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                className="px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold"
               >
                 /{c.slug} ({c.name.en} Hub)
               </Link>
@@ -228,7 +228,7 @@ export default function SitemapPage() {
                 <Link
                   key={`${c.slug}-${cat.slug}`}
                   href={`/${c.slug}/${cat.slug}`}
-                  className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-xs font-semibold"
+                  className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-xs font-semibold"
                 >
                   /{c.slug}/{cat.slug}
                 </Link>
@@ -240,7 +240,7 @@ export default function SitemapPage() {
         {/* All 40 Subcategory Detail Pages & Provider Profiles */}
         <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-card space-y-4">
           <div className="flex items-center gap-2 font-extrabold text-slate-900 text-base">
-            <Wrench className="w-5 h-5 text-blue-600" />
+            <Wrench className="w-5 h-5 text-emerald-600" />
             <span>
               All 40 Subcategory Detail Pages & {providers.length} Provider
               Profiles
@@ -251,7 +251,7 @@ export default function SitemapPage() {
               <Link
                 key={s.id}
                 href={`/services/${s.categorySlug}/${s.slug}`}
-                className="p-2 rounded-lg bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 font-medium truncate"
+                className="p-2 rounded-lg bg-slate-50 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 font-medium truncate"
               >
                 {s.name.en}
               </Link>

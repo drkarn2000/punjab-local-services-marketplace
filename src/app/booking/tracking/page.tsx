@@ -129,7 +129,7 @@ function TrackingContent() {
           <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl space-y-5 border border-slate-200">
             <div className="flex items-center justify-between border-b border-slate-200 pb-4">
               <div>
-                <div className="text-lg font-extrabold text-blue-900">
+                <div className="text-lg font-extrabold text-emerald-900">
                   PUNJAB SERVICES — TAX INVOICE (DEMO)
                 </div>
                 <div className="text-xs text-slate-500">
@@ -247,7 +247,7 @@ function TrackingContent() {
                   );
                   setShowInvoiceModal(false);
                 }}
-                className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold flex items-center gap-1.5 hover:bg-blue-700"
+                className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold flex items-center gap-1.5 hover:bg-emerald-700"
               >
                 <Download className="w-3.5 h-3.5" /> Download PDF
               </button>
@@ -256,7 +256,7 @@ function TrackingContent() {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         {/* Top Demo Simulator Bar */}
         <div className="bg-slate-900 text-white rounded-2xl p-4 shadow-lg flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -282,7 +282,7 @@ function TrackingContent() {
               booking.status !== 'Cancelled' && (
                 <button
                   onClick={handleAdvanceNextStep}
-                  className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition shadow"
+                  className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow"
                 >
                   Simulate Next Step:{' '}
                   {BOOKING_LIFECYCLE_STEPS[currentStepIndex + 1]} →
@@ -310,7 +310,7 @@ function TrackingContent() {
             <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-card space-y-5">
               <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
                 <div>
-                  <span className="text-xs font-bold text-blue-600">
+                  <span className="text-xs font-bold text-emerald-600">
                     Booking ID: {booking.id}
                   </span>
                   <h1 className="text-2xl font-extrabold text-slate-900">
@@ -322,7 +322,7 @@ function TrackingContent() {
                     booking.status === 'Cancelled' ||
                     booking.status === 'Rejected'
                       ? 'bg-rose-100 text-rose-800'
-                      : 'bg-blue-600 text-white'
+                      : 'bg-emerald-600 text-white'
                   }`}
                 >
                   Current Status: {booking.status}
@@ -345,10 +345,10 @@ function TrackingContent() {
                         onClick={() => updateBookingStatus(booking.id, st)}
                         className={`p-3 rounded-2xl border text-left transition flex flex-col justify-between gap-1.5 ${
                           isCurrent
-                            ? 'border-blue-600 bg-blue-600 text-white shadow-md'
+                            ? 'border-emerald-600 bg-emerald-600 text-white shadow-md'
                             : isDone
                             ? 'border-emerald-200 bg-emerald-50/70 text-emerald-950'
-                            : 'border-slate-200 bg-slate-50/60 text-slate-500 hover:border-blue-300'
+                            : 'border-slate-200 bg-slate-50/60 text-slate-500 hover:border-emerald-300'
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -402,7 +402,7 @@ function TrackingContent() {
                 )}
 
               {booking.status === 'Work Completed' && (
-                <div className="p-5 rounded-2xl bg-blue-50 border-2 border-blue-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <div className="text-sm font-extrabold text-slate-900">
                       Work Completed! Complete Demo Payment (₹
@@ -416,7 +416,7 @@ function TrackingContent() {
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => completePayment(booking.id, 'UPI (Demo)')}
-                      className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1.5"
+                      className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5"
                     >
                       <CreditCard className="w-3.5 h-3.5" /> Pay via UPI (Demo)
                     </button>
@@ -470,7 +470,7 @@ function TrackingContent() {
                       onClick={() =>
                         submitReview(booking.id, rating, reviewText)
                       }
-                      className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold"
+                      className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold"
                     >
                       Submit Verified Review
                     </button>
@@ -482,10 +482,10 @@ function TrackingContent() {
                 <h3 className="text-sm font-extrabold text-slate-900">
                   Chronological Booking Timeline
                 </h3>
-                <div className="space-y-2.5 border-l-2 border-blue-200 ml-2 pl-4">
+                <div className="space-y-2.5 border-l-2 border-emerald-200 ml-2 pl-4">
                   {booking.timeline.map((event, i) => (
                     <div key={i} className="relative">
-                      <span className="w-3 h-3 rounded-full bg-blue-600 absolute -left-[23px] top-1 ring-4 ring-white" />
+                      <span className="w-3 h-3 rounded-full bg-emerald-600 absolute -left-[23px] top-1 ring-4 ring-white" />
                       <div className="text-xs font-extrabold text-slate-900">
                         {event.status}{' '}
                         <span className="font-normal text-slate-400 ml-1">
@@ -515,13 +515,13 @@ function TrackingContent() {
                 <div>
                   <Link
                     href={`/professionals/${booking.providerSlug}`}
-                    className="text-base font-extrabold text-slate-900 hover:text-blue-700 flex items-center gap-1"
+                    className="text-base font-extrabold text-slate-900 hover:text-emerald-700 flex items-center gap-1"
                   >
                     <span>{booking.providerName}</span>
-                    <BadgeCheck className="w-4 h-4 text-blue-600 fill-blue-100" />
+                    <BadgeCheck className="w-4 h-4 text-emerald-600 fill-emerald-100" />
                   </Link>
                   <div className="text-xs text-slate-600 flex items-center gap-1 mt-0.5">
-                    <Phone className="w-3.5 h-3.5 text-blue-600" />
+                    <Phone className="w-3.5 h-3.5 text-emerald-600" />
                     <span>{booking.providerPhone}</span>
                   </div>
                   {booking.assignedTechnicianName && (
@@ -534,7 +534,7 @@ function TrackingContent() {
 
               <div className="pt-3 border-t border-slate-100 space-y-2 text-xs text-slate-600">
                 <div className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <span>
                     {booking.address.houseFlat},{' '}
                     {booking.address.streetLocality}, {booking.address.city} -{' '}
@@ -542,7 +542,7 @@ function TrackingContent() {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-blue-600 shrink-0" />
+                  <Calendar className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>
                     {booking.date} • {booking.timeSlot}
                   </span>
@@ -607,13 +607,13 @@ function TrackingContent() {
               <div className="grid grid-cols-2 gap-2">
                 <Link
                   href={`/booking/estimate?bookingId=${booking.id}`}
-                  className="py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold text-center"
+                  className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold text-center"
                 >
                   Review Estimate
                 </Link>
                 <button
                   onClick={() => setShowInvoiceModal(true)}
-                  className="py-2.5 px-3 rounded-xl border border-slate-200 hover:border-blue-600 text-slate-700 text-xs font-bold"
+                  className="py-2.5 px-3 rounded-xl border border-slate-200 hover:border-emerald-600 text-slate-700 text-xs font-bold"
                 >
                   Invoice PDF
                 </button>

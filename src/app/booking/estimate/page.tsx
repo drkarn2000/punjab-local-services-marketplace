@@ -104,7 +104,7 @@ function EstimateContent() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link
             href={`/booking/tracking?bookingId=${booking.id}`}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Live Booking Tracker</span>
@@ -125,10 +125,10 @@ function EstimateContent() {
         </div>
 
         {/* Main Estimate Card */}
-        <div className="bg-white rounded-3xl border border-blue-100 shadow-2xl p-6 sm:p-8 space-y-6">
+        <div className="bg-white rounded-3xl border border-emerald-100 shadow-2xl p-6 sm:p-8 space-y-6">
           <div className="flex flex-wrap items-start justify-between gap-4 border-b border-slate-100 pb-5">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-extrabold">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-extrabold">
                 <FileText className="w-3.5 h-3.5" /> Hybrid Pricing & Digital
                 Estimate
               </span>
@@ -158,7 +158,7 @@ function EstimateContent() {
 
           {!est ? (
             <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-4">
-              <Wrench className="w-10 h-10 text-blue-600 mx-auto" />
+              <Wrench className="w-10 h-10 text-emerald-600 mx-auto" />
               <h2 className="text-lg font-extrabold text-slate-900">
                 Waiting for On-Site Inspection Estimate
               </h2>
@@ -169,7 +169,7 @@ function EstimateContent() {
               </p>
               <button
                 onClick={handleGenerateDemoEstimate}
-                className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md transition inline-flex items-center gap-2"
+                className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition inline-flex items-center gap-2"
               >
                 <Sparkles className="w-4 h-4" />
                 <span>Simulate Receiving Technician Estimate Now</span>
@@ -178,9 +178,9 @@ function EstimateContent() {
           ) : (
             <>
               {/* Inspection Summary */}
-              <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-100 space-y-1.5">
-                <div className="text-xs font-extrabold text-blue-950 flex items-center gap-1.5">
-                  <BadgeCheck className="w-4 h-4 text-blue-600" />
+              <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-100 space-y-1.5">
+                <div className="text-xs font-extrabold text-emerald-950 flex items-center gap-1.5">
+                  <BadgeCheck className="w-4 h-4 text-emerald-600" />
                   <span>Technician Inspection Findings:</span>
                 </div>
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
@@ -196,7 +196,7 @@ function EstimateContent() {
                     <span className="text-xs font-extrabold text-slate-900 uppercase">
                       1. Provider Labour Charges
                     </span>
-                    <span className="text-xs font-bold text-blue-700">
+                    <span className="text-xs font-bold text-emerald-700">
                       ₹{labourSubtotal}
                     </span>
                   </div>
@@ -223,7 +223,7 @@ function EstimateContent() {
                     <span className="text-xs font-extrabold text-slate-900 uppercase">
                       2. Spare Parts & Material Cost
                     </span>
-                    <span className="text-xs font-bold text-blue-700">
+                    <span className="text-xs font-bold text-emerald-700">
                       ₹{materialSubtotal}
                     </span>
                   </div>
@@ -276,7 +276,7 @@ function EstimateContent() {
                 </div>
                 <div className="flex justify-between pt-3 border-t border-slate-300 text-lg font-extrabold text-slate-900">
                   <span>Total Estimate Payable After Service</span>
-                  <span className="text-blue-700">₹{est.totalEstimate}</span>
+                  <span className="text-emerald-700">₹{est.totalEstimate}</span>
                 </div>
                 <p className="text-[11px] text-slate-500 pt-1">
                   Note: {est.notes}
@@ -340,7 +340,7 @@ function EstimateContent() {
                       );
                       setClarificationNote('');
                     }}
-                    className="px-4 py-2.5 rounded-xl border border-blue-600 text-blue-700 hover:bg-blue-50 text-xs font-bold inline-flex items-center justify-center gap-1.5 shrink-0"
+                    className="px-4 py-2.5 rounded-xl border border-emerald-600 text-emerald-700 hover:bg-emerald-50 text-xs font-bold inline-flex items-center justify-center gap-1.5 shrink-0"
                   >
                     <HelpCircle className="w-3.5 h-3.5" />
                     <span>Request Clarification</span>

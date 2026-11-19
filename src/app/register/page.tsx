@@ -44,7 +44,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-[#f0f5ff] py-12 px-4 sm:px-6 flex items-center justify-center">
-      <div className="max-w-md w-full bg-white rounded-3xl border border-blue-100 shadow-2xl p-6 sm:p-8 space-y-6">
+      <div className="max-w-md w-full bg-white rounded-3xl border border-emerald-100 shadow-2xl p-6 sm:p-8 space-y-6">
         {registered ? (
           <div className="text-center space-y-4 py-4">
             <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
@@ -60,7 +60,7 @@ export default function RegisterPage() {
             <div className="flex flex-col gap-2 pt-2">
               <button
                 onClick={() => router.push('/book')}
-                className="w-full py-3 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                className="w-full py-3 rounded-xl bg-emerald-600 text-white text-xs font-bold"
               >
                 Book Your First Service (Use Code PUNJAB100)
               </button>
@@ -75,7 +75,7 @@ export default function RegisterPage() {
         ) : (
           <>
             <div className="text-center space-y-2">
-              <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mx-auto shadow-md">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center mx-auto shadow-md">
                 <UserPlus className="w-6 h-6" />
               </div>
               <h1 className="text-2xl font-extrabold text-slate-900">
@@ -165,20 +165,20 @@ export default function RegisterPage() {
                   type="checkbox"
                   checked={acceptedTerms}
                   onChange={(e) => setAcceptedTerms(e.target.checked)}
-                  className="rounded text-blue-600 w-4 h-4 mt-0.5"
+                  className="rounded text-emerald-600 w-4 h-4 mt-0.5"
                 />
                 <span>
                   I accept the{' '}
                   <Link
                     href="/terms-and-conditions"
-                    className="text-blue-600 font-bold underline"
+                    className="text-emerald-600 font-bold underline"
                   >
                     Terms & Conditions
                   </Link>{' '}
                   and{' '}
                   <Link
                     href="/privacy-policy"
-                    className="text-blue-600 font-bold underline"
+                    className="text-emerald-600 font-bold underline"
                   >
                     Privacy Policy
                   </Link>
@@ -188,7 +188,7 @@ export default function RegisterPage() {
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition"
+                className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition"
               >
                 Create Account
               </button>
@@ -198,7 +198,7 @@ export default function RegisterPage() {
               Already have an account?{' '}
               <Link
                 href="/login"
-                className="font-bold text-blue-600 hover:underline"
+                className="font-bold text-emerald-600 hover:underline"
               >
                 Login Here
               </Link>

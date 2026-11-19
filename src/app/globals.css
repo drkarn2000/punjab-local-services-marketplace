@@ -112,3 +112,22 @@ button:active {
 .animate-marquee-rtl:hover {
   animation-play-state: paused;
 }
+
+@keyframes popular-strip-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-popular-strip {
+  display: flex;
+  width: max-content;
+  animation: popular-strip-scroll 28s linear infinite;
+}
+
+.animate-popular-strip:hover {
+  animation-play-state: paused;
+}

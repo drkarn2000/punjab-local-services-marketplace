@@ -123,7 +123,7 @@ export default function AdminReportsAnalytics({
         return {
           subtitle: 'Gross Merchandise Value (GMV), GST collection & net platform take',
           kpis: [
-            { label: 'Gross Booking GMV', value: `₹${sMoney(284500).toLocaleString('en-IN')}`, delta: '+21.4%', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'Gross Booking GMV', value: `₹${sMoney(284500).toLocaleString('en-IN')}`, delta: '+21.4%', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
             { label: 'Net Platform Take', value: `₹${sMoney(42675).toLocaleString('en-IN')}`, delta: '+18.2%', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
             { label: 'Avg Ticket Size', value: `₹${Math.round(grossValue / Math.max(1, bookings.length) + 420).toLocaleString('en-IN')}`, delta: '+6.5%', grad: 'from-violet-600 to-purple-800', glow: 'glow-purple' },
             { label: 'UPI / Online Share', value: '84.6%', delta: '+4.1%', grad: 'from-amber-500 to-orange-600', glow: 'glow-amber' },
@@ -157,7 +157,7 @@ export default function AdminReportsAnalytics({
           subtitle: 'Individual (15%) vs Business Agency (13%) commission slab earnings',
           kpis: [
             { label: 'Total Commission Earned', value: `₹${sMoney(42675).toLocaleString('en-IN')}`, delta: '+16.8%', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
-            { label: 'Individual Pro Slabs (15%)', value: `₹${sMoney(29870).toLocaleString('en-IN')}`, delta: '70% Share', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'Individual Pro Slabs (15%)', value: `₹${sMoney(29870).toLocaleString('en-IN')}`, delta: '70% Share', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
             { label: 'Business Partner Slabs (13%)', value: `₹${sMoney(12805).toLocaleString('en-IN')}`, delta: '30% Share', grad: 'from-violet-600 to-purple-800', glow: 'glow-purple' },
             { label: 'Effective Blended Rate', value: '14.4%', delta: 'On Target', grad: 'from-amber-500 to-orange-600', glow: 'glow-amber' },
           ],
@@ -189,7 +189,7 @@ export default function AdminReportsAnalytics({
         return {
           subtitle: 'Completion rate, SLA punctuality, estimate approval & customer CSAT',
           kpis: [
-            { label: 'Active Verified Pros', value: `${providers.filter((p) => p.verificationStatus === 'Approved').length}/${providers.length}`, delta: '92% Active', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'Active Verified Pros', value: `${providers.filter((p) => p.verificationStatus === 'Approved').length}/${providers.length}`, delta: '92% Active', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
             { label: 'Avg Marketplace Rating', value: '4.83 ★', delta: '+0.12', grad: 'from-amber-500 to-orange-600', glow: 'glow-amber' },
             { label: 'On-Time Arrival SLA', value: '94.8%', delta: '+2.4%', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
             { label: 'Estimate Approval Rate', value: '91.2%', delta: 'High Trust', grad: 'from-violet-600 to-purple-800', glow: 'glow-purple' },
@@ -224,7 +224,7 @@ export default function AdminReportsAnalytics({
         return {
           subtitle: 'Hyperlocal demand, supply coverage & response time across Punjab launch cities',
           kpis: [
-            { label: 'Mohali Bookings', value: sInt(184), delta: '42% Share', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'Mohali Bookings', value: sInt(184), delta: '42% Share', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
             { label: 'Chandigarh Bookings', value: sInt(162), delta: '38% Share', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
             { label: 'Hoshiarpur Bookings', value: sInt(86), delta: '+29% YoY', grad: 'from-amber-500 to-orange-600', glow: 'glow-amber' },
             { label: 'Avg Dispatch Time', value: '18 mins', delta: '-4 mins', grad: 'from-violet-600 to-purple-800', glow: 'glow-purple' },
@@ -261,7 +261,7 @@ export default function AdminReportsAnalytics({
           kpis: [
             { label: 'Top Vertical', value: 'Electrician', delta: '31% Demand', grad: 'from-amber-500 to-orange-600', glow: 'glow-amber' },
             { label: 'Fastest Growing', value: 'Laptop Repair', delta: '+34% MoM', grad: 'from-violet-600 to-purple-800', glow: 'glow-purple' },
-            { label: 'Total Subcategories', value: '40 Active', delta: '100% Live', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'Total Subcategories', value: '40 Active', delta: '100% Live', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
             { label: 'Repeat Booking Rate', value: '41.5%', delta: '+5.2%', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
           ],
           chartTitle: 'Daily Service Requests vs Fulfilled Jobs',
@@ -331,7 +331,7 @@ export default function AdminReportsAnalytics({
             { label: 'Total Refunds Processed', value: `₹${sMoney(4820).toLocaleString('en-IN')}`, delta: '1.7% of GMV', grad: 'from-rose-500 to-pink-700', glow: 'glow-rose' },
             { label: 'Avg Settlement TAT', value: '4.2 hrs', delta: 'Under 24h SLA', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
             { label: 'Pending Refund Queue', value: bookings.filter((b) => b.refundStatus && b.refundStatus !== 'None').length || 2, delta: 'Actionable', grad: 'from-amber-500 to-orange-600', glow: 'glow-amber' },
-            { label: 'Auto-Approved UPI', value: '88%', delta: 'Instant Reversal', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'Auto-Approved UPI', value: '88%', delta: 'Instant Reversal', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
           ],
           chartTitle: 'Daily Refund Volume (₹ Hundreds)',
           seriesPrimaryLabel: 'Processed (₹00)',
@@ -361,7 +361,7 @@ export default function AdminReportsAnalytics({
         return {
           subtitle: 'Provider KYC, Aadhaar/PAN & skill certificate audit velocity',
           kpis: [
-            { label: 'Avg Verification TAT', value: '6.4 hrs', delta: 'Target <12h', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'Avg Verification TAT', value: '6.4 hrs', delta: 'Target <12h', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
             { label: 'First-Pass Approval', value: '86.5%', delta: '+4.2%', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
             { label: 'Pending KYC Queue', value: providers.filter((p) => p.verificationStatus !== 'Approved').length, delta: 'Needs Review', grad: 'from-amber-500 to-orange-600', glow: 'glow-amber' },
             { label: 'Docs Audited This Period', value: sInt(38), delta: '100% Logged', grad: 'from-violet-600 to-purple-800', glow: 'glow-purple' },
@@ -395,7 +395,7 @@ export default function AdminReportsAnalytics({
         return {
           subtitle: 'New customer signups, referral conversion & repeat retention cohorts',
           kpis: [
-            { label: 'New Customers', value: sInt(312), delta: '+24.6%', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'New Customers', value: sInt(312), delta: '+24.6%', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
             { label: 'Repeat Customers', value: '44.2%', delta: '+6.1%', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
             { label: 'Coupon Redemptions', value: sInt(128), delta: 'PUNJAB100 Top', grad: 'from-amber-500 to-orange-600', glow: 'glow-amber' },
             { label: 'Active Profiles', value: customers.length, delta: 'Verified Mobile', grad: 'from-violet-600 to-purple-800', glow: 'glow-purple' },
@@ -428,7 +428,7 @@ export default function AdminReportsAnalytics({
         return {
           subtitle: 'Helpdesk ticket inflow, first-response SLA & dispute closure metrics',
           kpis: [
-            { label: 'Total Tickets', value: Math.max(supportTickets.length, sInt(28)), delta: 'Low Escalation', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'Total Tickets', value: Math.max(supportTickets.length, sInt(28)), delta: 'Low Escalation', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
             { label: 'First Response Time', value: '14 mins', delta: 'SLA <30m', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
             { label: 'Resolved Within 24h', value: '95.4%', delta: '+3.1%', grad: 'from-violet-600 to-purple-800', glow: 'glow-purple' },
             { label: 'Open / Escalated', value: supportTickets.filter((t) => t.status !== 'Resolved').length, delta: 'Active Queue', grad: 'from-rose-500 to-pink-700', glow: 'glow-rose' },
@@ -463,7 +463,7 @@ export default function AdminReportsAnalytics({
         return {
           subtitle: 'End-to-end booking funnel, instant vs scheduled split & completion rate',
           kpis: [
-            { label: 'Total Bookings', value: sInt(416), delta: '+18.4%', grad: 'from-blue-600 to-indigo-800', glow: 'glow-blue' },
+            { label: 'Total Bookings', value: sInt(416), delta: '+18.4%', grad: 'from-emerald-600 to-teal-800', glow: 'glow-blue' },
             { label: 'Completion Rate', value: '96.2%', delta: '+1.9%', grad: 'from-emerald-500 to-teal-700', glow: 'glow-emerald' },
             { label: 'Instant vs Scheduled', value: '62% / 38%', delta: 'Instant Rising', grad: 'from-violet-600 to-purple-800', glow: 'glow-purple' },
             { label: 'Active in Field', value: bookings.filter((b) => !['Work Completed', 'Payment Completed', 'Review Submitted', 'Cancelled'].includes(b.status)).length, delta: 'Live Tracking', grad: 'from-amber-500 to-orange-600', glow: 'glow-amber' },
@@ -524,23 +524,23 @@ export default function AdminReportsAnalytics({
         <div className="animate-marquee-rtl items-center gap-3 text-xs font-extrabold uppercase tracking-wider text-cyan-300">
           <BarChart3 className="w-4 h-4 shrink-0 text-amber-400" />
           <span>Analytics &amp; Intelligence Suite</span>
-          <span className="text-blue-400">•</span>
+          <span className="text-emerald-400">•</span>
           <span className="text-white">{cityFilter}</span>
-          <span className="text-blue-400">•</span>
+          <span className="text-emerald-400">•</span>
           <span className="text-amber-300">{activeReportType}</span>
-          <span className="text-blue-400">•</span>
+          <span className="text-emerald-400">•</span>
           <span className="text-white">{reportModel.subtitle}</span>
         </div>
       </div>
 
       {/* Interactive Filters Bar */}
-      <div className="rounded-3xl bg-gradient-to-r from-[#0f1c3f] via-[#16295c] to-[#1e3a8a] border border-blue-400/30 p-4 sm:p-5 text-white shadow-xl flex flex-wrap items-center justify-center gap-3">
+      <div className="rounded-3xl bg-gradient-to-r from-[#041418] via-[#16295c] to-[#1e3a8a] border border-emerald-400/30 p-4 sm:p-5 text-white shadow-xl flex flex-wrap items-center justify-center gap-3">
         <div className="flex flex-wrap items-center justify-center gap-2.5">
           <select
             value={activeReportType}
             onChange={(e) => setActiveReportType(e.target.value)}
             aria-label="Select Report Type"
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 border border-cyan-300/60 rounded-xl px-3.5 py-2 text-xs font-extrabold text-white focus:outline-none cursor-pointer shadow-md"
+            className="bg-gradient-to-r from-emerald-600 to-teal-600 border border-cyan-300/60 rounded-xl px-3.5 py-2 text-xs font-extrabold text-white focus:outline-none cursor-pointer shadow-md"
           >
             {REPORT_TYPES.map((rep) => (
               <option key={rep.id} value={rep.id} className="bg-slate-900 text-white font-bold">
@@ -615,7 +615,7 @@ export default function AdminReportsAnalytics({
       {/* Charts Grid: Interactive Bar Chart + SVG Donut Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Interactive Multi-Series Bar Chart (8 cols) */}
-        <div className="lg:col-span-8 bg-white rounded-3xl border border-blue-200 p-6 shadow-xl space-y-5">
+        <div className="lg:col-span-8 bg-white rounded-3xl border border-emerald-200 p-6 shadow-xl space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
               <h3 className="text-base font-extrabold text-slate-900">
@@ -627,7 +627,7 @@ export default function AdminReportsAnalytics({
             </div>
             <div className="flex items-center gap-4 text-xs font-bold">
               <span className="flex items-center gap-1.5 text-slate-700">
-                <span className="w-3 h-3 rounded-sm bg-gradient-to-t from-blue-600 to-cyan-400 inline-block" />
+                <span className="w-3 h-3 rounded-sm bg-gradient-to-t from-emerald-600 to-cyan-400 inline-block" />
                 {reportModel.seriesPrimaryLabel}
               </span>
               <span className="flex items-center gap-1.5 text-slate-700">
@@ -664,7 +664,7 @@ export default function AdminReportsAnalytics({
                   <div className="w-full flex items-end justify-center gap-1.5 h-44 px-1">
                     <div
                       style={{ height: `${pHeight}%` }}
-                      className="w-4 sm:w-5 rounded-t-lg bg-gradient-to-t from-blue-600 via-indigo-500 to-cyan-400 shadow-md group-hover:brightness-110 transition-all duration-300"
+                      className="w-4 sm:w-5 rounded-t-lg bg-gradient-to-t from-emerald-600 via-teal-500 to-cyan-400 shadow-md group-hover:brightness-110 transition-all duration-300"
                     />
                     <div
                       style={{ height: `${sHeight}%` }}
@@ -681,7 +681,7 @@ export default function AdminReportsAnalytics({
         </div>
 
         {/* SVG Donut Breakdown Card (4 cols) */}
-        <div className="lg:col-span-4 bg-white rounded-3xl border border-blue-200 p-6 shadow-xl flex flex-col justify-between space-y-5">
+        <div className="lg:col-span-4 bg-white rounded-3xl border border-emerald-200 p-6 shadow-xl flex flex-col justify-between space-y-5">
           <div>
             <h3 className="text-base font-extrabold text-slate-900">
               {reportModel.donutTitle}
@@ -766,7 +766,7 @@ export default function AdminReportsAnalytics({
           </div>
         </div>
         <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-md flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center shrink-0">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center shrink-0">
             <Clock className="w-5 h-5" />
           </div>
           <div>
@@ -788,7 +788,7 @@ export default function AdminReportsAnalytics({
       </div>
 
       {/* Detailed Report Data Table */}
-      <div className="bg-white rounded-3xl border border-blue-200 p-6 shadow-xl space-y-4">
+      <div className="bg-white rounded-3xl border border-emerald-200 p-6 shadow-xl space-y-4">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-base font-extrabold text-slate-900">
@@ -802,7 +802,7 @@ export default function AdminReportsAnalytics({
         <div className="overflow-x-auto">
           <table className="w-full text-xs border-collapse">
             <thead>
-              <tr className="bg-gradient-to-r from-[#0f1c3f] to-[#1e3a8a] text-white">
+              <tr className="bg-gradient-to-r from-[#041418] to-[#1e3a8a] text-white">
                 {reportModel.tableHeaders.map((h, i) => (
                   <th
                     key={h}
@@ -817,7 +817,7 @@ export default function AdminReportsAnalytics({
             </thead>
             <tbody className="divide-y divide-slate-100">
               {reportModel.tableRows.map((row, idx) => (
-                <tr key={idx} className="hover:bg-blue-50/60 transition">
+                <tr key={idx} className="hover:bg-emerald-50/60 transition">
                   {row.map((cell, cIdx) => (
                     <td
                       key={cIdx}

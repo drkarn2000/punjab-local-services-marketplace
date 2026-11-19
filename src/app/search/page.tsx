@@ -167,13 +167,13 @@ function SearchPageContent() {
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-16">
       {/* Top Search Hero */}
-      <section className="bg-gradient-to-r from-[#092154] via-[#133882] to-[#1e4db7] text-white py-9">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-5">
+      <section className="bg-gradient-to-r from-[#041418] via-[#133882] to-[#0f1c38] text-white py-9">
+        <div className="w-full px-4 sm:px-6 space-y-5">
           <div>
             <h1 className="text-2xl sm:text-4xl font-extrabold">
               Search Services & Verified Professionals
             </h1>
-            <p className="text-xs sm:text-sm text-blue-100 mt-1">
+            <p className="text-xs sm:text-sm text-emerald-100 mt-1">
               Find and compare rated Electricians, Plumbers, Carpenters, Laptop & Mobile repair pros across Mohali, Chandigarh & Hoshiarpur.
             </p>
           </div>
@@ -183,7 +183,7 @@ function SearchPageContent() {
             className="bg-white rounded-2xl p-2 shadow-2xl flex flex-col sm:flex-row items-stretch sm:items-center gap-2 text-slate-900 max-w-3xl"
           >
             <div className="flex items-center gap-2 px-3 py-2 flex-1">
-              <Search className="w-4 h-4 text-blue-600 shrink-0" />
+              <Search className="w-4 h-4 text-emerald-600 shrink-0" />
               <input
                 type="text"
                 value={query}
@@ -194,7 +194,7 @@ function SearchPageContent() {
             </div>
             <button
               type="submit"
-              className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm transition"
+              className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition"
             >
               Search
             </button>
@@ -202,8 +202,8 @@ function SearchPageContent() {
 
           {/* Live Suggestions if typing */}
           {liveSuggestions.length > 0 && (
-            <div className="bg-white/95 text-slate-900 rounded-2xl p-3 max-w-3xl shadow-lg border border-blue-100 space-y-1">
-              <div className="text-[11px] font-bold text-blue-700 uppercase px-2">
+            <div className="bg-white/95 text-slate-900 rounded-2xl p-3 max-w-3xl shadow-lg border border-emerald-100 space-y-1">
+              <div className="text-[11px] font-bold text-emerald-700 uppercase px-2">
                 Matching Subcategory Services:
               </div>
               <div className="flex flex-wrap gap-2 pt-1">
@@ -211,7 +211,7 @@ function SearchPageContent() {
                   <Link
                     key={s.id}
                     href={`/services/${s.categorySlug}/${s.slug}`}
-                    className="px-3 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-600 text-blue-900 hover:text-white text-xs font-bold transition flex items-center gap-1.5"
+                    className="px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-900 hover:text-white text-xs font-bold transition flex items-center gap-1.5"
                   >
                     <span>{s.name.en}</span>
                     <span className="opacity-75">• ₹{s.startingPrice}</span>
@@ -222,7 +222,7 @@ function SearchPageContent() {
           )}
 
           {/* Recent & Popular Searches */}
-          <div className="flex flex-wrap items-center gap-4 text-xs text-blue-100">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-emerald-100">
             <div className="flex flex-wrap items-center gap-1.5">
               <History className="w-3.5 h-3.5 text-cyan-300" />
               <span className="font-bold text-white">Recent:</span>
@@ -257,18 +257,18 @@ function SearchPageContent() {
       </section>
 
       {/* Main Layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+      <div className="w-full px-4 sm:px-6 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
           {/* Left Multi-Facet Filters (3 cols) */}
           <aside className="lg:col-span-3 bg-white rounded-2xl border border-slate-200 p-5 shadow-card space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2 font-extrabold text-slate-900 text-sm">
-                <Filter className="w-4 h-4 text-blue-600" />
+                <Filter className="w-4 h-4 text-emerald-600" />
                 <span>Search Filters</span>
               </div>
               <button
                 onClick={clearAll}
-                className="text-xs font-bold text-blue-600 hover:underline"
+                className="text-xs font-bold text-emerald-600 hover:underline"
               >
                 Clear All
               </button>
@@ -384,7 +384,7 @@ function SearchPageContent() {
                 step={50}
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-full accent-blue-600"
+                className="w-full accent-emerald-600"
               />
             </div>
 
@@ -393,7 +393,7 @@ function SearchPageContent() {
                 type="checkbox"
                 checked={availableOnly}
                 onChange={(e) => setAvailableOnly(e.target.checked)}
-                className="rounded text-blue-600 w-4 h-4"
+                className="rounded text-emerald-600 w-4 h-4"
               />
               <span>Available Today Only</span>
             </label>
@@ -430,7 +430,7 @@ function SearchPageContent() {
               {query && (
                 <button
                   onClick={() => setQuery('')}
-                  className="text-xs font-bold text-blue-600 hover:underline"
+                  className="text-xs font-bold text-emerald-600 hover:underline"
                 >
                   Clear Search Term
                 </button>
@@ -439,7 +439,7 @@ function SearchPageContent() {
 
             {matchedProviders.length === 0 ? (
               <div className="bg-white rounded-3xl border border-slate-200 p-10 text-center space-y-4">
-                <RotateCcw className="w-10 h-10 text-blue-600 mx-auto" />
+                <RotateCcw className="w-10 h-10 text-emerald-600 mx-auto" />
                 <h2 className="text-xl font-extrabold text-slate-900">
                   No Exact Match Found for &ldquo;{query}&rdquo;
                 </h2>
@@ -448,7 +448,7 @@ function SearchPageContent() {
                 </p>
                 <button
                   onClick={clearAll}
-                  className="px-6 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700"
+                  className="px-6 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700"
                 >
                   Reset All Filters
                 </button>
@@ -463,7 +463,7 @@ function SearchPageContent() {
                       <Link
                         key={c.id}
                         href={`/services/${c.slug}`}
-                        className="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-700 text-xs font-bold hover:bg-blue-600 hover:text-white transition"
+                        className="px-3.5 py-2 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-bold hover:bg-emerald-600 hover:text-white transition"
                       >
                         {c.name.en} (₹{c.baseVisitingFee})
                       </Link>
@@ -486,7 +486,7 @@ function SearchPageContent() {
                       />
                       <div className="space-y-1">
                         <div className="flex items-center gap-1.5">
-                          <span className="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-bold">
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">
                             {prov.categoryName}
                           </span>
                           <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">
@@ -495,11 +495,11 @@ function SearchPageContent() {
                         </div>
                         <Link
                           href={`/professionals/${prov.slug}`}
-                          className="text-base font-extrabold text-slate-900 hover:text-blue-700 flex items-center gap-1"
+                          className="text-base font-extrabold text-slate-900 hover:text-emerald-700 flex items-center gap-1"
                         >
                           <span>{prov.name}</span>
                           {prov.verified && (
-                            <BadgeCheck className="w-4 h-4 text-blue-600 fill-blue-100" />
+                            <BadgeCheck className="w-4 h-4 text-emerald-600 fill-emerald-100" />
                           )}
                         </Link>
                         <div className="flex items-center gap-2 text-xs text-slate-600">
@@ -538,7 +538,7 @@ function SearchPageContent() {
                       <div className="flex items-center gap-2">
                         <Link
                           href={`/professionals/${prov.slug}`}
-                          className="px-3.5 py-2 rounded-xl border border-slate-200 hover:border-blue-600 text-slate-700 text-xs font-bold"
+                          className="px-3.5 py-2 rounded-xl border border-slate-200 hover:border-emerald-600 text-slate-700 text-xs font-bold"
                         >
                           View Profile
                         </Link>
@@ -552,7 +552,7 @@ function SearchPageContent() {
                             });
                             router.push('/book');
                           }}
-                          className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1"
+                          className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1"
                         >
                           <Calendar className="w-3.5 h-3.5" /> Book Now
                         </button>

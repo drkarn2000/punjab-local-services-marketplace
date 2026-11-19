@@ -63,9 +63,9 @@ export function CityServiceTemplate({
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-16">
       {/* SEO City + Service Hero */}
-      <section className="bg-gradient-to-r from-[#081d4a] via-[#133882] to-[#1e4db7] text-white py-11">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-4">
-          <nav className="flex flex-wrap items-center gap-1.5 text-xs text-blue-200 font-medium">
+      <section className="bg-gradient-to-r from-[#041418] via-[#133882] to-[#0f1c38] text-white py-11">
+        <div className="w-full px-4 sm:px-6 space-y-4">
+          <nav className="flex flex-wrap items-center gap-1.5 text-xs text-emerald-200 font-medium">
             <Link href="/" className="hover:text-white">
               Home
             </Link>
@@ -88,7 +88,7 @@ export function CityServiceTemplate({
               <h1 className="text-3xl sm:text-5xl font-extrabold">
                 Best {category.name[language]} Services in {city.name[language]}
               </h1>
-              <p className="text-sm sm:text-base text-blue-100 max-w-2xl leading-relaxed">
+              <p className="text-sm sm:text-base text-emerald-100 max-w-2xl leading-relaxed">
                 Book background-verified {category.name.en.toLowerCase()}s across{' '}
                 {city.localities.slice(0, 5).join(', ')} and all sectors of{' '}
                 {city.name.en}. Transparent ₹{category.baseVisitingFee} visiting
@@ -130,7 +130,7 @@ export function CityServiceTemplate({
                 Top {category.name.en} in {city.name.en} — 60-Min Doorstep
                 Service | Punjab Services
               </div>
-              <p className="text-blue-200 leading-relaxed">
+              <p className="text-emerald-200 leading-relaxed">
                 Canonical Route: /{city.slug}/{category.slug} • Covering{' '}
                 {city.localities.length} localities in {city.name.en},{' '}
                 {city.state}.
@@ -140,7 +140,7 @@ export function CityServiceTemplate({
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 space-y-10">
+      <div className="w-full px-4 sm:px-6 pt-10 space-y-10">
         {/* Local Providers in City */}
         <div className="space-y-4">
           <h2 className="text-2xl font-extrabold text-slate-900">
@@ -161,10 +161,10 @@ export function CityServiceTemplate({
                   <div>
                     <Link
                       href={`/professionals/${prov.slug}`}
-                      className="text-lg font-extrabold text-slate-900 hover:text-blue-700 flex items-center gap-1"
+                      className="text-lg font-extrabold text-slate-900 hover:text-emerald-700 flex items-center gap-1"
                     >
                       <span>{prov.name}</span>
-                      <BadgeCheck className="w-4 h-4 text-blue-600 fill-blue-100" />
+                      <BadgeCheck className="w-4 h-4 text-emerald-600 fill-emerald-100" />
                     </Link>
                     <div className="flex items-center gap-2 text-xs text-slate-600 mt-0.5">
                       <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
@@ -204,7 +204,7 @@ export function CityServiceTemplate({
                         });
                         router.push('/book');
                       }}
-                      className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold"
+                      className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold"
                     >
                       Book Now
                     </button>
@@ -226,16 +226,16 @@ export function CityServiceTemplate({
               <Link
                 key={sub.id}
                 href={`/services/${category.slug}/${sub.slug}`}
-                className="p-4 rounded-2xl border border-slate-200 hover:border-blue-500 space-y-1.5 transition group"
+                className="p-4 rounded-2xl border border-slate-200 hover:border-emerald-500 space-y-1.5 transition group"
               >
-                <div className="font-bold text-slate-900 text-xs group-hover:text-blue-700 flex items-center justify-between">
+                <div className="font-bold text-slate-900 text-xs group-hover:text-emerald-700 flex items-center justify-between">
                   <span>{sub.name[language]}</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
+                  <ArrowRight className="w-3.5 h-3.5 text-emerald-600" />
                 </div>
                 <p className="text-[11px] text-slate-500 line-clamp-2">
                   {sub.shortDesc.en}
                 </p>
-                <div className="text-xs font-extrabold text-blue-700 pt-1">
+                <div className="text-xs font-extrabold text-emerald-700 pt-1">
                   Visit ₹{sub.startingPrice} • {sub.estimatedDuration}
                 </div>
               </Link>
@@ -256,7 +256,7 @@ export function CityServiceTemplate({
                   href={`/${c.slug}/${cat.slug}`}
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
                     c.slug === city.slug && cat.slug === category.slug
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-emerald-600 text-white'
                       : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
                   }`}
                 >

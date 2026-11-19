@@ -29,12 +29,12 @@ function ConfirmationContent() {
   return (
     <div className="min-h-screen bg-[#f0f5ff] py-10 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto space-y-6">
-        <div className="bg-white rounded-3xl border border-blue-100 shadow-2xl p-6 sm:p-10 text-center space-y-4">
+        <div className="bg-white rounded-3xl border border-emerald-100 shadow-2xl p-6 sm:p-10 text-center space-y-4">
           <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto ring-8 ring-emerald-50">
             <CheckCircle2 className="w-10 h-10" />
           </div>
 
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-extrabold">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-extrabold">
             <Sparkles className="w-3.5 h-3.5" /> Booking Reference: {booking.id}
           </span>
 
@@ -61,10 +61,10 @@ function ConfirmationContent() {
                 </div>
                 <div className="text-sm font-extrabold text-slate-900 flex items-center gap-1">
                   <span>{booking.providerName}</span>
-                  <BadgeCheck className="w-4 h-4 text-blue-600 fill-blue-100" />
+                  <BadgeCheck className="w-4 h-4 text-emerald-600 fill-emerald-100" />
                 </div>
                 <div className="text-xs text-slate-600 flex items-center gap-1 mt-0.5">
-                  <Phone className="w-3 h-3 text-blue-600" />
+                  <Phone className="w-3 h-3 text-emerald-600" />
                   <span>{booking.providerPhone}</span>
                 </div>
               </div>
@@ -72,13 +72,13 @@ function ConfirmationContent() {
 
             <div className="space-y-1.5 text-xs text-slate-700 border-t sm:border-t-0 sm:border-l border-slate-200 pt-3 sm:pt-0 sm:pl-5">
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-blue-600 shrink-0" />
+                <Calendar className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>
                   <strong>Date & Slot:</strong> {booking.date} ({booking.timeSlot})
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-blue-600 shrink-0" />
+                <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>
                   <strong>Address:</strong> {booking.address.houseFlat},{' '}
                   {booking.address.streetLocality}, {booking.address.city}
@@ -95,18 +95,18 @@ function ConfirmationContent() {
           </div>
 
           {/* Initial Timeline Preview */}
-          <div className="text-left bg-blue-50/50 rounded-2xl border border-blue-100 p-4 space-y-2">
+          <div className="text-left bg-emerald-50/50 rounded-2xl border border-emerald-100 p-4 space-y-2">
             <div className="text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-blue-600" />
+              <Clock className="w-4 h-4 text-emerald-600" />
               <span>Recent Booking Timeline</span>
             </div>
             {booking.timeline.slice(-3).map((item, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between text-xs text-slate-700 bg-white px-3 py-2 rounded-xl border border-blue-100/80"
+                className="flex items-center justify-between text-xs text-slate-700 bg-white px-3 py-2 rounded-xl border border-emerald-100/80"
               >
                 <div>
-                  <strong className="text-blue-900">{item.status}:</strong>{' '}
+                  <strong className="text-emerald-900">{item.status}:</strong>{' '}
                   {item.note}
                 </div>
                 <span className="text-[11px] text-slate-400 shrink-0 ml-2">
@@ -120,7 +120,7 @@ function ConfirmationContent() {
           <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
             <Link
               href={`/booking/tracking?bookingId=${booking.id}`}
-              className="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-600/25 transition inline-flex items-center gap-2"
+              className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-600/25 transition inline-flex items-center gap-2"
             >
               <span>Track Live Booking Status</span>
               <ArrowRight className="w-4 h-4" />

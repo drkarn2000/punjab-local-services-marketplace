@@ -85,18 +85,18 @@ export default function FaqPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-16">
-      <section className="bg-gradient-to-r from-[#081d4a] via-[#133882] to-[#1e4db7] text-white py-12">
+      <section className="bg-gradient-to-r from-[#041418] via-[#133882] to-[#0f1c38] text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-4">
           <h1 className="text-3xl sm:text-5xl font-extrabold">
             Frequently Asked Questions
           </h1>
-          <p className="text-xs sm:text-sm text-blue-100">
+          <p className="text-xs sm:text-sm text-emerald-100">
             Everything you need to know about bookings, hybrid estimates,
             payments, refunds, and partner verification.
           </p>
 
           <div className="bg-white rounded-2xl p-2 shadow-xl flex items-center gap-2 max-w-xl mx-auto text-slate-900">
-            <Search className="w-4 h-4 text-blue-600 ml-2 shrink-0" />
+            <Search className="w-4 h-4 text-emerald-600 ml-2 shrink-0" />
             <input
               type="text"
               value={search}
@@ -117,8 +117,8 @@ export default function FaqPage() {
               onClick={() => setActiveCat(cat)}
               className={`px-4 py-2 rounded-full text-xs font-bold transition ${
                 activeCat === cat
-                  ? 'bg-blue-600 text-white shadow'
-                  : 'bg-white text-slate-700 border border-slate-200 hover:border-blue-400'
+                  ? 'bg-emerald-600 text-white shadow'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:border-emerald-400'
               }`}
             >
               {cat === 'Cancellation' ? 'Cancellation & Refund' : `${cat} FAQs`}
@@ -140,7 +140,7 @@ export default function FaqPage() {
                   className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-slate-50 transition"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-extrabold uppercase shrink-0">
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-extrabold uppercase shrink-0">
                       {faq.category}
                     </span>
                     <span className="font-extrabold text-slate-900 text-sm sm:text-base">
@@ -149,7 +149,7 @@ export default function FaqPage() {
                   </div>
                   <ChevronDown
                     className={`w-5 h-5 text-slate-400 shrink-0 transition ${
-                      isOpen ? 'rotate-180 text-blue-600' : ''
+                      isOpen ? 'rotate-180 text-emerald-600' : ''
                     }`}
                   />
                 </button>
@@ -164,9 +164,9 @@ export default function FaqPage() {
         </div>
 
         {/* Contact Support CTA */}
-        <div className="bg-blue-50 rounded-3xl border border-blue-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="bg-emerald-50 rounded-3xl border border-emerald-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-blue-600 text-white flex items-center justify-center shrink-0">
+            <div className="w-11 h-11 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
               <HelpCircle className="w-6 h-6" />
             </div>
             <div>
@@ -181,7 +181,7 @@ export default function FaqPage() {
           <div className="flex gap-2.5">
             <Link
               href="/support"
-              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold inline-flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold inline-flex items-center gap-1.5"
             >
               <MessageSquarePlus className="w-4 h-4" />
               <span>Open Support Centre</span>

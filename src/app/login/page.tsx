@@ -71,9 +71,9 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#f0f5ff] py-12 px-4 sm:px-6 flex items-center justify-center">
-      <div className="max-w-md w-full bg-white rounded-3xl border border-blue-100 shadow-2xl p-6 sm:p-8 space-y-6">
+      <div className="max-w-md w-full bg-white rounded-3xl border border-emerald-100 shadow-2xl p-6 sm:p-8 space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mx-auto shadow-md">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center mx-auto shadow-md">
             <KeyRound className="w-6 h-6" />
           </div>
           <h1 className="text-2xl font-extrabold text-slate-900">
@@ -96,7 +96,7 @@ export default function LoginPage() {
             }}
             className={`py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition ${
               mode === 'phone'
-                ? 'bg-blue-600 text-white shadow'
+                ? 'bg-emerald-600 text-white shadow'
                 : 'text-slate-700'
             }`}
           >
@@ -111,7 +111,7 @@ export default function LoginPage() {
             }}
             className={`py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition ${
               mode === 'email'
-                ? 'bg-blue-600 text-white shadow'
+                ? 'bg-emerald-600 text-white shadow'
                 : 'text-slate-700'
             }`}
           >
@@ -166,7 +166,7 @@ export default function LoginPage() {
                     </label>
                     <Link
                       href="/forgot-password"
-                      className="text-xs font-bold text-blue-600 hover:underline"
+                      className="text-xs font-bold text-emerald-600 hover:underline"
                     >
                       Forgot Password?
                     </Link>
@@ -184,7 +184,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
             >
               <span>
                 {loading
@@ -215,7 +215,7 @@ export default function LoginPage() {
                 maxLength={6}
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border-2 border-blue-600 text-center text-lg font-extrabold tracking-[0.4em] bg-blue-50/40"
+                className="w-full px-4 py-3 rounded-xl border-2 border-emerald-600 text-center text-lg font-extrabold tracking-[0.4em] bg-emerald-50/40"
               />
             </div>
 
@@ -225,7 +225,7 @@ export default function LoginPage() {
                 onClick={() =>
                   showToast('Demo OTP 123456 resent successfully!', 'info')
                 }
-                className="font-bold text-blue-600 hover:underline inline-flex items-center gap-1"
+                className="font-bold text-emerald-600 hover:underline inline-flex items-center gap-1"
               >
                 <RefreshCcw className="w-3.5 h-3.5" /> Resend OTP
               </button>
@@ -253,7 +253,7 @@ export default function LoginPage() {
             New to Punjab Services?{' '}
             <Link
               href="/register"
-              className="font-bold text-blue-600 hover:underline"
+              className="font-bold text-emerald-600 hover:underline"
             >
               Create an Account
             </Link>

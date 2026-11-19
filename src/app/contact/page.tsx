@@ -42,17 +42,17 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-16">
-      <section className="bg-gradient-to-r from-[#081d4a] via-[#133882] to-[#1e4db7] text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center space-y-3">
+      <section className="bg-gradient-to-r from-[#041418] via-[#133882] to-[#0f1c38] text-white py-12">
+        <div className="w-full px-4 sm:px-6 text-center space-y-3">
           <h1 className="text-3xl sm:text-5xl font-extrabold">Contact Us</h1>
-          <p className="text-sm sm:text-base text-blue-100 max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-emerald-100 max-w-xl mx-auto">
             Have a question about a booking, estimate, or partner onboarding in
             Mohali, Chandigarh, or Hoshiarpur? Reach out to our local team.
           </p>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10">
+      <div className="w-full px-4 sm:px-6 pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left 7 Columns: Contact Form */}
           <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-card space-y-5">
@@ -93,7 +93,7 @@ export default function ContactPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g. Jaspreet Kaur"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-600"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-emerald-600"
                   />
                 </div>
                 <div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@example.demo"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-600"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-emerald-600"
                   />
                 </div>
               </div>
@@ -120,7 +120,7 @@ export default function ContactPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+91 00000-00000 (Placeholder)"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-600"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-emerald-600"
                   />
                 </div>
                 <div>
@@ -132,7 +132,7 @@ export default function ContactPage() {
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     placeholder="Booking help / Estimate query / Partner inquiry"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-600"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-emerald-600"
                   />
                 </div>
               </div>
@@ -146,13 +146,13 @@ export default function ContactPage() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Write your query or feedback..."
-                  className="w-full p-3.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-600"
+                  className="w-full p-3.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-emerald-600"
                 />
               </div>
 
               <button
                 type="submit"
-                className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md transition inline-flex items-center gap-2"
+                className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md transition inline-flex items-center gap-2"
               >
                 <Send className="w-4 h-4" />
                 <span>Submit Inquiry</span>
@@ -168,7 +168,7 @@ export default function ContactPage() {
               </h3>
               <div className="space-y-3 text-xs text-slate-700">
                 <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                  <Mail className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-slate-900 block">
                       Support Email Placeholder:
@@ -178,7 +178,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Phone className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                  <Phone className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-slate-900 block">
                       Support Phone Placeholder:
@@ -188,7 +188,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                  <Clock className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-slate-900 block">
                       Business Hours:
@@ -198,7 +198,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-slate-900 block">
                       Service Areas & Regional Hubs:
@@ -216,7 +216,7 @@ export default function ContactPage() {
             </div>
 
             {/* Interactive Map Placeholder */}
-            <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white rounded-3xl p-6 shadow-card space-y-3">
+            <div className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-slate-900 text-white rounded-3xl p-6 shadow-card space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-extrabold text-cyan-300 uppercase tracking-wider">
                   Regional Coverage Map Placeholder
@@ -228,7 +228,7 @@ export default function ContactPage() {
                 <div className="text-sm font-bold">
                   Mohali • Chandigarh • Hoshiarpur
                 </div>
-                <p className="text-[11px] text-blue-200 max-w-xs">
+                <p className="text-[11px] text-emerald-200 max-w-xs">
                   Interactive Map Placeholder (No external Google Maps API integration required in Frontend Prototype Phase).
                 </p>
               </div>

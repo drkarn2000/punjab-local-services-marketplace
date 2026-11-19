@@ -71,9 +71,9 @@ export default function SubcategoryDetailPage() {
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-16">
       {/* Subcategory Hero */}
-      <section className="bg-gradient-to-r from-[#092154] via-[#133882] to-[#1e4db7] text-white py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <nav className="flex flex-wrap items-center gap-1.5 text-xs text-blue-200 font-medium mb-4">
+      <section className="bg-gradient-to-r from-[#041418] via-[#133882] to-[#0f1c38] text-white py-10">
+        <div className="w-full px-4 sm:px-6">
+          <nav className="flex flex-wrap items-center gap-1.5 text-xs text-emerald-200 font-medium mb-4">
             <Link href="/" className="hover:text-white">
               Home
             </Link>
@@ -106,10 +106,10 @@ export default function SubcategoryDetailPage() {
               <h1 className="text-3xl sm:text-4xl font-extrabold">
                 {subcategory.name[language]}
               </h1>
-              <p className="text-sm sm:text-base text-blue-100 leading-relaxed max-w-2xl">
+              <p className="text-sm sm:text-base text-emerald-100 leading-relaxed max-w-2xl">
                 {subcategory.fullDesc}
               </p>
-              <div className="flex flex-wrap items-center gap-5 pt-2 text-xs font-semibold text-blue-100">
+              <div className="flex flex-wrap items-center gap-5 pt-2 text-xs font-semibold text-emerald-100">
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-amber-300" /> Typical Duration:{' '}
                   {subcategory.estimatedDuration}
@@ -149,7 +149,7 @@ export default function SubcategoryDetailPage() {
                 </p>
                 <button
                   onClick={() => handleBookSubcategory()}
-                  className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Book {subcategory.name.en} Now</span>
@@ -161,7 +161,7 @@ export default function SubcategoryDetailPage() {
       </section>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+      <div className="w-full px-4 sm:px-6 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left 8 Columns */}
           <div className="lg:col-span-8 space-y-8">
@@ -174,9 +174,9 @@ export default function SubcategoryDetailPage() {
                 {subcategory.problemsCovered.map((prob, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-2.5 p-3.5 rounded-xl bg-blue-50/50 border border-blue-100"
+                    className="flex items-start gap-2.5 p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                     <span className="text-xs sm:text-sm font-semibold text-slate-800">
                       {prob}
                     </span>
@@ -203,8 +203,8 @@ export default function SubcategoryDetailPage() {
                     onClick={() => setSelectedOptionIdx(idx)}
                     className={`p-4 rounded-2xl border cursor-pointer transition flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
                       selectedOptionIdx === idx
-                        ? 'border-blue-600 bg-blue-50/40 ring-2 ring-blue-600/15'
-                        : 'border-slate-200 hover:border-blue-300'
+                        ? 'border-emerald-600 bg-emerald-50/40 ring-2 ring-emerald-600/15'
+                        : 'border-slate-200 hover:border-emerald-300'
                     }`}
                   >
                     <div className="space-y-1">
@@ -229,7 +229,7 @@ export default function SubcategoryDetailPage() {
                           setSelectedOptionIdx(idx);
                           handleBookSubcategory();
                         }}
-                        className="px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition"
+                        className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition"
                       >
                         Select & Book
                       </button>
@@ -252,7 +252,7 @@ export default function SubcategoryDetailPage() {
                 </div>
                 <Link
                   href={`/services/${category.slug}`}
-                  className="text-xs font-bold text-blue-700 hover:underline"
+                  className="text-xs font-bold text-emerald-700 hover:underline"
                 >
                   View All {category.name.en}s →
                 </Link>
@@ -262,7 +262,7 @@ export default function SubcategoryDetailPage() {
                 {matchingProviders.slice(0, 4).map((prov) => (
                   <div
                     key={prov.id}
-                    className="p-4 rounded-2xl border border-slate-200 flex flex-col justify-between gap-3 hover:border-blue-400 transition"
+                    className="p-4 rounded-2xl border border-slate-200 flex flex-col justify-between gap-3 hover:border-emerald-400 transition"
                   >
                     <div className="flex items-start gap-3">
                       <img
@@ -273,11 +273,11 @@ export default function SubcategoryDetailPage() {
                       <div>
                         <Link
                           href={`/professionals/${prov.slug}`}
-                          className="font-extrabold text-slate-900 hover:text-blue-700 text-sm flex items-center gap-1"
+                          className="font-extrabold text-slate-900 hover:text-emerald-700 text-sm flex items-center gap-1"
                         >
                           <span>{prov.name}</span>
                           {prov.verified && (
-                            <BadgeCheck className="w-4 h-4 text-blue-600 fill-blue-100" />
+                            <BadgeCheck className="w-4 h-4 text-emerald-600 fill-emerald-100" />
                           )}
                         </Link>
                         <div className="flex items-center gap-1 text-xs mt-0.5">
@@ -295,13 +295,13 @@ export default function SubcategoryDetailPage() {
                     <div className="flex items-center gap-2 pt-2 border-t border-slate-100">
                       <button
                         onClick={() => handleBookSubcategory(prov.id)}
-                        className="flex-1 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition"
+                        className="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition"
                       >
                         Book {prov.name.split(' ')[0]}
                       </button>
                       <Link
                         href={`/professionals/${prov.slug}`}
-                        className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:border-blue-600"
+                        className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:border-emerald-600"
                       >
                         Profile
                       </Link>
@@ -314,7 +314,7 @@ export default function SubcategoryDetailPage() {
             {/* 4. FAQs */}
             <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
               <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-blue-600" />
+                <HelpCircle className="w-5 h-5 text-emerald-600" />
                 <span>Frequently Asked Questions — {subcategory.name.en}</span>
               </h2>
               <div className="space-y-2.5">
@@ -332,7 +332,7 @@ export default function SubcategoryDetailPage() {
                       <span>{faq.q}</span>
                       <ChevronDown
                         className={`w-4 h-4 transition ${
-                          openFaqIdx === idx ? 'rotate-180 text-blue-600' : ''
+                          openFaqIdx === idx ? 'rotate-180 text-emerald-600' : ''
                         }`}
                       />
                     </button>
@@ -356,7 +356,7 @@ export default function SubcategoryDetailPage() {
               </h3>
               <ol className="space-y-3 text-xs text-slate-600">
                 <li className="flex items-start gap-2.5">
-                  <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">
                     1
                   </span>
                   <div>
@@ -367,7 +367,7 @@ export default function SubcategoryDetailPage() {
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">
                     2
                   </span>
                   <div>
@@ -378,7 +378,7 @@ export default function SubcategoryDetailPage() {
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">
                     3
                   </span>
                   <div>
@@ -412,7 +412,7 @@ export default function SubcategoryDetailPage() {
                   <Link
                     key={rel.id}
                     href={`/services/${category.slug}/${rel.slug}`}
-                    className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:border-blue-400 hover:bg-blue-50/40 transition text-xs"
+                    className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:border-emerald-400 hover:bg-emerald-50/40 transition text-xs"
                   >
                     <div>
                       <div className="font-bold text-slate-800">
@@ -422,7 +422,7 @@ export default function SubcategoryDetailPage() {
                         Visit ₹{rel.startingPrice} • {rel.estimatedDuration}
                       </div>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
+                    <ArrowRight className="w-3.5 h-3.5 text-emerald-600" />
                   </Link>
                 ))}
               </div>

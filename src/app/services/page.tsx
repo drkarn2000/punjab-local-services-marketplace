@@ -4,6 +4,7 @@ import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
+  BadgeCheck,
   ChevronRight,
   Cpu,
   DoorOpen,
@@ -16,8 +17,10 @@ import {
   MapPin,
   Plug,
   Search,
+  ShieldCheck,
   Smartphone,
   Sofa,
+  Sparkles,
   Star,
   Wrench,
   Zap,
@@ -155,107 +158,131 @@ export default function AllServicesPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-16">
-      {/* HERO BANNER matching Image 2 */}
-      <section className="bg-gradient-to-r from-[#092154] via-[#123885] to-[#2356c5] text-white py-10 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              {/* Breadcrumb */}
-              <nav className="flex items-center gap-1.5 text-xs text-blue-200 font-medium">
-                <Link href="/" className="hover:text-white">
+      {/* DISTINCT EDITORIAL DIRECTORY HERO BANNER */}
+      <section className="relative bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white pt-12 lg:pt-14 pb-24 overflow-hidden border-b border-emerald-400/25">
+        {/* Ambient Emerald & Gold Glows */}
+        <div className="absolute -top-28 left-1/4 w-96 h-96 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-28 right-1/4 w-96 h-96 rounded-full bg-cyan-400/15 blur-3xl pointer-events-none" />
+
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
+          {/* Centered Header + Search Command Bar */}
+          <div className="max-w-4xl mx-auto text-center space-y-4">
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <nav className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-xs text-slate-200 font-medium">
+                <Link href="/" className="hover:text-emerald-300 transition">
                   Home
                 </Link>
-                <ChevronRight className="w-3.5 h-3.5" />
-                <span className="text-white font-semibold">Services</span>
+                <ChevronRight className="w-3.5 h-3.5 text-emerald-300" />
+                <span className="text-emerald-300 font-bold">Services Directory</span>
               </nav>
-
-              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                Our Services
-              </h1>
-              <p className="text-sm sm:text-base text-blue-100 max-w-xl leading-relaxed">
-                Choose from a wide range of trusted home and tech services from
-                verified professionals in Mohali, Chandigarh & Hoshiarpur.
-              </p>
-
-              {/* Search Bar */}
-              <div className="bg-white rounded-2xl p-2 shadow-xl flex flex-col sm:flex-row items-stretch sm:items-center gap-2 max-w-2xl text-slate-800">
-                <div className="flex items-center gap-2 px-3 py-2 sm:border-r border-slate-200 min-w-[140px]">
-                  <MapPin className="w-4 h-4 text-blue-700 shrink-0" />
-                  <select
-                    aria-label="Select City"
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.target.value as CitySlug)}
-                    className="bg-transparent font-bold text-xs sm:text-sm text-slate-900 focus:outline-none cursor-pointer"
-                  >
-                    <option value="mohali">Mohali</option>
-                    <option value="chandigarh">Chandigarh</option>
-                    <option value="hoshiarpur">Hoshiarpur</option>
-                  </select>
-                </div>
-
-                <div className="flex items-center gap-2 px-3 py-2 flex-1">
-                  <Search className="w-4 h-4 text-slate-400 shrink-0" />
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search for a service (e.g. Fan repair, Laptop service...)"
-                    className="w-full text-xs sm:text-sm text-slate-900 focus:outline-none"
-                  />
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    showToast(
-                      `Showing services matching "${searchTerm || 'All Categories'}" in ${selectedCity.toUpperCase()}`,
-                      'info'
-                    )
-                  }
-                  className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm flex items-center justify-center gap-1.5 transition"
-                >
-                  <Search className="w-4 h-4" />
-                  <span>Search</span>
-                </button>
-              </div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-300/30 text-emerald-200 text-[11px] font-extrabold uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                438+ Verified Pros • Same-Day Visit
+              </span>
             </div>
 
-            {/* Right Banner Visual */}
-            <div className="lg:col-span-5 relative hidden lg:flex justify-end">
-              <div className="relative">
-                <div className="absolute -top-2 -right-2 z-20 transform -rotate-3 bg-amber-300 text-slate-950 px-4 py-2 rounded-2xl shadow-lg font-extrabold text-xs leading-tight">
-                  Book Local
-                  <br />
-                  Professionals
-                  <br />
-                  in Your City
-                </div>
-                <img
-                  src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=700&q=80"
-                  alt="Punjab Services Technician"
-                  className="w-80 h-52 object-cover rounded-2xl border-2 border-white/25 shadow-2xl"
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.12]">
+              Every Home &amp; Tech Service,{' '}
+              <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent">
+                One Verified Directory
+              </span>
+            </h1>
+            <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              Browse all 5 core categories and 40+ specialized doorstep services across Mohali, Chandigarh &amp; Hoshiarpur.
+            </p>
+
+            {/* Sleek Glassmorphic Command Search Bar */}
+            <div className="bg-white/10 backdrop-blur-xl border border-emerald-300/35 rounded-2xl p-2 shadow-[0_18px_50px_rgba(0,0,0,0.45)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 max-w-3xl mx-auto">
+              <div className="flex items-center gap-2 px-3 py-2 sm:border-r border-white/15 min-w-[150px]">
+                <MapPin className="w-4 h-4 text-emerald-300 shrink-0" />
+                <select
+                  aria-label="Select City"
+                  value={selectedCity}
+                  onChange={(e) => setSelectedCity(e.target.value as CitySlug)}
+                  className="bg-transparent font-extrabold text-xs sm:text-sm text-white focus:outline-none cursor-pointer w-full"
+                >
+                  <option value="mohali" className="bg-slate-900 text-white">Mohali</option>
+                  <option value="chandigarh" className="bg-slate-900 text-white">Chandigarh</option>
+                  <option value="hoshiarpur" className="bg-slate-900 text-white">Hoshiarpur</option>
+                </select>
+              </div>
+
+              <div className="flex items-center gap-2 px-3 py-2 flex-1">
+                <Search className="w-4 h-4 text-emerald-200 shrink-0" />
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search any service (e.g. Fan repair, Pipe leakage, Laptop OS...)"
+                  className="w-full text-xs sm:text-sm font-medium bg-transparent text-white placeholder:text-slate-300 focus:outline-none"
                 />
               </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  showToast(
+                    `Showing services matching "${searchTerm || 'All Categories'}" in ${selectedCity.toUpperCase()}`,
+                    'info'
+                  )
+                }
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-extrabold text-sm flex items-center justify-center gap-1.5 shadow-lg transition shrink-0"
+              >
+                <Search className="w-4 h-4" />
+                <span>Find Services</span>
+              </button>
             </div>
           </div>
         </div>
       </section>
 
+      {/* 5 Interactive Category Mosaic Tiles (Half Inside Hero, Half Below Border) */}
+      <section className="w-full px-4 sm:px-6 lg:px-8 -mt-14 relative z-20">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
+          {categories.map((c) => (
+            <Link
+              key={c.id}
+              href={`/services/${c.slug}`}
+              className="relative group rounded-2xl bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] border border-emerald-400/35 hover:border-emerald-300/80 px-4 pt-7 pb-4 shadow-[0_14px_34px_rgba(4,20,24,0.45)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_36px_rgba(16,185,129,0.4)] flex flex-col justify-between gap-3"
+            >
+              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 rounded-full bg-[#041418] border border-emerald-400/50 text-white group-hover:text-emerald-300 text-xs font-extrabold shadow-lg whitespace-nowrap transition-colors">
+                {c.name[language]}
+              </span>
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center group-hover:scale-110 transition">
+                  {categoryIcon[c.slug]}
+                </div>
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-200 text-[10px] font-extrabold">
+                  ₹{c.baseVisitingFee} Visit
+                </span>
+              </div>
+              <div className="text-[11px] text-slate-300 flex items-center justify-between pt-1 border-t border-white/10">
+                <span>{c.providerCount} Verified Pros</span>
+                <ArrowRight className="w-3.5 h-3.5 text-emerald-300 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* MAIN CONTENT: Left Filter Sidebar + Right Browse Services */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+      <div className="w-full px-4 sm:px-6 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
-          {/* LEFT FILTER SIDEBAR matching Image 2 */}
-          <aside className="lg:col-span-3 bg-white rounded-2xl border border-slate-200/90 shadow-card p-5 space-y-5 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div className="flex items-center gap-2 font-extrabold text-slate-900 text-base">
-                <Filter className="w-4 h-4 text-blue-700" />
+          {/* LEFT FILTER SIDEBAR (Midnight Emerald-Teal Theme) */}
+          <aside className="lg:col-span-3 bg-gradient-to-b from-[#041418] via-[#092930] to-[#0f1c38] text-white rounded-3xl border border-emerald-400/30 shadow-2xl p-5 space-y-5 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-white/15 pb-3">
+              <div className="flex items-center gap-2 font-extrabold text-white text-base">
+                <Filter className="w-4 h-4 text-emerald-300" />
                 <span>Filter Services</span>
               </div>
+              <span className="px-2 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 text-[10px] font-extrabold">
+                LIVE
+              </span>
             </div>
 
             {/* City Filter */}
-            <div className="space-y-2 border-b border-slate-100 pb-4">
-              <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+            <div className="space-y-2 border-b border-white/15 pb-4">
+              <div className="text-xs font-extrabold text-emerald-300 uppercase tracking-wider">
                 City
               </div>
               {(
@@ -267,13 +294,13 @@ export default function AllServicesPage() {
               ).map((c) => (
                 <label
                   key={c.slug}
-                  className="flex items-center gap-2.5 text-xs text-slate-700 cursor-pointer hover:text-blue-700"
+                  className="flex items-center gap-2.5 text-xs text-slate-200 cursor-pointer hover:text-emerald-300 transition"
                 >
                   <input
                     type="checkbox"
                     checked={selectedCity === c.slug}
                     onChange={() => setSelectedCity(c.slug)}
-                    className="rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-4 h-4"
+                    className="rounded border-emerald-400/50 bg-slate-900 accent-emerald-400 w-4 h-4"
                   />
                   <span className="font-medium">{c.label}</span>
                 </label>
@@ -281,20 +308,20 @@ export default function AllServicesPage() {
             </div>
 
             {/* Service Category Filter */}
-            <div className="space-y-2 border-b border-slate-100 pb-4">
-              <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+            <div className="space-y-2 border-b border-white/15 pb-4">
+              <div className="text-xs font-extrabold text-emerald-300 uppercase tracking-wider">
                 Service Category
               </div>
               {categories.map((cat) => (
                 <label
                   key={cat.id}
-                  className="flex items-center gap-2.5 text-xs text-slate-700 cursor-pointer hover:text-blue-700"
+                  className="flex items-center gap-2.5 text-xs text-slate-200 cursor-pointer hover:text-emerald-300 transition"
                 >
                   <input
                     type="checkbox"
                     checked={selectedCategories.includes(cat.slug)}
                     onChange={() => toggleCategory(cat.slug)}
-                    className="rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-4 h-4"
+                    className="rounded border-emerald-400/50 bg-slate-900 accent-emerald-400 w-4 h-4"
                   />
                   <span className="font-medium">
                     {cat.name[language]} ({cat.providerCount})
@@ -304,24 +331,24 @@ export default function AllServicesPage() {
             </div>
 
             {/* Availability */}
-            <div className="space-y-2 border-b border-slate-100 pb-4">
-              <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+            <div className="space-y-2 border-b border-white/15 pb-4">
+              <div className="text-xs font-extrabold text-emerald-300 uppercase tracking-wider">
                 Availability
               </div>
-              <label className="flex items-center gap-2.5 text-xs text-slate-700 cursor-pointer">
+              <label className="flex items-center gap-2.5 text-xs text-slate-200 cursor-pointer hover:text-emerald-300 transition">
                 <input
                   type="checkbox"
                   checked={availableTodayOnly}
                   onChange={(e) => setAvailableTodayOnly(e.target.checked)}
-                  className="rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-4 h-4"
+                  className="rounded border-emerald-400/50 bg-slate-900 accent-emerald-400 w-4 h-4"
                 />
                 <span className="font-medium">Available Today (182)</span>
               </label>
             </div>
 
             {/* Rating */}
-            <div className="space-y-2 border-b border-slate-100 pb-4">
-              <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+            <div className="space-y-2 border-b border-white/15 pb-4">
+              <div className="text-xs font-extrabold text-emerald-300 uppercase tracking-wider">
                 Rating
               </div>
               {[
@@ -331,7 +358,7 @@ export default function AllServicesPage() {
               ].map((r) => (
                 <label
                   key={r.val}
-                  className="flex items-center gap-2 text-xs text-slate-700 cursor-pointer"
+                  className="flex items-center gap-2 text-xs text-slate-200 cursor-pointer hover:text-emerald-300 transition"
                 >
                   <input
                     type="checkbox"
@@ -339,7 +366,7 @@ export default function AllServicesPage() {
                     onChange={() =>
                       setMinRating(minRating === r.val ? 0 : r.val)
                     }
-                    className="rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-4 h-4"
+                    className="rounded border-emerald-400/50 bg-slate-900 accent-emerald-400 w-4 h-4"
                   />
                   <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                   <span className="font-medium">{r.label}</span>
@@ -349,7 +376,7 @@ export default function AllServicesPage() {
 
             {/* Sort By */}
             <div className="space-y-2">
-              <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+              <div className="text-xs font-extrabold text-emerald-300 uppercase tracking-wider">
                 Sort By
               </div>
               <select
@@ -358,11 +385,11 @@ export default function AllServicesPage() {
                 onChange={(e) =>
                   setSortBy(e.target.value as 'popular' | 'price-asc' | 'pros-desc')
                 }
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 bg-slate-50 focus:outline-none focus:border-blue-600"
+                className="w-full px-3 py-2 rounded-xl border border-emerald-400/35 text-xs font-bold text-white bg-slate-900/90 focus:outline-none focus:border-emerald-300 cursor-pointer"
               >
-                <option value="popular">Most Popular</option>
-                <option value="price-asc">Visiting Fee: Low to High</option>
-                <option value="pros-desc">Most Verified Professionals</option>
+                <option value="popular" className="bg-slate-900 text-white">Most Popular</option>
+                <option value="price-asc" className="bg-slate-900 text-white">Visiting Fee: Low to High</option>
+                <option value="pros-desc" className="bg-slate-900 text-white">Most Verified Professionals</option>
               </select>
             </div>
 
@@ -371,118 +398,175 @@ export default function AllServicesPage() {
                 onClick={() =>
                   showToast('Filters applied to service directory.', 'success')
                 }
-                className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition flex items-center justify-center gap-1.5"
+                className="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-extrabold text-xs shadow-lg transition flex items-center justify-center gap-1.5"
               >
                 <Filter className="w-3.5 h-3.5" />
                 <span>Apply Filters</span>
               </button>
               <button
                 onClick={clearAllFilters}
-                className="w-full py-1.5 text-xs font-bold text-blue-700 hover:underline text-center"
+                className="w-full py-1.5 text-xs font-bold text-emerald-300 hover:text-white hover:underline text-center transition"
               >
                 Clear All
               </button>
             </div>
           </aside>
 
-          {/* RIGHT CONTENT AREA matching Image 2 */}
-          <div className="lg:col-span-9 space-y-10">
-            {/* Browse Services Section */}
+          {/* RIGHT CONTENT AREA */}
+          <div className="lg:col-span-9 space-y-10 min-w-0">
+            {/* Browse Services Section — Equal-Size Single-Row Auto-Slider */}
             <div>
-              <div className="mb-5">
-                <h2 className="text-2xl font-extrabold text-slate-900">
-                  Browse Services
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-                  Explore our service categories and book the right professional
-                  for your needs.
-                </p>
+              <div className="mb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                <div>
+                  <h2 className="text-2xl font-extrabold text-slate-900">
+                    Browse Services
+                  </h2>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+                    Explore our service categories in one seamless slider — hover any card to pause.
+                  </p>
+                </div>
               </div>
 
-              {/* 3 + 2 Grid Layout matching Image 2 */}
-              <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
-                {filteredCategories.map((cat, index) => {
-                  const colSpan = index < 3 ? 'md:col-span-2' : 'md:col-span-3';
-                  return (
-                    <Link
-                      key={cat.id}
-                      href={`/services/${cat.slug}`}
-                      className={`${colSpan} group bg-white rounded-2xl border border-slate-200/90 shadow-card hover:shadow-card-hover overflow-hidden flex flex-col sm:flex-row transition`}
-                    >
-                      <div className="sm:w-2/5 h-44 sm:h-auto overflow-hidden bg-slate-100 shrink-0">
+              {filteredCategories.length > 3 ? (
+                <div className="w-full overflow-hidden py-2">
+                  <div className="animate-popular-strip gap-5">
+                    {[...filteredCategories, ...filteredCategories].map((cat, idx) => (
+                      <Link
+                        key={`${cat.id}-${idx}`}
+                        href={`/services/${cat.slug}`}
+                        className="w-[300px] sm:w-[320px] shrink-0 group relative rounded-3xl overflow-hidden border border-emerald-400/30 bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white shadow-xl hover:shadow-[0_18px_40px_rgba(16,185,129,0.38),0_0_24px_rgba(45,212,191,0.3)] hover:border-emerald-300/70 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[250px]"
+                      >
                         <img
                           src={cat.cardImage}
                           alt={cat.name[language]}
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                          className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:opacity-45 group-hover:scale-110 transition-all duration-500"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#041418]/95 via-[#092930]/80 to-[#0f1c38]/60" />
+
+                        <div className="relative z-10 p-5 flex items-center justify-between gap-2">
+                          <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-400/25 transition-all">
+                            {categoryIcon[cat.slug]}
+                          </div>
+                          <span className="px-3 py-1 rounded-full bg-emerald-400 text-slate-950 text-[11px] font-extrabold shadow">
+                            ₹{cat.baseVisitingFee} Visit
+                          </span>
+                        </div>
+
+                        <div className="relative z-10 p-5 pt-2 space-y-3">
+                          <div>
+                            <h3 className="font-extrabold text-white text-lg group-hover:text-emerald-300 transition-colors">
+                              {cat.name[language]}
+                            </h3>
+                            <p className="text-xs text-slate-200 mt-1 leading-relaxed line-clamp-2">
+                              {cat.tagline[language]}
+                            </p>
+                          </div>
+
+                          <div className="pt-3 border-t border-white/15 flex items-center justify-between gap-2">
+                            <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-emerald-200 font-bold text-[11px]">
+                              {cat.providerCount} Verified Pros
+                            </span>
+                            <span className="inline-flex items-center gap-1 text-xs font-extrabold text-emerald-300 group-hover:translate-x-1 transition-transform">
+                              <span>Explore</span>
+                              <ArrowRight className="w-4 h-4" />
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                  {filteredCategories.map((cat) => (
+                    <Link
+                      key={cat.id}
+                      href={`/services/${cat.slug}`}
+                      className="group relative rounded-3xl overflow-hidden border border-emerald-400/30 bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white shadow-xl hover:shadow-[0_18px_40px_rgba(16,185,129,0.38),0_0_24px_rgba(45,212,191,0.3)] hover:border-emerald-300/70 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[250px]"
+                    >
+                      <img
+                        src={cat.cardImage}
+                        alt={cat.name[language]}
+                        className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:opacity-45 group-hover:scale-110 transition-all duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#041418]/95 via-[#092930]/80 to-[#0f1c38]/60" />
+
+                      <div className="relative z-10 p-5 flex items-center justify-between gap-2">
+                        <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-400/25 transition-all">
+                          {categoryIcon[cat.slug]}
+                        </div>
+                        <span className="px-3 py-1 rounded-full bg-emerald-400 text-slate-950 text-[11px] font-extrabold shadow">
+                          ₹{cat.baseVisitingFee} Visit
+                        </span>
                       </div>
-                      <div className="p-4 flex-1 flex flex-col justify-between">
+
+                      <div className="relative z-10 p-5 pt-2 space-y-3">
                         <div>
-                          <div className="mb-1.5">{categoryIcon[cat.slug]}</div>
-                          <h3 className="font-extrabold text-slate-900 text-base group-hover:text-blue-700 transition">
+                          <h3 className="font-extrabold text-white text-lg group-hover:text-emerald-300 transition-colors">
                             {cat.name[language]}
                           </h3>
-                          <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                          <p className="text-xs text-slate-200 mt-1 leading-relaxed line-clamp-2">
                             {cat.tagline[language]}
                           </p>
                         </div>
 
-                        <div className="mt-4 flex items-center justify-between gap-2">
-                          <span className="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 font-bold text-[11px]">
-                            {cat.providerCount} Professionals
+                        <div className="pt-3 border-t border-white/15 flex items-center justify-between gap-2">
+                          <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-emerald-200 font-bold text-[11px]">
+                            {cat.providerCount} Verified Pros
                           </span>
-                          <span className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-blue-600 text-slate-700 group-hover:text-white flex items-center justify-center transition">
+                          <span className="inline-flex items-center gap-1 text-xs font-extrabold text-emerald-300 group-hover:translate-x-1 transition-transform">
+                            <span>Explore</span>
                             <ArrowRight className="w-4 h-4" />
                           </span>
                         </div>
                       </div>
                     </Link>
-                  );
-                })}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Popular Services 8 Quick Tiles matching Image 2 */}
-            <div>
-              <div className="flex items-center justify-between gap-2 mb-4">
+            {/* Popular Services — Animated Glowing Single-Line Strip */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between gap-2">
                 <div>
                   <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-1.5">
                     <Flame className="w-5 h-5 text-orange-500 fill-orange-400" />
                     <span>Popular Services</span>
                   </h2>
                   <p className="text-xs text-slate-600">
-                    Most booked services by customers in your area.
+                    Most booked services by customers in your area — hover any service to pause.
                   </p>
                 </div>
                 <Link
                   href="/book"
-                  className="text-xs font-bold text-blue-700 hover:underline inline-flex items-center gap-1"
+                  className="text-xs font-bold text-emerald-700 hover:underline inline-flex items-center gap-1 shrink-0"
                 >
                   <span>Book Any Service</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-                {popularTiles.map((tile) => (
-                  <Link
-                    key={tile.label}
-                    href={tile.href}
-                    className="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-sm hover:border-blue-500 hover:shadow-md transition flex flex-col items-center text-center gap-2 group"
-                  >
-                    <div className="w-11 h-11 rounded-xl bg-blue-50 group-hover:bg-blue-600/10 flex items-center justify-center">
-                      {tile.icon}
-                    </div>
-                    <span className="text-[11px] font-bold text-slate-800 group-hover:text-blue-700 leading-tight">
-                      {tile.label}
-                    </span>
-                  </Link>
-                ))}
+              <div className="w-full overflow-hidden rounded-2xl bg-gradient-to-r from-[#041418] via-[#092930] to-[#0f1c38] border border-emerald-400/35 p-3.5 shadow-[0_14px_34px_rgba(4,20,24,0.35)]">
+                <div className="animate-popular-strip gap-3.5">
+                  {[...popularTiles, ...popularTiles].map((tile, idx) => (
+                    <Link
+                      key={`${tile.label}-${idx}`}
+                      href={tile.href}
+                      className="group inline-flex items-center gap-2.5 whitespace-nowrap px-4 py-2.5 rounded-xl bg-white/10 hover:bg-gradient-to-r hover:from-emerald-400 hover:to-teal-400 border border-white/15 hover:border-emerald-200 text-white hover:text-slate-950 font-bold text-xs shadow-sm hover:shadow-[0_0_22px_rgba(16,185,129,0.65)] transition-all duration-300 shrink-0"
+                    >
+                      <span className="w-7 h-7 rounded-lg bg-white/15 group-hover:bg-slate-950/15 flex items-center justify-center shrink-0">
+                        {tile.icon}
+                      </span>
+                      <span className="whitespace-nowrap">{tile.label}</span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Complete Subcategories Directory (All 40 Subcategories grouped by Category) */}
-            <div className="space-y-6 pt-2">
+            <div className="space-y-9 pt-2">
               <div className="border-b border-slate-200 pb-3">
                 <h2 className="text-xl font-extrabold text-slate-900">
                   Complete Specialized Subcategory Directory ({filteredSubcategories.length} Services)
@@ -500,51 +584,52 @@ export default function AllServicesPage() {
                 return (
                   <div
                     key={cat.id}
-                    className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4"
+                    className="relative bg-white rounded-3xl border border-slate-200/90 px-5 pt-7 pb-6 shadow-sm space-y-5"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
-                      <div className="flex items-center gap-2.5">
-                        {categoryIcon[cat.slug]}
-                        <div>
-                          <h3 className="font-extrabold text-slate-900 text-base">
-                            {cat.name[language]} Subcategories
-                          </h3>
-                          <p className="text-xs text-slate-500">
-                            Base Visiting Charge: ₹{cat.baseVisitingFee} •{' '}
-                            {cat.providerCount} Verified Professionals
-                          </p>
-                        </div>
-                      </div>
-                      <Link
-                        href={`/services/${cat.slug}`}
-                        className="text-xs font-bold text-blue-700 hover:underline inline-flex items-center gap-1"
-                      >
-                        <span>View {cat.name.en} Listing Page</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
+                    {/* Top-Left Border Title Pill */}
+                    <div className="sm:absolute sm:-top-4 sm:left-5 z-20 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 text-slate-950 text-xs font-extrabold shadow-lg">
+                      <span className="scale-75 -my-1 bg-[#041418] p-1 rounded-md">{categoryIcon[cat.slug]}</span>
+                      <span>{cat.name[language]} Subcategories</span>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    {/* Top-Right Border Listing Link Pill */}
+                    <Link
+                      href={`/services/${cat.slug}`}
+                      className="sm:absolute sm:-top-3.5 sm:right-5 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 border border-emerald-200 text-[11px] font-extrabold shadow-lg transition-all"
+                    >
+                      <span>View {cat.name.en} Listing Page</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+
+                    <div className="border-b border-slate-100 pb-2.5 flex items-center justify-between">
+                      <p className="text-xs font-semibold text-slate-500">
+                        Base Visiting Charge: ₹{cat.baseVisitingFee} •{' '}
+                        {cat.providerCount} Verified Professionals
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 pt-3 pb-3">
                       {catSubs.map((sub) => (
                         <Link
                           key={sub.id}
                           href={`/services/${cat.slug}/${sub.slug}`}
-                          className="p-3.5 rounded-xl border border-slate-200/80 hover:border-blue-500 hover:bg-blue-50/30 transition flex flex-col justify-between group"
+                          className="relative px-4 pt-6 pb-7 rounded-2xl bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white border border-emerald-400/30 hover:border-emerald-300/80 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(16,185,129,0.35)] transition-all duration-300 flex flex-col justify-center group"
                         >
-                          <div>
-                            <div className="font-bold text-slate-900 text-xs group-hover:text-blue-700 flex items-center justify-between gap-1">
-                              <span>{sub.name[language]}</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 shrink-0" />
-                            </div>
-                            <p className="text-[11px] text-slate-500 mt-1 line-clamp-2">
-                              {sub.shortDesc.en}
-                            </p>
-                          </div>
-                          <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                            <span className="font-bold text-blue-700">
+                          {/* Top Border Centered Subcategory Name */}
+                          <span className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3 py-0.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 text-slate-950 text-[11px] font-extrabold shadow-md whitespace-nowrap max-w-[92%] truncate transition-colors">
+                            {sub.name[language]}
+                          </span>
+
+                          <p className="text-[11px] text-slate-200 text-center leading-relaxed line-clamp-2">
+                            {sub.shortDesc.en}
+                          </p>
+
+                          {/* Bottom Border Visit Fee & Duration Pills */}
+                          <div className="absolute -bottom-3 left-3 right-3 z-20 flex items-center justify-between gap-2 text-[10px]">
+                            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 font-extrabold text-slate-950 shadow">
                               Visit ₹{sub.startingPrice}
                             </span>
-                            <span className="text-slate-400">
+                            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 font-extrabold text-slate-950 shadow">
                               ~{sub.estimatedDuration}
                             </span>
                           </div>
