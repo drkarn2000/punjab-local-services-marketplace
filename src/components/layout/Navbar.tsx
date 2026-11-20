@@ -104,36 +104,36 @@ export function Navbar() {
         ))}
       </div>
 
-      {/* Main Public Header (Modern Midnight Emerald-Teal Glass Navbar) */}
+      {/* Main Public Header (Vibrant Logo-Matched Emerald-Teal Navbar) */}
       {!isAdminRoute && !isProviderRoute && (
-        <header className="sticky top-0 z-40 bg-gradient-to-r from-[#041418]/95 via-[#092930]/95 to-[#0f1c38]/95 backdrop-blur-xl border-b border-emerald-400/25 shadow-[0_8px_32px_rgba(4,20,24,0.4)] text-white">
+        <header className="sticky top-0 z-40 bg-gradient-to-r from-emerald-400 to-teal-400 border-b border-emerald-500/40 shadow-[0_8px_30px_rgba(16,185,129,0.28)] text-slate-950">
           <div className="w-full px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             {/* Brand Logo */}
             <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-400 flex items-center justify-center text-slate-950 shadow-[0_0_20px_rgba(16,185,129,0.45)] group-hover:scale-105 transition">
+              <div className="w-11 h-11 rounded-xl bg-[#041418] flex items-center justify-center text-emerald-300 shadow-[0_6px_18px_rgba(4,20,24,0.35)] group-hover:scale-105 transition">
                 <div className="relative flex items-center justify-center">
                   <Home className="w-6 h-6 stroke-[2.3]" />
-                  <Zap className="w-3 h-3 text-slate-950 fill-slate-950 absolute -bottom-0.5 -right-1" />
+                  <Zap className="w-3 h-3 text-emerald-300 fill-emerald-300 absolute -bottom-0.5 -right-1" />
                 </div>
               </div>
               <div>
-                <div className="text-xl font-extrabold tracking-tight text-white leading-none">
-                  Punjab <span className="text-emerald-300">Services</span>
+                <div className="text-xl font-extrabold tracking-tight text-slate-950 leading-none">
+                  Punjab <span className="text-emerald-950">Services</span>
                 </div>
-                <div className="text-[11px] font-medium text-emerald-200/80 tracking-wide mt-0.5">
+                <div className="text-[11px] font-semibold text-slate-900/80 tracking-wide mt-0.5">
                   Local Home &amp; Tech Services
                 </div>
               </div>
             </Link>
 
             {/* Desktop Center Navigation */}
-            <nav className="hidden lg:flex items-center gap-1.5 text-xs xl:text-sm font-bold text-slate-200 whitespace-nowrap bg-white/5 border border-white/10 rounded-full px-2 py-1.5 backdrop-blur-md">
+            <nav className="hidden lg:flex items-center gap-1.5 text-xs xl:text-sm font-bold text-slate-950 whitespace-nowrap bg-[#041418]/10 border border-[#041418]/15 rounded-full px-2 py-1.5 backdrop-blur-md">
               <Link
                 href="/"
                 className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/'
-                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
-                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
+                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
+                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
                 }`}
               >
                 {t('nav.home', 'Home')}
@@ -143,8 +143,8 @@ export function Navbar() {
                 href="/about"
                 className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/about'
-                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
-                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
+                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
+                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
                 }`}
               >
                 {t('nav.about', 'About Us')}
@@ -160,8 +160,8 @@ export function Navbar() {
                   onClick={() => router.push('/services')}
                   className={`flex items-center gap-1 px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                     pathname?.startsWith('/services')
-                      ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
-                      : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
+                      ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
+                      : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
                   }`}
                 >
                   <span>{t('nav.services', 'Services')}</span>
@@ -208,8 +208,8 @@ export function Navbar() {
                 href="/how-it-works"
                 className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/how-it-works'
-                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
-                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
+                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
+                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
                 }`}
               >
                 {t('nav.howItWorks', 'How it Works')}
@@ -219,8 +219,8 @@ export function Navbar() {
                 href="/become-a-professional"
                 className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/become-a-professional'
-                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
-                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
+                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
+                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
                 }`}
               >
                 {t('nav.forProfessionals', 'For Professionals')}
@@ -230,8 +230,8 @@ export function Navbar() {
                 href="/offers"
                 className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/offers'
-                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
-                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
+                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
+                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
                 }`}
               >
                 {t('nav.offers', 'Offers')}
@@ -241,8 +241,8 @@ export function Navbar() {
                 href="/support"
                 className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
                   pathname === '/support'
-                    ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-300/40 shadow-sm'
-                    : 'hover:bg-white/10 hover:text-emerald-200 border border-transparent'
+                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
+                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
                 }`}
               >
                 {t('nav.support', 'Support')}
@@ -253,7 +253,7 @@ export function Navbar() {
             <div className="flex items-center gap-2.5 shrink-0">
               <Link
                 href="/search"
-                className="p-2.5 rounded-full bg-white/10 border border-white/15 text-emerald-200 hover:text-slate-950 hover:bg-emerald-400 transition"
+                className="p-2.5 rounded-full bg-[#041418]/10 border border-[#041418]/15 text-slate-950 hover:text-emerald-300 hover:bg-[#041418] transition"
                 title="Search Services"
               >
                 <Search className="w-4 h-4" />
@@ -263,11 +263,11 @@ export function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setLangOpen(!langOpen)}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition border border-white/15 whitespace-nowrap"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-[#041418]/10 hover:bg-[#041418]/20 text-slate-950 text-xs font-bold transition border border-[#041418]/15 whitespace-nowrap"
                 >
-                  <Globe className="w-3.5 h-3.5 text-emerald-300" />
+                  <Globe className="w-3.5 h-3.5 text-slate-900" />
                   <span>{langBadge[language]}</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-emerald-200" />
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-900" />
                 </button>
                 {langOpen && (
                   <div className="absolute right-0 mt-2 w-44 bg-[#061c22]/95 backdrop-blur-xl rounded-xl shadow-2xl border border-emerald-400/35 py-1.5 z-50 text-white">
@@ -304,7 +304,7 @@ export function Navbar() {
               {!isLoggedIn ? (
                 <Link
                   href="/login"
-                  className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 text-xs font-extrabold shadow-[0_0_16px_rgba(16,185,129,0.4)] transition whitespace-nowrap"
+                  className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#041418] hover:bg-[#092930] text-emerald-300 text-xs font-extrabold shadow-[0_6px_16px_rgba(4,20,24,0.3)] transition whitespace-nowrap"
                 >
                   <User className="w-3.5 h-3.5" />
                   <span>{t('nav.login', 'Login')}</span>
@@ -314,7 +314,7 @@ export function Navbar() {
                   {/* Notifications Bell (Only when logged in) */}
                   <Link
                     href="/account/notifications"
-                    className="relative p-2.5 rounded-full bg-white/10 border border-white/15 text-emerald-200 hover:text-white hover:bg-white/20 transition"
+                    className="relative p-2.5 rounded-full bg-[#041418]/10 border border-[#041418]/15 text-slate-950 hover:text-emerald-300 hover:bg-[#041418] transition"
                     title="Notifications"
                   >
                     <Bell className="w-4 h-4" />
@@ -329,18 +329,18 @@ export function Navbar() {
                   <div className="relative">
                     <button
                       onClick={() => setAccountOpen(!accountOpen)}
-                      className="flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-emerald-300/35 transition whitespace-nowrap"
+                      className="flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full bg-[#041418]/10 hover:bg-[#041418]/20 border border-[#041418]/20 transition whitespace-nowrap"
                       title="Customer Account Menu"
                     >
                       <img
                         src={currentCustomer.avatar}
                         alt={currentCustomer.name}
-                        className="w-7 h-7 rounded-full object-cover ring-2 ring-emerald-400/60"
+                        className="w-7 h-7 rounded-full object-cover ring-2 ring-[#041418]/50"
                       />
-                      <span className="text-xs font-bold text-white">
+                      <span className="text-xs font-bold text-slate-950">
                         {currentCustomer.name.split(' ')[0]}
                       </span>
-                      <ChevronDown className="w-3.5 h-3.5 text-emerald-300" />
+                      <ChevronDown className="w-3.5 h-3.5 text-slate-900" />
                     </button>
 
                     {accountOpen && (
@@ -407,7 +407,7 @@ export function Navbar() {
               {/* Mobile Hamburger */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition"
+                className="lg:hidden p-2 rounded-lg text-slate-950 hover:bg-[#041418]/10 transition"
                 aria-label="Open menu"
               >
                 {mobileMenuOpen ? (

@@ -131,3 +131,22 @@ button:active {
 .animate-popular-strip:hover {
   animation-play-state: paused;
 }
+
+@keyframes popular-strip-scroll-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-popular-strip-reverse {
+  display: flex;
+  width: max-content;
+  animation: popular-strip-scroll-reverse 28s linear infinite;
+}
+
+.animate-popular-strip-reverse:hover {
+  animation-play-state: paused;
+}

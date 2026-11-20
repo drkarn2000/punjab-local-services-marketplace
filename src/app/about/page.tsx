@@ -299,11 +299,11 @@ export default function AboutPage() {
             {...fadeUp(0.05)}
             className="relative group rounded-3xl bg-gradient-to-br from-emerald-100 via-teal-50 to-white text-slate-900 p-7 pt-10 border border-emerald-200 shadow-xl hover:-translate-y-1.5 hover:shadow-[0_20px_45px_rgba(16,185,129,0.28)] transition-all duration-300"
           >
-            <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-2xl bg-white shadow-md whitespace-nowrap">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center shadow group-hover:scale-110 transition-transform">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 shadow-lg whitespace-nowrap">
+              <div className="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
                 <Compass className="w-4 h-4" />
               </div>
-              <h2 className="text-sm font-extrabold text-slate-950 uppercase tracking-wider">
+              <h2 className="text-sm font-extrabold text-white uppercase tracking-wider">
                 Our Mission
               </h2>
             </div>
@@ -331,11 +331,11 @@ export default function AboutPage() {
             {...fadeUp(0.12)}
             className="relative group rounded-3xl bg-gradient-to-br from-indigo-100 via-purple-50 to-white text-slate-900 p-7 pt-10 border border-indigo-200 shadow-xl hover:-translate-y-1.5 hover:shadow-[0_20px_45px_rgba(99,102,241,0.25)] transition-all duration-300"
           >
-            <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-2xl bg-white shadow-md whitespace-nowrap">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center shadow group-hover:scale-110 transition-transform">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 shadow-lg whitespace-nowrap">
+              <div className="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
                 <Eye className="w-4 h-4" />
               </div>
-              <h2 className="text-sm font-extrabold text-slate-950 uppercase tracking-wider">
+              <h2 className="text-sm font-extrabold text-white uppercase tracking-wider">
                 Our Vision
               </h2>
             </div>
@@ -363,11 +363,11 @@ export default function AboutPage() {
             {...fadeUp(0.18)}
             className="relative group rounded-3xl bg-gradient-to-br from-cyan-100 via-sky-50 to-white text-slate-900 p-7 pt-10 border border-cyan-200 shadow-xl hover:-translate-y-1.5 hover:shadow-[0_20px_45px_rgba(6,182,212,0.25)] transition-all duration-300"
           >
-            <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-2xl bg-white shadow-md whitespace-nowrap">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 text-white flex items-center justify-center shadow group-hover:scale-110 transition-transform">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg whitespace-nowrap">
+              <div className="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
                 <Gem className="w-4 h-4" />
               </div>
-              <h2 className="text-sm font-extrabold text-slate-950 uppercase tracking-wider">
+              <h2 className="text-sm font-extrabold text-white uppercase tracking-wider">
                 Our Core Values
               </h2>
             </div>

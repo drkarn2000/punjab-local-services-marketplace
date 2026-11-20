@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { useMarketplace } from '@/context/MarketplaceContext';
 import { CategorySlug, CitySlug } from '@/types/marketplace';
+import homeHeroBg from './how-it-works/images/home page hero bg.png';
 
 export default function HomePage() {
   const router = useRouter();
@@ -95,12 +96,50 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
-      {/* 1. HERO SECTION (Midnight Emerald-Teal Theme) */}
-      <section className="relative bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white overflow-hidden pb-16 pt-8 lg:pt-12 border-b border-emerald-400/20">
-        {/* Subtle decorative background glow */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_75%_30%,#10b981_0%,transparent_55%)]" />
+      {/* 1. HERO SECTION (Custom Hero Background Image) */}
+      <section className="relative text-white overflow-hidden pb-16 pt-4 lg:pt-4 border-b border-emerald-400/20">
+        {/* Custom Home Hero Background Image */}
+        <img
+          src={homeHeroBg.src}
+          alt="Punjab Services Home Hero"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#041418]/50 pointer-events-none" />
 
         <div className="w-full px-4 sm:px-6 relative z-10">
+          {/* Centered Top Floating Strip: Verified Local Experts Card ONLY */}
+          <div className="mb-4 lg:mb-0 lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2 z-20 flex justify-center">
+            <div className="inline-flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 bg-white/95 backdrop-blur-md text-slate-900 px-3 py-2 rounded-2xl shadow-xl border border-emerald-200">
+              <div className="flex items-center gap-2.5">
+                <div className="flex -space-x-2 shrink-0">
+                  {providers.slice(0, 3).map((p) => (
+                    <img
+                      key={p.id}
+                      src={p.avatar}
+                      alt={p.name}
+                      className="w-8 h-8 rounded-full object-cover ring-2 ring-white"
+                    />
+                  ))}
+                </div>
+                <div>
+                  <div className="text-xs font-extrabold text-slate-900 flex items-center gap-1">
+                    <span>438+ Verified Local Experts</span>
+                    <BadgeCheck className="w-3.5 h-3.5 text-emerald-600 fill-emerald-100" />
+                  </div>
+                  <div className="text-[10px] text-slate-600">
+                    Visiting Charge starts at ₹199 (Adjustable in final bill)
+                  </div>
+                </div>
+              </div>
+              <Link
+                href="/book"
+                className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 text-xs font-extrabold shrink-0 transition shadow"
+              >
+                Book Now
+              </Link>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column (7 cols) */}
             <div className="lg:col-span-7 space-y-5">
@@ -118,7 +157,6 @@ export default function HomePage() {
                   <option value="hoshiarpur" className="bg-slate-900 text-white">Hoshiarpur</option>
                 </select>
               </div>
-
               {/* Headline */}
               <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.15]">
                 <span className="block">{t('hero.titleLine1', 'Find Trusted Professionals')}</span>
@@ -128,7 +166,7 @@ export default function HomePage() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-slate-300 text-sm sm:text-base max-w-xl leading-relaxed">
+              <p className="text-slate-200 text-sm sm:text-base max-w-xl leading-relaxed">
                 {t(
                   'hero.subtitle',
                   'Book reliable Electricians, Plumbers, Carpenters and Device Repair experts in Mohali, Chandigarh & Hoshiarpur.'
@@ -183,55 +221,16 @@ export default function HomePage() {
               </form>
             </div>
 
-            {/* Right Column (5 cols) — Professional Team Showcase & Emerald Serving Badge */}
-            <div className="lg:col-span-5 relative">
+            {/* Right Column (5 cols) — Floating Serving Badge Over Custom Hero BG */}
+            <div className="lg:col-span-5 relative flex justify-end items-start self-start">
               {/* Tilted Emerald Serving Badge */}
-              <div className="absolute -top-3 right-2 z-20 transform -rotate-2 bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 px-4 py-2 rounded-2xl shadow-lg border-2 border-emerald-200 flex items-center gap-2">
+              <div className="transform -rotate-2 bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 px-4 py-2 rounded-2xl shadow-lg border-2 border-emerald-200 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-slate-950 shrink-0" />
                 <div className="text-xs font-extrabold leading-tight">
                   Serving
                   <br />
                   Mohali, Chandigarh
                   <br />& Hoshiarpur
-                </div>
-              </div>
-
-              {/* Hero Team Card */}
-              <div className="relative rounded-3xl overflow-hidden border-2 border-emerald-300/30 shadow-2xl bg-gradient-to-b from-[#092930]/60 to-slate-950/90">
-                <img
-                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80"
-                  alt="Punjab Services Verified Technicians"
-                  className="w-full h-[310px] sm:h-[340px] object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#041418]/90 via-[#041418]/20 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3 bg-white/95 backdrop-blur-md text-slate-900 p-3.5 rounded-2xl shadow-lg">
-                  <div className="flex items-center gap-3">
-                    <div className="flex -space-x-2">
-                      {providers.slice(0, 3).map((p) => (
-                        <img
-                          key={p.id}
-                          src={p.avatar}
-                          alt={p.name}
-                          className="w-9 h-9 rounded-full object-cover ring-2 ring-white"
-                        />
-                      ))}
-                    </div>
-                    <div>
-                      <div className="text-xs font-extrabold text-slate-900 flex items-center gap-1">
-                        <span>438+ Verified Local Experts</span>
-                        <BadgeCheck className="w-4 h-4 text-emerald-600 fill-emerald-100" />
-                      </div>
-                      <div className="text-[11px] text-slate-600">
-                        Visiting Charge starts at ₹199 (Adjustable in final bill)
-                      </div>
-                    </div>
-                  </div>
-                  <Link
-                    href="/book"
-                    className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 text-xs font-extrabold shrink-0 transition shadow"
-                  >
-                    Book Now
-                  </Link>
                 </div>
               </div>
             </div>
@@ -314,17 +313,18 @@ export default function HomePage() {
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition" />
           </Link>
 
+          <h2 className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 z-20 px-5 py-1.5 rounded-full bg-[#041418] border border-emerald-400/60 text-white text-sm sm:text-base font-extrabold shadow-[0_0_20px_rgba(16,185,129,0.35)] whitespace-nowrap">
+            {t('home.ourServicesTitle', 'Our Services')}
+          </h2>
+
           {/* Ambient Lighting Glows */}
           <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
             <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-emerald-500/15 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-teal-400/10 blur-3xl" />
           </div>
 
-          <div className="relative z-10 text-center mb-9 pt-2">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-              {t('home.ourServicesTitle', 'Our Services')}
-            </h2>
-            <p className="text-sm text-slate-300 font-medium mt-1">
+          <div className="relative z-10 text-center mb-8 pt-4">
+            <p className="text-sm text-slate-300 font-medium">
               {t(
                 'home.ourServicesSub',
                 'Choose from a range of professional services at your doorstep'

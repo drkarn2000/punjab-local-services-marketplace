@@ -318,7 +318,7 @@ export default function CategoryListingPage() {
           </button>
 
           <div className="flex-1 overflow-hidden">
-            <div className="animate-popular-strip items-center gap-2.5">
+            <div className="animate-popular-strip-reverse items-center gap-2.5">
               {[0, 1].map((dupIdx) => (
                 <div key={dupIdx} className="flex items-center gap-2.5 shrink-0">
                   {categorySubs.map((sub) => {

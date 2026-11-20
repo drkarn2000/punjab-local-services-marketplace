@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
   BadgeCheck,
+  ChevronLeft,
   ChevronRight,
   Cpu,
   DoorOpen,
@@ -43,6 +44,8 @@ export default function AllServicesPage() {
   const [availableTodayOnly, setAvailableTodayOnly] = useState(false);
   const [minRating, setMinRating] = useState<number>(0);
   const [sortBy, setSortBy] = useState<'popular' | 'price-asc' | 'pros-desc'>('popular');
+  const [browseSlideIndex, setBrowseSlideIndex] = useState(0);
+  const [browsePaused, setBrowsePaused] = useState(false);
 
   const toggleCategory = (slug: CategorySlug) => {
     setSelectedCategories((prev) =>
@@ -76,6 +79,18 @@ export default function AllServicesPage() {
     }
     return list;
   }, [categories, subcategories, selectedCategories, searchTerm, sortBy]);
+
+  useEffect(() => {
+    setBrowseSlideIndex(0);
+  }, [filteredCategories.length]);
+
+  useEffect(() => {
+    if (filteredCategories.length <= 1 || browsePaused) return;
+    const timer = setInterval(() => {
+      setBrowseSlideIndex((prev) => (prev + 1) % filteredCategories.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [filteredCategories.length, browsePaused]);
 
   const filteredSubcategories = useMemo(() => {
     return subcategories.filter((sub) => {
@@ -245,18 +260,27 @@ export default function AllServicesPage() {
               href={`/services/${c.slug}`}
               className="relative group rounded-2xl bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] border border-emerald-400/35 hover:border-emerald-300/80 px-4 pt-7 pb-4 shadow-[0_14px_34px_rgba(4,20,24,0.45)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_36px_rgba(16,185,129,0.4)] flex flex-col justify-between gap-3"
             >
+              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                <img
+                  src={c.cardImage}
+                  alt={c.name[language]}
+                  className="w-full h-full object-cover opacity-35 group-hover:opacity-45 group-hover:scale-110 transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#041418]/95 via-[#092930]/75 to-[#0f1c38]/55" />
+              </div>
+
               <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 rounded-full bg-[#041418] border border-emerald-400/50 text-white group-hover:text-emerald-300 text-xs font-extrabold shadow-lg whitespace-nowrap transition-colors">
                 {c.name[language]}
               </span>
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center group-hover:scale-110 transition">
+              <div className="relative z-10 flex items-center justify-between">
+                <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 flex items-center justify-center group-hover:scale-110 transition">
                   {categoryIcon[c.slug]}
                 </div>
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-200 text-[10px] font-extrabold">
                   ₹{c.baseVisitingFee} Visit
                 </span>
               </div>
-              <div className="text-[11px] text-slate-300 flex items-center justify-between pt-1 border-t border-white/10">
+              <div className="relative z-10 text-[11px] text-slate-300 flex items-center justify-between pt-1 border-t border-white/10">
                 <span>{c.providerCount} Verified Pros</span>
                 <ArrowRight className="w-3.5 h-3.5 text-emerald-300 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -414,114 +438,180 @@ export default function AllServicesPage() {
 
           {/* RIGHT CONTENT AREA */}
           <div className="lg:col-span-9 space-y-10 min-w-0">
-            {/* Browse Services Section — Equal-Size Single-Row Auto-Slider */}
+            {/* Browse Services Section — Pure CSS Custom-Effects Showcase Slider */}
             <div>
-              <div className="mb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+              <div className="mb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
                 <div>
                   <h2 className="text-2xl font-extrabold text-slate-900">
                     Browse Services
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-                    Explore our service categories in one seamless slider — hover any card to pause.
+                    Explore our service categories and book the right professional for your needs.
                   </p>
                 </div>
+                {filteredCategories.length > 1 && (
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setBrowseSlideIndex((prev) =>
+                          prev <= 0 ? filteredCategories.length - 1 : prev - 1
+                        )
+                      }
+                      className="w-9 h-9 rounded-full border border-slate-300 bg-white hover:bg-emerald-50 hover:border-emerald-400 text-slate-800 flex items-center justify-center shadow-sm transition"
+                      aria-label="Previous service card"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setBrowseSlideIndex(
+                          (prev) => (prev + 1) % filteredCategories.length
+                        )
+                      }
+                      className="w-9 h-9 rounded-full border border-slate-300 bg-white hover:bg-emerald-50 hover:border-emerald-400 text-slate-800 flex items-center justify-center shadow-sm transition"
+                      aria-label="Next service card"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                )}
               </div>
 
-              {filteredCategories.length > 3 ? (
-                <div className="w-full overflow-hidden py-2">
-                  <div className="animate-popular-strip gap-5">
-                    {[...filteredCategories, ...filteredCategories].map((cat, idx) => (
-                      <Link
-                        key={`${cat.id}-${idx}`}
-                        href={`/services/${cat.slug}`}
-                        className="w-[300px] sm:w-[320px] shrink-0 group relative rounded-3xl overflow-hidden border border-emerald-400/30 bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white shadow-xl hover:shadow-[0_18px_40px_rgba(16,185,129,0.38),0_0_24px_rgba(45,212,191,0.3)] hover:border-emerald-300/70 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[250px]"
-                      >
-                        <img
-                          src={cat.cardImage}
-                          alt={cat.name[language]}
-                          className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:opacity-45 group-hover:scale-110 transition-all duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#041418]/95 via-[#092930]/80 to-[#0f1c38]/60" />
+              {filteredCategories.length > 0 && (
+                <div
+                  className="relative md:mx-6 my-6"
+                  onMouseEnter={() => setBrowsePaused(true)}
+                  onMouseLeave={() => setBrowsePaused(false)}
+                >
+                  {/* Layered Custom-Effects Viewport (Centered Content) */}
+                  <div className="relative h-[340px] sm:h-[360px] rounded-3xl overflow-hidden border border-emerald-400/35 bg-[#041418] shadow-2xl">
+                    {filteredCategories.map((cat, idx) => {
+                      const isActive = idx === browseSlideIndex % filteredCategories.length;
+                      return (
+                        <div
+                          key={cat.id}
+                          className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                            isActive
+                              ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                              : 'opacity-0 scale-105 z-0 pointer-events-none'
+                          }`}
+                        >
+                          {/* Background Image with Slow Zoom Reveal */}
+                          <img
+                            src={cat.cardImage}
+                            alt={cat.name[language]}
+                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${
+                              isActive ? 'scale-100 opacity-50' : 'scale-110 opacity-20'
+                            }`}
+                          />
 
-                        <div className="relative z-10 p-5 flex items-center justify-between gap-2">
-                          <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-400/25 transition-all">
-                            {categoryIcon[cat.slug]}
+                          {/* Balanced Radial/Vertical Gradient Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-b from-[#041418]/75 via-[#092930]/85 to-[#041418]/90" />
+
+                          {/* Centered Staggered Content Layer */}
+                          <div className="relative z-10 h-full px-6 sm:px-16 md:px-28 py-8 flex flex-col items-center justify-center text-center gap-4">
+                            <div
+                              className={`flex flex-wrap items-center justify-center gap-3 transition-all duration-700 ${
+                                isActive
+                                  ? 'opacity-100 translate-y-0'
+                                  : 'opacity-0 translate-y-4'
+                              }`}
+                            >
+                              <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center shadow-lg">
+                                {categoryIcon[cat.slug]}
+                              </div>
+                              <span className="px-3.5 py-1 rounded-full bg-emerald-400 text-slate-950 text-xs font-extrabold shadow">
+                                ₹{cat.baseVisitingFee} Visit
+                              </span>
+                              <span className="px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-emerald-200 text-xs font-bold">
+                                {cat.providerCount} Verified Pros
+                              </span>
+                            </div>
+
+                            <div className="space-y-2 max-w-2xl">
+                              <h3
+                                className={`text-2xl sm:text-4xl font-extrabold text-white tracking-tight transition-all duration-700 delay-100 ${
+                                  isActive
+                                    ? 'opacity-100 translate-y-0'
+                                    : 'opacity-0 translate-y-4'
+                                }`}
+                              >
+                                {cat.name[language]}
+                              </h3>
+                              <p
+                                className={`text-sm sm:text-base text-slate-200 leading-relaxed line-clamp-2 transition-all duration-700 delay-150 ${
+                                  isActive
+                                    ? 'opacity-100 translate-y-0'
+                                    : 'opacity-0 translate-y-4'
+                                }`}
+                              >
+                                {cat.tagline[language]} — {cat.description[language]}
+                              </p>
+                            </div>
+
+                            <div
+                              className={`flex items-center justify-center gap-3 transition-all duration-700 delay-200 ${
+                                isActive
+                                  ? 'opacity-100 translate-y-0'
+                                  : 'opacity-0 translate-y-4'
+                              }`}
+                            >
+                              <Link
+                                href={`/services/${cat.slug}`}
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg transition"
+                              >
+                                <span>Explore {cat.name[language]}</span>
+                                <ArrowRight className="w-4 h-4" />
+                              </Link>
+                              <span className="text-xs font-semibold text-emerald-200/80">
+                                {idx + 1} / {filteredCategories.length}
+                              </span>
+                            </div>
                           </div>
-                          <span className="px-3 py-1 rounded-full bg-emerald-400 text-slate-950 text-[11px] font-extrabold shadow">
-                            ₹{cat.baseVisitingFee} Visit
-                          </span>
                         </div>
-
-                        <div className="relative z-10 p-5 pt-2 space-y-3">
-                          <div>
-                            <h3 className="font-extrabold text-white text-lg group-hover:text-emerald-300 transition-colors">
-                              {cat.name[language]}
-                            </h3>
-                            <p className="text-xs text-slate-200 mt-1 leading-relaxed line-clamp-2">
-                              {cat.tagline[language]}
-                            </p>
-                          </div>
-
-                          <div className="pt-3 border-t border-white/15 flex items-center justify-between gap-2">
-                            <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-emerald-200 font-bold text-[11px]">
-                              {cat.providerCount} Verified Pros
-                            </span>
-                            <span className="inline-flex items-center gap-1 text-xs font-extrabold text-emerald-300 group-hover:translate-x-1 transition-transform">
-                              <span>Explore</span>
-                              <ArrowRight className="w-4 h-4" />
-                            </span>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
+                      );
+                    })}
                   </div>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                  {filteredCategories.map((cat) => (
-                    <Link
-                      key={cat.id}
-                      href={`/services/${cat.slug}`}
-                      className="group relative rounded-3xl overflow-hidden border border-emerald-400/30 bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white shadow-xl hover:shadow-[0_18px_40px_rgba(16,185,129,0.38),0_0_24px_rgba(45,212,191,0.3)] hover:border-emerald-300/70 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[250px]"
-                    >
-                      <img
-                        src={cat.cardImage}
-                        alt={cat.name[language]}
-                        className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:opacity-45 group-hover:scale-110 transition-all duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#041418]/95 via-[#092930]/80 to-[#0f1c38]/60" />
 
-                      <div className="relative z-10 p-5 flex items-center justify-between gap-2">
-                        <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-400/25 transition-all">
-                          {categoryIcon[cat.slug]}
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-emerald-400 text-slate-950 text-[11px] font-extrabold shadow">
-                          ₹{cat.baseVisitingFee} Visit
-                        </span>
-                      </div>
-
-                      <div className="relative z-10 p-5 pt-2 space-y-3">
-                        <div>
-                          <h3 className="font-extrabold text-white text-lg group-hover:text-emerald-300 transition-colors">
-                            {cat.name[language]}
-                          </h3>
-                          <p className="text-xs text-slate-200 mt-1 leading-relaxed line-clamp-2">
-                            {cat.tagline[language]}
-                          </p>
-                        </div>
-
-                        <div className="pt-3 border-t border-white/15 flex items-center justify-between gap-2">
-                          <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-emerald-200 font-bold text-[11px]">
-                            {cat.providerCount} Verified Pros
-                          </span>
-                          <span className="inline-flex items-center gap-1 text-xs font-extrabold text-emerald-300 group-hover:translate-x-1 transition-transform">
-                            <span>Explore</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
+                  {/* Interactive Category Pills Straddling All 4 Borders (Desktop) */}
+                  {filteredCategories.length > 1 && (
+                    <div className="mt-4 flex flex-wrap items-center justify-center gap-2 md:mt-0 md:block">
+                      {filteredCategories.map((cat, idx) => {
+                        const isActive =
+                          idx === browseSlideIndex % filteredCategories.length;
+                        const borderPosClasses = [
+                          'md:absolute md:-left-5 md:top-1/2 md:-translate-y-1/2',
+                          'md:absolute md:left-[26%] md:-bottom-4 md:-translate-x-1/2',
+                          'md:absolute md:right-[26%] md:-bottom-4 md:translate-x-1/2',
+                          'md:absolute md:left-1/2 md:-top-4 md:-translate-x-1/2',
+                          'md:absolute md:-right-5 md:top-1/2 md:-translate-y-1/2',
+                        ];
+                        return (
+                          <button
+                            key={cat.id}
+                            type="button"
+                            onClick={() => setBrowseSlideIndex(idx)}
+                            className={`z-30 inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-extrabold transition-all shadow-lg whitespace-nowrap ${
+                              borderPosClasses[idx] ?? ''
+                            } ${
+                              isActive
+                                ? 'bg-[#041418] text-emerald-300 border border-emerald-400 shadow-[0_8px_24px_rgba(16,185,129,0.45)] scale-105'
+                                : 'bg-white text-slate-800 border border-emerald-300/60 hover:bg-emerald-50 hover:text-emerald-800'
+                            }`}
+                          >
+                            <span
+                              className={`w-2 h-2 rounded-full transition-colors ${
+                                isActive ? 'bg-emerald-400' : 'bg-slate-300'
+                              }`}
+                            />
+                            <span>{cat.name[language]}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
