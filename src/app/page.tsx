@@ -28,6 +28,9 @@ import {
 import { useMarketplace } from '@/context/MarketplaceContext';
 import { CategorySlug, CitySlug } from '@/types/marketplace';
 import homeHeroBg from './how-it-works/images/home page hero bg.png';
+import sukhnaLakeBg from './become-a-professional/Images/Sukhna Lake with Open Hand Monument.png';
+import modernTealServicesBanner from './services/images/Modern Teal Services Banner.png';
+import moodyModernHomeBanner from './services/images/Moody Modern Home Exterior Banner.png';
 
 export default function HomePage() {
   const router = useRouter();
@@ -97,18 +100,18 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#f8fafc]">
       {/* 1. HERO SECTION (Custom Hero Background Image) */}
-      <section className="relative text-white overflow-hidden pb-16 pt-4 lg:pt-4 border-b border-emerald-400/20">
+      <section className="relative text-white overflow-hidden pb-44 lg:pb-52 pt-4 lg:pt-6 border-b border-emerald-400/20">
         {/* Custom Home Hero Background Image */}
         <img
           src={homeHeroBg.src}
           alt="Punjab Services Home Hero"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-right"
         />
         <div className="absolute inset-0 bg-[#041418]/50 pointer-events-none" />
 
         <div className="w-full px-4 sm:px-6 relative z-10">
-          {/* Centered Top Floating Strip: Verified Local Experts Card ONLY */}
-          <div className="mb-4 lg:mb-0 lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2 z-20 flex justify-center">
+          {/* Centered Floating Strip: Verified Local Experts Card ONLY */}
+          <div className="mb-4 lg:mb-0 lg:absolute lg:top-[106px] lg:left-1/2 lg:-translate-x-1/2 z-20 flex justify-center">
             <div className="inline-flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 bg-white/95 backdrop-blur-md text-slate-900 px-3 py-2 rounded-2xl shadow-xl border border-emerald-200">
               <div className="flex items-center gap-2.5">
                 <div className="flex -space-x-2 shrink-0">
@@ -238,9 +241,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. TRUST HIGHLIGHTS STRIP (With Popular Pills on Top Border) */}
+      {/* 2. TRUST HIGHLIGHTS STRIP (With Popular Pills on Top Border + House BG) */}
       <section className="w-full px-4 sm:px-6 -mt-8 relative z-20">
-        <div className="relative bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 rounded-2xl shadow-[0_14px_38px_rgba(16,185,129,0.35)] border-2 border-emerald-200 px-4 sm:px-5 pt-5 lg:pt-7 pb-4 sm:pb-5">
+        <div className="relative bg-gradient-to-r from-[#041418] via-[#092930] to-[#0f1c38] text-white rounded-2xl shadow-[0_14px_38px_rgba(4,20,24,0.45)] border border-emerald-400/40 px-4 sm:px-5 pt-4 lg:pt-5 pb-2.5 sm:pb-3">
+          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+              alt="Modern Punjab home left"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-50"
+            />
+            <div className="hidden md:block absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-[#072127]/90 to-[#092930]" />
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+              alt="Modern Punjab home right"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-50"
+            />
+            <div className="hidden md:block absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-transparent via-[#072127]/90 to-[#092930]" />
+          </div>
+
           {/* Popular Quick Pills Sitting on Top Border */}
           <div className="lg:absolute lg:-top-4 lg:left-6 lg:right-6 z-30 flex flex-wrap items-center justify-center lg:justify-between gap-2 mb-4 lg:mb-0 text-xs">
             <span className="px-3.5 py-1 rounded-full bg-[#041418] text-amber-300 border border-emerald-400/50 font-extrabold uppercase tracking-wider text-[11px] shadow-lg">
@@ -257,7 +275,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {[
             {
               icon: <ShieldCheck className="w-6 h-6" />,
@@ -282,16 +300,16 @@ export default function HomePage() {
           ].map((item) => (
             <div
               key={item.title}
-              className="group flex items-center gap-3.5 p-3 rounded-xl border border-transparent hover:border-[#041418]/20 hover:bg-white/35 hover:-translate-y-1 hover:shadow-md transition-all duration-300 cursor-pointer"
+              className="group flex items-center gap-3 p-2 rounded-xl border border-transparent hover:border-emerald-400/35 hover:bg-white/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
             >
-              <div className="w-11 h-11 rounded-xl bg-[#041418] text-emerald-300 group-hover:bg-[#092930] group-hover:scale-110 flex items-center justify-center shrink-0 transition-all duration-300 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-emerald-400/15 border border-emerald-400/35 text-emerald-300 group-hover:bg-emerald-400 group-hover:text-slate-950 group-hover:scale-110 flex items-center justify-center shrink-0 transition-all duration-300 shadow-sm">
                 {item.icon}
               </div>
               <div>
-                <div className="font-extrabold text-slate-950 text-sm">
+                <div className="font-extrabold text-white group-hover:text-emerald-300 text-sm transition-colors">
                   {item.title}
                 </div>
-                <div className="text-xs text-slate-900 font-semibold">{item.desc}</div>
+                <div className="text-xs text-slate-300 font-medium">{item.desc}</div>
               </div>
             </div>
           ))}
@@ -300,8 +318,8 @@ export default function HomePage() {
       </section>
 
       {/* 3. OUR SERVICES (Redesigned Full-Bleed Glassmorphic Showcase) */}
-      <section className="w-full px-4 sm:px-6 py-10">
-        <div className="relative bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] border border-emerald-400/30 rounded-3xl p-6 sm:p-8 shadow-2xl text-white">
+      <section className="w-full px-4 sm:px-6 pt-14 pb-10">
+        <div className="relative border border-emerald-400/30 rounded-3xl p-6 sm:p-8 shadow-2xl text-white">
           <span className="absolute -top-3.5 left-6 sm:left-8 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg">
             5 Specialized Verticals
           </span>
@@ -317,10 +335,24 @@ export default function HomePage() {
             {t('home.ourServicesTitle', 'Our Services')}
           </h2>
 
-          {/* Ambient Lighting Glows */}
+          {/* Modern Teal Services Banner Background Image (Symmetrical House Left & Right) */}
           <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
-            <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-emerald-500/15 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-teal-400/10 blur-3xl" />
+            <img
+              src={modernTealServicesBanner.src}
+              alt="Modern Teal Services Banner"
+              className="md:hidden w-full h-full object-cover object-right"
+            />
+            <img
+              src={modernTealServicesBanner.src}
+              alt=""
+              aria-hidden="true"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+            />
+            <img
+              src={modernTealServicesBanner.src}
+              alt="Modern Teal Services Banner"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+            />
           </div>
 
           <div className="relative z-10 text-center mb-8 pt-4">
@@ -383,14 +415,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. HOW IT WORKS (Midnight Emerald-Teal + Hover Glow Cards) */}
+      {/* 4. HOW IT WORKS (Moody Modern Home Symmetrical BG + Hover Glow Cards) */}
       <section className="w-full px-4 sm:px-6 py-6">
-        <div className="relative bg-gradient-to-r from-[#041418] via-[#092930] to-[#0f1c38] text-white border border-emerald-400/30 shadow-[0_14px_38px_rgba(4,20,24,0.35)] rounded-3xl p-6 sm:p-8">
+        <div className="relative text-white border border-emerald-400/30 shadow-[0_14px_38px_rgba(4,20,24,0.35)] rounded-3xl p-6 sm:p-8">
+          {/* Moody Modern Home Exterior Banner (Symmetrical House Left & Right) */}
+          <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+            <img
+              src={moodyModernHomeBanner.src}
+              alt="Moody Modern Home Exterior"
+              className="md:hidden w-full h-full object-cover object-right"
+            />
+            <img
+              src={moodyModernHomeBanner.src}
+              alt=""
+              aria-hidden="true"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+            />
+            <img
+              src={moodyModernHomeBanner.src}
+              alt="Moody Modern Home Exterior"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+            />
+          </div>
+
           <span className="absolute -top-3.5 left-6 sm:left-8 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg">
             {t('home.howItWorksTitle', 'How It Works')}
           </span>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pt-1">
-            <p className="text-sm text-slate-300 font-medium">
+          <div className="relative z-10 flex flex-col items-center text-center gap-1.5 mb-6 pt-2">
+            <p className="text-sm text-slate-200 font-medium">
               {t('home.howItWorksSub', 'Get your work done in 4 simple steps')}
             </p>
             <Link
@@ -401,7 +453,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
                 num: '1',
@@ -452,13 +504,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. WHY CHOOSE PUNJAB SERVICES? (Midnight Emerald-Teal Container + Colorful Cards) */}
+      {/* 5. WHY CHOOSE PUNJAB SERVICES? (Symmetrical House BG + Colorful Cards) */}
       <section className="w-full px-4 sm:px-6 py-8">
         <div className="relative bg-gradient-to-r from-[#041418] via-[#092930] to-[#0f1c38] text-white border border-emerald-400/30 shadow-[0_14px_38px_rgba(4,20,24,0.35)] rounded-3xl p-6 sm:p-8">
+          <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+              alt="Modern Punjab home left"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-50"
+            />
+            <div className="hidden md:block absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-[#072127]/90 to-[#092930]" />
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+              alt="Modern Punjab home right"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-50"
+            />
+            <div className="hidden md:block absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-transparent via-[#072127]/90 to-[#092930]" />
+          </div>
+
           <span className="absolute -top-3.5 left-6 sm:left-8 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg">
             {t('home.whyChooseTitle', 'Why Choose Punjab Services?')}
           </span>
-          <div className="mb-6 pt-1">
+          <div className="relative z-10 mb-6 pt-1">
             <p className="text-sm text-slate-300 font-medium">
               {t(
                 'home.whyChooseSub',
@@ -467,7 +534,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8 pt-6">
             {[
               {
                 icon: <BadgeCheck className="w-6 h-6" />,
@@ -509,9 +576,9 @@ export default function HomePage() {
             ].map((item, i) => (
               <div
                 key={i}
-                className={`group bg-gradient-to-br ${item.grad} rounded-2xl p-4 border border-white/25 shadow-lg text-center flex flex-col items-center justify-center gap-2.5 hover:-translate-y-1.5 hover:scale-[1.03] hover:border-white/60 ${item.glow} transition-all duration-300 cursor-pointer`}
+                className={`group relative bg-gradient-to-br ${item.grad} rounded-2xl px-4 pt-8 pb-4 border border-white/25 shadow-lg text-center flex flex-col items-center justify-center gap-2 hover:-translate-y-1.5 hover:scale-[1.03] hover:border-white/60 ${item.glow} transition-all duration-300 cursor-pointer`}
               >
-                <div className="w-11 h-11 rounded-full bg-white/20 backdrop-blur-sm text-white group-hover:bg-white group-hover:text-slate-900 group-hover:scale-110 flex items-center justify-center transition-all duration-300 shadow-inner">
+                <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 z-20 w-11 h-11 rounded-full bg-[#041418] border-2 border-white/40 text-white group-hover:bg-white group-hover:text-slate-900 group-hover:scale-110 flex items-center justify-center transition-all duration-300 shadow-lg">
                   {item.icon}
                 </div>
                 <div className="text-xs font-extrabold text-white leading-snug">
@@ -632,10 +699,26 @@ export default function HomePage() {
           onMouseLeave={() => setIsTestimonialPaused(false)}
           className="relative bg-gradient-to-r from-[#041418] via-[#092930] to-[#0f1c38] border border-emerald-400/30 rounded-3xl p-6 sm:p-10 text-white shadow-xl"
         >
+          {/* Symmetrical Modern Home Background (matching Why Choose Punjab Services) */}
+          <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+              alt="Modern Punjab home left"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-50"
+            />
+            <div className="hidden md:block absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-[#072127]/90 to-[#092930]" />
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+              alt="Modern Punjab home right"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-50"
+            />
+            <div className="hidden md:block absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-transparent via-[#072127]/90 to-[#092930]" />
+          </div>
+
           <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg whitespace-nowrap">
             {t('home.testimonialsTitle', 'What Our Customers Say')}
           </span>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center pt-1">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center pt-1">
             <div className="lg:col-span-4 space-y-2">
               <p className="text-slate-200 text-base sm:text-lg font-bold leading-snug">
                 Real experiences from our happy customers across Punjab.
@@ -670,22 +753,29 @@ export default function HomePage() {
 
             <div className="lg:col-span-8">
               {currentReview && (
-                <div className="bg-white text-slate-900 rounded-2xl p-6 shadow-lg flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                <div className="relative overflow-hidden text-slate-900 rounded-2xl p-6 shadow-lg border border-emerald-200/70 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                  <img
+                    src={sukhnaLakeBg.src}
+                    alt="Sukhna Lake with Open Hand Monument"
+                    className="absolute inset-0 w-full h-full object-cover object-right"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent" />
+
                   <img
                     src={currentReview.customerAvatar}
                     alt={currentReview.customerName}
-                    className="w-20 h-20 rounded-full object-cover ring-4 ring-blue-50 shrink-0"
+                    className="relative z-10 w-20 h-20 rounded-full object-cover ring-4 ring-white shadow-md shrink-0"
                   />
-                  <div className="space-y-2 flex-1">
-                    <p className="text-sm sm:text-base font-medium text-slate-800 italic leading-relaxed">
+                  <div className="relative z-10 space-y-2 flex-1 max-w-xl">
+                    <p className="text-sm sm:text-base font-semibold text-slate-900 italic leading-relaxed">
                       “{currentReview.comment}”
                     </p>
                     <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
                       <div>
-                        <span className="font-extrabold text-slate-900 text-sm">
+                        <span className="font-extrabold text-slate-950 text-sm">
                           — {currentReview.customerName}, {currentReview.city}
                         </span>
-                        <span className="block text-xs text-slate-500">
+                        <span className="block text-xs font-medium text-slate-700">
                           Service: {currentReview.serviceName} ({currentReview.providerName})
                         </span>
                       </div>
@@ -706,68 +796,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. ARE YOU A SKILLED PROFESSIONAL? PARTNER CTA BANNER (Midnight Emerald-Teal Theme) */}
-      <section className="w-full px-4 sm:px-6 py-6">
-        <div className="bg-gradient-to-r from-[#041418] via-[#092930] to-[#0f1c38] border border-emerald-400/30 rounded-3xl p-6 sm:p-8 shadow-xl text-white hover:shadow-[0_16px_38px_rgba(16,185,129,0.28)] transition-all duration-300">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            <div className="lg:col-span-5 flex items-center gap-5">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
-                alt="Skilled Professional Partner"
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover ring-2 ring-emerald-400/60 shadow-lg shrink-0"
-              />
-              <div>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-white">
-                  {t('home.partnerCtaTitle', 'Are You a Skilled Professional?')}
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-300 font-medium mt-1">
-                  {t(
-                    'home.partnerCtaSub',
-                    'Grow your business, get more customers and earn consistently with Punjab Services.'
-                  )}
-                </p>
-              </div>
-            </div>
-
-            <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 text-xs font-bold text-slate-200">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Get genuine service requests</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Work in your preferred area</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Transparent payouts</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Build your professional reputation</span>
-              </div>
-            </div>
-
-            <div className="lg:col-span-3 flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end justify-end gap-2">
-              <Link
-                href="/provider/register"
-                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 hover:-translate-y-0.5 text-slate-950 font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-lg transition-all"
-              >
-                <span>{t('home.joinPartnerBtn', 'Join as a Partner')}</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/become-a-professional"
-                className="text-xs font-extrabold text-emerald-300 hover:text-white hover:underline text-center"
-              >
-                Explore Partner Benefits & Eligibility →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. SERVICE CITIES SHOWCASE (Mohali, Chandigarh, Hoshiarpur) */}
+      {/* 8. SERVICE CITIES SHOWCASE (Mohali, Chandigarh, Hoshiarpur) */}
       <section className="w-full px-4 sm:px-6 py-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
           <div>
@@ -856,6 +885,87 @@ export default function HomePage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* 9. ARE YOU A SKILLED PROFESSIONAL? PARTNER CTA BANNER (Moody Modern Home Symmetrical BG) */}
+      <section className="w-full px-4 sm:px-6 py-6 pb-10">
+        <div className="relative border border-emerald-400/30 rounded-3xl p-6 sm:p-8 shadow-xl text-white hover:shadow-[0_16px_38px_rgba(16,185,129,0.28)] transition-all duration-300">
+          {/* Moody Modern Home Exterior Banner (Symmetrical House Left & Right) */}
+          <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+            <img
+              src={moodyModernHomeBanner.src}
+              alt="Moody Modern Home Exterior"
+              className="md:hidden w-full h-full object-cover object-right"
+            />
+            <img
+              src={moodyModernHomeBanner.src}
+              alt=""
+              aria-hidden="true"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+            />
+            <img
+              src={moodyModernHomeBanner.src}
+              alt="Moody Modern Home Exterior"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+            />
+          </div>
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div className="lg:col-span-5 flex items-center gap-5">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
+                alt="Skilled Professional Partner"
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover ring-2 ring-emerald-400/60 shadow-lg shrink-0"
+              />
+              <div>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+                  {t('home.partnerCtaTitle', 'Are You a Skilled Professional?')}
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 font-medium mt-1">
+                  {t(
+                    'home.partnerCtaSub',
+                    'Grow your business, get more customers and earn consistently with Punjab Services.'
+                  )}
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 text-xs font-bold text-slate-200">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Get genuine service requests</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Work in your preferred area</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Transparent payouts</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Build your professional reputation</span>
+              </div>
+            </div>
+
+            <div className="lg:col-span-3 flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end justify-end gap-2">
+              <Link
+                href="/provider/register"
+                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 hover:-translate-y-0.5 text-slate-950 font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-lg transition-all"
+              >
+                <span>{t('home.joinPartnerBtn', 'Join as a Partner')}</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/become-a-professional"
+                className="text-xs font-extrabold text-emerald-300 hover:text-white hover:underline text-center"
+              >
+                Explore Partner Benefits & Eligibility →
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>

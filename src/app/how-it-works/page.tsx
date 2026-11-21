@@ -33,7 +33,7 @@ import {
 import { BOOKING_LIFECYCLE_STEPS } from '@/types/marketplace';
 import heroSectionBg from './images/hero section bg.png';
 import hybridPricingBg from './images/Hybrid Pricing Model.png';
-import bookingLifecycleBg from './images/Booking Lifecycle Journey.png';
+import twilightVillasBg from '../about/images/Twilight Villas Along a Curving Road-2.png';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 18 },
@@ -181,9 +181,9 @@ export default function HowItWorksPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#041418] via-[#061c22] to-[#041418] text-white pb-16">
+    <div className="min-h-screen bg-[#f8fafc] pb-16">
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden border-b border-emerald-400/20">
+      <section className="relative overflow-hidden border-b border-emerald-400/20 text-white">
         {/* Custom Hero Background Image */}
         <img
           src={heroSectionBg.src}
@@ -192,7 +192,7 @@ export default function HowItWorksPage() {
         />
         <div className="absolute inset-0 bg-[#041418]/65" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Content */}
             <motion.div {...fadeUp(0)} className="lg:col-span-7 space-y-5">
@@ -218,20 +218,20 @@ export default function HowItWorksPage() {
 
               {/* 3 Trust Highlights */}
               <div className="flex flex-wrap items-center gap-4 pt-1 text-xs font-bold text-emerald-100">
-                <div className="inline-flex items-center gap-2.5">
-                  <span className="w-8 h-8 rounded-full bg-emerald-400/20 border border-emerald-400/45 flex items-center justify-center text-emerald-300">
+                <div className="group inline-flex items-center gap-2.5 hover:text-emerald-300 hover:translate-x-0.5 transition-all cursor-default">
+                  <span className="w-8 h-8 rounded-full bg-emerald-400/20 border border-emerald-400/45 flex items-center justify-center text-emerald-300 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-slate-950 transition-all">
                     <Zap className="w-4 h-4" />
                   </span>
                   <span>Estimate-First Hybrid Pricing</span>
                 </div>
-                <div className="inline-flex items-center gap-2.5">
-                  <span className="w-8 h-8 rounded-full bg-emerald-400/20 border border-emerald-400/45 flex items-center justify-center text-emerald-300">
+                <div className="group inline-flex items-center gap-2.5 hover:text-emerald-300 hover:translate-x-0.5 transition-all cursor-default">
+                  <span className="w-8 h-8 rounded-full bg-emerald-400/20 border border-emerald-400/45 flex items-center justify-center text-emerald-300 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-slate-950 transition-all">
                     <MapPin className="w-4 h-4" />
                   </span>
                   <span>12-Stage Booking Lifecycle</span>
                 </div>
-                <div className="inline-flex items-center gap-2.5">
-                  <span className="w-8 h-8 rounded-full bg-emerald-400/20 border border-emerald-400/45 flex items-center justify-center text-emerald-300">
+                <div className="group inline-flex items-center gap-2.5 hover:text-emerald-300 hover:translate-x-0.5 transition-all cursor-default">
+                  <span className="w-8 h-8 rounded-full bg-emerald-400/20 border border-emerald-400/45 flex items-center justify-center text-emerald-300 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-slate-950 transition-all">
                     <ShieldCheck className="w-4 h-4" />
                   </span>
                   <span>Verified Service Professionals</span>
@@ -286,20 +286,20 @@ export default function HowItWorksPage() {
       </section>
 
       {/* MAIN CONTENT */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 space-y-12">
+      <div className="w-full px-4 sm:px-6 lg:px-8 pt-12 space-y-12">
         {journeyTab === 'customer' ? (
           <>
             {/* 2. CUSTOMER JOURNEY – 5 STEPS */}
             <motion.section {...fadeUp(0.05)} className="space-y-8">
               <div className="text-center space-y-3">
-                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/35 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider">
+                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow">
                   <MapPin className="w-3.5 h-3.5" />
                   Customer Journey
                 </span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                   A Simple 5-Step Booking Process
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+                <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
                   Find, book and get your home or device repaired in just a few
                   easy steps.
                 </p>
@@ -327,8 +327,11 @@ export default function HowItWorksPage() {
 
                       <ul className="space-y-2 text-[11px] text-slate-300 w-full text-left pt-2 border-t border-white/10">
                         {s.bullets.map((b) => (
-                          <li key={b} className="flex items-start gap-1.5">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                          <li
+                            key={b}
+                            className="group/item flex items-start gap-1.5 hover:text-emerald-200 hover:translate-x-1 transition-all duration-200"
+                          >
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
                             <span>{b}</span>
                           </li>
                         ))}
@@ -352,17 +355,17 @@ export default function HowItWorksPage() {
               className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch pt-4"
             >
               {/* Left Card: Hybrid Pricing Model */}
-              <div className="lg:col-span-7 relative rounded-3xl border border-emerald-400/30 shadow-2xl grid grid-cols-1 sm:grid-cols-12">
+              <div className="lg:col-span-7 group relative rounded-3xl border border-emerald-400/30 hover:border-emerald-300/75 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(16,185,129,0.28)] transition-all duration-300 shadow-2xl grid grid-cols-1 sm:grid-cols-12">
                 <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
                   <img
                     src={hybridPricingBg.src}
                     alt="Hybrid Pricing Model background"
-                    className="w-full h-full object-cover object-right scale-[1.08]"
+                    className="w-full h-full object-cover object-right scale-[1.08] group-hover:scale-[1.11] transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-[#041418]/45" />
                 </div>
 
-                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg whitespace-nowrap">
+                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 group-hover:border-emerald-300 group-hover:scale-105 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg whitespace-nowrap transition-all duration-300">
                   <IndianRupee className="w-3.5 h-3.5" />
                   Hybrid Pricing Model
                 </span>
@@ -380,8 +383,8 @@ export default function HowItWorksPage() {
                   </p>
 
                   <ul className="space-y-2.5 text-xs text-slate-100 pt-1">
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <li className="group/item flex items-start gap-2.5 hover:translate-x-1.5 hover:text-emerald-200 transition-all duration-200">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
                       <span>
                         <strong className="text-white">
                           Booking Confirmation Fee (Configurable ₹99 – ₹149):
@@ -389,8 +392,8 @@ export default function HowItWorksPage() {
                         Adjusted against the final bill when applicable.
                       </span>
                     </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <li className="group/item flex items-start gap-2.5 hover:translate-x-1.5 hover:text-emerald-200 transition-all duration-200">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
                       <span>
                         <strong className="text-white">
                           Separate Labour &amp; Material Split:
@@ -399,8 +402,8 @@ export default function HowItWorksPage() {
                         separately for complete clarity.
                       </span>
                     </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <li className="group/item flex items-start gap-2.5 hover:translate-x-1.5 hover:text-emerald-200 transition-all duration-200">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
                       <span>
                         <strong className="text-white">
                           Proposed Platform Commission (12% on Eligible Labour):
@@ -413,8 +416,8 @@ export default function HowItWorksPage() {
                         .
                       </span>
                     </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <li className="group/item flex items-start gap-2.5 hover:translate-x-1.5 hover:text-emerald-200 transition-all duration-200">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
                       <span>
                         <strong className="text-white">
                           Mandatory Customer Approval:
@@ -428,8 +431,8 @@ export default function HowItWorksPage() {
               </div>
 
               {/* Right Card: Verification, Safety & Refunds */}
-              <div className="lg:col-span-5 relative rounded-3xl bg-gradient-to-br from-[#092329] via-[#06181d] to-[#041418] border border-emerald-400/30 p-7 pt-9 shadow-2xl space-y-4 flex flex-col justify-between">
-                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg whitespace-nowrap">
+              <div className="lg:col-span-5 group relative rounded-3xl bg-gradient-to-br from-[#092329] via-[#06181d] to-[#041418] border border-emerald-400/30 hover:border-emerald-300/75 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(16,185,129,0.28)] transition-all duration-300 p-7 pt-9 shadow-2xl space-y-4 flex flex-col justify-between">
+                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 group-hover:border-emerald-300 group-hover:scale-105 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg whitespace-nowrap transition-all duration-300">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   Verification, Safety &amp; Refunds
                 </span>
@@ -446,42 +449,42 @@ export default function HowItWorksPage() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 pt-2 pl-4">
-                  <div className="relative pt-5 pb-3.5 pl-7 pr-4 rounded-2xl bg-white/5 border border-emerald-400/25">
-                    <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-xl bg-[#072228] border border-emerald-400/50 text-emerald-300 flex items-center justify-center shadow-lg">
+                  <div className="group/sub relative pt-5 pb-3.5 pl-7 pr-4 rounded-2xl bg-white/5 border border-emerald-400/25 hover:border-emerald-300/75 hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(16,185,129,0.22)] transition-all duration-300">
+                    <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-xl bg-[#072228] border border-emerald-400/50 text-emerald-300 group-hover/sub:bg-emerald-400 group-hover/sub:text-slate-950 group-hover/sub:scale-110 flex items-center justify-center shadow-lg transition-all duration-300">
                       <UserCheck className="w-4 h-4" />
                     </div>
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3 py-0.5 rounded-full bg-[#041418] border border-emerald-400/45 text-emerald-300 text-[11px] font-extrabold shadow-md whitespace-nowrap">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3 py-0.5 rounded-full bg-[#041418] border border-emerald-400/45 group-hover/sub:border-emerald-300 text-emerald-300 text-[11px] font-extrabold shadow-md whitespace-nowrap transition-colors">
                       Identity, Address &amp; Qualification Checks
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                    <p className="text-[11px] text-slate-300 group-hover/sub:text-slate-100 leading-relaxed transition-colors">
                       Technician identity, local address/professional details,
                       and relevant qualification/document checks are reviewed
                       before admin approval activates the profile.
                     </p>
                   </div>
 
-                  <div className="relative pt-5 pb-3.5 pl-7 pr-4 rounded-2xl bg-white/5 border border-emerald-400/25">
-                    <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-xl bg-[#072228] border border-emerald-400/50 text-emerald-300 flex items-center justify-center shadow-lg">
+                  <div className="group/sub relative pt-5 pb-3.5 pl-7 pr-4 rounded-2xl bg-white/5 border border-emerald-400/25 hover:border-emerald-300/75 hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(16,185,129,0.22)] transition-all duration-300">
+                    <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-xl bg-[#072228] border border-emerald-400/50 text-emerald-300 group-hover/sub:bg-emerald-400 group-hover/sub:text-slate-950 group-hover/sub:scale-110 flex items-center justify-center shadow-lg transition-all duration-300">
                       <CalendarX2 className="w-4 h-4" />
                     </div>
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3 py-0.5 rounded-full bg-[#041418] border border-emerald-400/45 text-emerald-300 text-[11px] font-extrabold shadow-md whitespace-nowrap">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3 py-0.5 rounded-full bg-[#041418] border border-emerald-400/45 group-hover/sub:border-emerald-300 text-emerald-300 text-[11px] font-extrabold shadow-md whitespace-nowrap transition-colors">
                       Cancellation Rules
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                    <p className="text-[11px] text-slate-300 group-hover/sub:text-slate-100 leading-relaxed transition-colors">
                       Cancel scheduled bookings free of charge up to 2 hours
                       before the slot; late cancellations follow transparent
                       platform rules.
                     </p>
                   </div>
 
-                  <div className="relative pt-5 pb-3.5 pl-7 pr-4 rounded-2xl bg-white/5 border border-emerald-400/25">
-                    <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-xl bg-[#072228] border border-emerald-400/50 text-emerald-300 flex items-center justify-center shadow-lg">
+                  <div className="group/sub relative pt-5 pb-3.5 pl-7 pr-4 rounded-2xl bg-white/5 border border-emerald-400/25 hover:border-emerald-300/75 hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(16,185,129,0.22)] transition-all duration-300">
+                    <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-xl bg-[#072228] border border-emerald-400/50 text-emerald-300 group-hover/sub:bg-emerald-400 group-hover/sub:text-slate-950 group-hover/sub:scale-110 flex items-center justify-center shadow-lg transition-all duration-300">
                       <RefreshCcw className="w-4 h-4" />
                     </div>
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3 py-0.5 rounded-full bg-[#041418] border border-emerald-400/45 text-emerald-300 text-[11px] font-extrabold shadow-md whitespace-nowrap">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3 py-0.5 rounded-full bg-[#041418] border border-emerald-400/45 group-hover/sub:border-emerald-300 text-emerald-300 text-[11px] font-extrabold shadow-md whitespace-nowrap transition-colors">
                       Refund Request Process &amp; Support
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                    <p className="text-[11px] text-slate-300 group-hover/sub:text-slate-100 leading-relaxed transition-colors">
                       Submit refund requests directly from{' '}
                       <Link
                         href="/account/refunds"
@@ -506,16 +509,24 @@ export default function HowItWorksPage() {
 
             {/* All 12 Booking Status States Explained (Custom BG + Glow & Lighting Effects) */}
             <div className="relative rounded-3xl border border-emerald-400/40 p-7 pt-10 shadow-[0_20px_60px_rgba(16,185,129,0.22)] space-y-5 mt-4">
-              {/* Background Image + Glow & Lighting Layers */}
+              {/* Background Image Layer (Symmetrical Houses Left & Right) */}
               <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
                 <img
-                  src={bookingLifecycleBg.src}
-                  alt="Booking Lifecycle Journey background"
-                  className="w-full h-full object-cover object-center"
+                  src={twilightVillasBg.src}
+                  alt="Twilight Villas Along a Curving Road"
+                  className="md:hidden w-full h-full object-cover object-right"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#041418]/75 via-[#061c22]/65 to-[#041418]/80" />
-                <div className="absolute -top-20 -left-16 w-72 h-72 rounded-full bg-emerald-400/25 blur-3xl" />
-                <div className="absolute -bottom-20 -right-16 w-80 h-80 rounded-full bg-cyan-400/20 blur-3xl" />
+                <img
+                  src={twilightVillasBg.src}
+                  alt=""
+                  aria-hidden="true"
+                  className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+                />
+                <img
+                  src={twilightVillasBg.src}
+                  alt="Twilight Villas Along a Curving Road"
+                  className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+                />
                 <div className="absolute top-0 inset-x-12 h-px bg-gradient-to-r from-transparent via-emerald-300/80 to-transparent" />
               </div>
 
@@ -616,10 +627,16 @@ export default function HowItWorksPage() {
           <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
             <img
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
-              alt="Modern Punjab home"
+              alt="Modern Punjab home left"
               className="hidden md:block absolute left-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-55"
             />
             <div className="hidden md:block absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-[#072127]/90 to-[#092930]" />
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+              alt="Modern Punjab home right"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-55"
+            />
+            <div className="hidden md:block absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-transparent via-[#072127]/90 to-[#092930]" />
           </div>
 
           <h2 className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 px-5 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-white text-xs sm:text-sm font-extrabold shadow-lg whitespace-nowrap">
@@ -627,7 +644,7 @@ export default function HowItWorksPage() {
             <span className="text-emerald-300">Trusted Professional?</span>
           </h2>
 
-          <div className="relative z-10 p-7 pt-10 sm:p-9 sm:pt-11 md:pl-[26%] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div className="relative z-10 p-7 pt-10 sm:p-9 sm:pt-11 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div className="space-y-1.5">
               <p className="text-xs sm:text-sm text-slate-200">
                 Find verified local electricians and plumbers and book your

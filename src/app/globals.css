@@ -51,19 +51,55 @@
   }
 }
 
-/* Global Interactive Hover & Elevation Polish for Cards & Buttons */
+/* Global Interactive Hover & Elevation Polish Across All Pages */
 div.bg-white.rounded-2xl,
-div.bg-white.rounded-3xl {
-  background-image: linear-gradient(155deg, #ffffff 0%, #f5f9ff 65%, #eef4ff 100%);
-  border-color: rgba(147, 197, 253, 0.55);
-  box-shadow: 0 10px 26px -6px rgba(30, 64, 175, 0.09), 0 2px 6px -1px rgba(30, 64, 175, 0.05);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+div.bg-white.rounded-3xl,
+main .shadow-card {
+  border-color: rgba(16, 185, 129, 0.28);
+  box-shadow: 0 10px 26px -6px rgba(4, 20, 24, 0.08), 0 2px 6px -1px rgba(16, 185, 129, 0.06);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 div.bg-white.rounded-2xl:hover,
-div.bg-white.rounded-3xl:hover {
-  border-color: rgba(59, 130, 246, 0.7);
-  box-shadow: 0 16px 36px -8px rgba(37, 99, 235, 0.18), 0 0 16px rgba(59, 130, 246, 0.12);
+div.bg-white.rounded-3xl:hover,
+main .shadow-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(16, 185, 129, 0.65);
+  box-shadow: 0 16px 36px -8px rgba(16, 185, 129, 0.2), 0 0 18px rgba(16, 185, 129, 0.14);
+}
+
+main .rounded-2xl[class*="border"],
+main .rounded-3xl[class*="border"],
+main .rounded-xl[class*="border"] {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+main li {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+main li:hover {
+  transform: translateX(3px);
+}
+
+main tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+main tbody tr:hover {
+  background-color: rgba(16, 185, 129, 0.08);
+}
+
+main input:not([type="checkbox"]):not([type="radio"]),
+main select,
+main textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+main input:not([type="checkbox"]):not([type="radio"]):hover,
+main select:hover,
+main textarea:hover {
+  border-color: rgba(16, 185, 129, 0.65);
 }
 
 button,
@@ -71,8 +107,23 @@ a {
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+main button:not(:disabled):hover,
+main a[class*="rounded-"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.28);
+}
+
 button:active {
   transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 /* Custom subtle scrollbars */

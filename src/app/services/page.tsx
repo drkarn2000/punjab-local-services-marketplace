@@ -28,6 +28,8 @@ import {
 } from 'lucide-react';
 import { useMarketplace } from '@/context/MarketplaceContext';
 import { CategorySlug, CitySlug } from '@/types/marketplace';
+import openHandSunsetBg from '../about/images/Chandigarh Open Hand Sunset-1.png';
+import twilightVillasBg from '../about/images/Twilight Villas Along a Curving Road-2.png';
 
 export default function AllServicesPage() {
   const {
@@ -173,11 +175,14 @@ export default function AllServicesPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-16">
-      {/* DISTINCT EDITORIAL DIRECTORY HERO BANNER */}
-      <section className="relative bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white pt-12 lg:pt-14 pb-24 overflow-hidden border-b border-emerald-400/25">
-        {/* Ambient Emerald & Gold Glows */}
-        <div className="absolute -top-28 left-1/4 w-96 h-96 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-28 right-1/4 w-96 h-96 rounded-full bg-cyan-400/15 blur-3xl pointer-events-none" />
+      {/* DISTINCT EDITORIAL DIRECTORY HERO BANNER (Modern Home BG + Increased Height) */}
+      <section className="relative text-white pt-16 lg:pt-20 pb-36 lg:pb-44 overflow-hidden border-b border-emerald-400/25">
+        <img
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85"
+          alt="Modern Punjab Residential Home"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#041418]/75 via-[#061c22]/55 to-[#041418]/80 pointer-events-none" />
 
         <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
           {/* Centered Header + Search Command Bar */}
@@ -666,16 +671,28 @@ export default function AllServicesPage() {
                 </p>
               </div>
 
-              {filteredCategories.map((cat) => {
+              {filteredCategories.map((cat, catIdx) => {
                 const catSubs = filteredSubcategories.filter(
                   (s) => s.categorySlug === cat.slug
                 );
                 if (catSubs.length === 0) return null;
+                const bgImage =
+                  catIdx % 2 === 0 ? twilightVillasBg.src : openHandSunsetBg.src;
                 return (
                   <div
                     key={cat.id}
-                    className="relative bg-white rounded-3xl border border-slate-200/90 px-5 pt-7 pb-6 shadow-sm space-y-5"
+                    className="relative text-white rounded-3xl border border-emerald-400/45 px-5 pt-7 pb-6 shadow-[0_18px_45px_rgba(4,20,24,0.22)]"
                   >
+                    {/* Clipped Background Image Layer (keeps top border pills unclipped) */}
+                    <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                      <img
+                        src={bgImage}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-full h-full object-cover object-center"
+                      />
+                    </div>
+
                     {/* Top-Left Border Title Pill */}
                     <div className="sm:absolute sm:-top-4 sm:left-5 z-20 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 text-slate-950 text-xs font-extrabold shadow-lg">
                       <span className="scale-75 -my-1 bg-[#041418] p-1 rounded-md">{categoryIcon[cat.slug]}</span>
@@ -691,14 +708,14 @@ export default function AllServicesPage() {
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
 
-                    <div className="border-b border-slate-100 pb-2.5 flex items-center justify-between">
-                      <p className="text-xs font-semibold text-slate-500">
+                    <div className="relative z-10 border-b border-white/20 pb-2.5 flex items-center justify-between">
+                      <p className="text-xs font-semibold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                         Base Visiting Charge: ₹{cat.baseVisitingFee} •{' '}
                         {cat.providerCount} Verified Professionals
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 pt-3 pb-3">
+                    <div className="relative z-10 mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 pt-3 pb-3">
                       {catSubs.map((sub) => (
                         <Link
                           key={sub.id}

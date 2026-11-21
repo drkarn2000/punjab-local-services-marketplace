@@ -23,6 +23,9 @@ import {
   Wrench,
   Zap,
 } from 'lucide-react';
+import openHandSunsetBg from './images/Chandigarh Open Hand Sunset-1.png';
+import twilightVillasBg from './images/Twilight Villas Along a Curving Road-2.png';
+import moodyModernHomeBanner from '../services/images/Moody Modern Home Exterior Banner.png';
 
 export default function AboutPage() {
   const prefersReducedMotion = useReducedMotion();
@@ -260,14 +263,34 @@ export default function AboutPage() {
       <section className="w-full px-4 sm:px-6 lg:px-10 -mt-12 relative z-20">
         <motion.div
           {...fadeUp(0.05)}
-          className="rounded-3xl bg-gradient-to-r from-[#061c22]/95 via-[#0b2f38]/95 to-[#102442]/95 backdrop-blur-xl border border-emerald-400/35 px-5 sm:px-7 pt-8 pb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5"
+          className="relative rounded-3xl border border-emerald-400/35 px-5 sm:px-7 pt-8 pb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5"
         >
+          {/* Moody Modern Home Exterior Banner (Symmetrical House Left & Right) */}
+          <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+            <img
+              src={moodyModernHomeBanner.src}
+              alt="Moody Modern Home Exterior"
+              className="md:hidden w-full h-full object-cover object-right"
+            />
+            <img
+              src={moodyModernHomeBanner.src}
+              alt=""
+              aria-hidden="true"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+            />
+            <img
+              src={moodyModernHomeBanner.src}
+              alt="Moody Modern Home Exterior"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+            />
+          </div>
+
           {stats.map((st) => {
             const Icon = st.icon;
             return (
               <div
                 key={st.label}
-                className="relative group flex items-center gap-4 px-4 pt-6 pb-4 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 border border-emerald-200 shadow-lg hover:bg-none hover:bg-[#092930]/90 hover:border-emerald-300/60 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                className="relative z-10 group flex items-center gap-4 px-4 pt-6 pb-4 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 border border-emerald-200 shadow-lg hover:bg-none hover:bg-[#092930]/90 hover:border-emerald-300/60 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
               >
                 <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 px-3 py-1 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[10px] font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap">
                   {st.label}
@@ -465,13 +488,21 @@ export default function AboutPage() {
       <section className="w-full px-4 sm:px-6 lg:px-10 py-10">
         <motion.div
           {...fadeUp(0.05)}
-          className="relative rounded-3xl bg-gradient-to-r from-[#072228] via-[#0b333d] to-[#0f2544] text-white border border-emerald-400/30 p-6 sm:p-10 shadow-2xl"
+          className="relative rounded-3xl bg-[#041418] text-white border border-emerald-400/30 p-6 sm:p-10 shadow-2xl"
         >
+          <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+            <img
+              src={openHandSunsetBg.src}
+              alt="Chandigarh Open Hand Sunset"
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+
           <span className="absolute -top-3.5 left-6 sm:left-10 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#072228] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg">
             <Handshake className="w-3.5 h-3.5" />
             Provider Empowerment
           </span>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 space-y-4">
               <h2 className="text-2xl sm:text-4xl font-extrabold leading-tight">
                 Built for Independent{' '}
@@ -585,17 +616,25 @@ export default function AboutPage() {
           SECTION 7: HOW WE BUILD TRUST (4-STEP HORIZONTAL PROCESS)
          ========================================================= */}
       <section className="w-full px-4 sm:px-6 lg:px-10 py-10">
-        <div className="relative rounded-3xl bg-gradient-to-br from-[#061c22] via-[#092930] to-[#0f1c38] text-white border border-emerald-400/25 p-6 sm:p-10 shadow-2xl space-y-8">
-          <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#061c22] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg whitespace-nowrap">
+        <div className="relative rounded-3xl bg-[#041418] text-white border border-emerald-400/25 p-6 sm:p-10 shadow-2xl space-y-8">
+          <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+            <img
+              src={twilightVillasBg.src}
+              alt="Twilight Villas Along a Curving Road"
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+
+          <span className="!mt-0 absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#061c22] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg whitespace-nowrap">
             Our Approach • How We Build Trust
           </span>
-          <div className="flex flex-col items-center text-center pt-2">
-            <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+          <div className="relative z-10 flex flex-col items-center text-center pt-2">
+            <p className="text-xs sm:text-sm text-slate-200 max-w-xl">
               A transparent, step-by-step onboarding and verification flow that protects both households and local professionals.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 lg:gap-5 pt-3 relative">
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 lg:gap-5 pt-3">
             {trustSteps.map((step, idx) => {
               const Icon = step.icon;
               return (
@@ -637,6 +676,18 @@ export default function AboutPage() {
             Be a Part of Our Local Services Network
           </span>
           <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+              alt="Modern Punjab home left"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-50"
+            />
+            <div className="hidden md:block absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-[#072127]/90 to-[#092930]" />
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+              alt="Modern Punjab home right"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/3 h-full object-cover opacity-50"
+            />
+            <div className="hidden md:block absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-transparent via-[#072127]/90 to-[#092930]" />
             <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-emerald-400/20 blur-3xl" />
           </div>
           <div className="relative z-10 max-w-xl pt-2">
