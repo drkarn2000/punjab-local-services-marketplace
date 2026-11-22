@@ -26,6 +26,7 @@ import {
 import openHandSunsetBg from './images/Chandigarh Open Hand Sunset-1.png';
 import twilightVillasBg from './images/Twilight Villas Along a Curving Road-2.png';
 import moodyModernHomeBanner from '../services/images/Moody Modern Home Exterior Banner.png';
+import loginSceneHeroBg from '../login/image/Teal Luxury Home and Chandigarh Monument Scene.png';
 
 export default function AboutPage() {
   const prefersReducedMotion = useReducedMotion();
@@ -147,13 +148,17 @@ export default function AboutPage() {
       {/* =========================================================
           SECTION 1: PREMIUM HERO SECTION
          ========================================================= */}
-      <section className="relative bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white pt-12 pb-24 lg:pt-16 lg:pb-28 overflow-hidden border-b border-emerald-400/20">
-        {/* Ambient Glowing Shapes */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none" />
-        <div className="absolute top-1/3 right-0 w-[420px] h-[420px] rounded-full bg-teal-400/15 blur-3xl pointer-events-none" />
+      <section className="relative text-white pt-12 pb-24 lg:pt-16 lg:pb-28 overflow-hidden border-b border-emerald-400/20">
+        {/* Login Page Cinematic Background Image */}
+        <img
+          src={loginSceneHeroBg.src}
+          alt="Teal Luxury Home and Chandigarh Monument Scene"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#031618]/45 pointer-events-none" />
 
         <div className="w-full px-4 sm:px-6 lg:px-10 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* Left Copy (7 cols) */}
             <motion.div
               initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
@@ -202,18 +207,18 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            {/* Right Visual Showcase (5 cols) */}
+            {/* Right Visual Showcase (5 cols — raised up so background van is visible) */}
             <motion.div
               initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.65, delay: 0.1 }}
-              className="lg:col-span-5 relative"
+              className="lg:col-span-5 relative lg:-mt-4"
             >
               {/* Layered Decorative Green Shapes */}
               <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-tr from-emerald-500/30 via-teal-400/20 to-transparent blur-xl pointer-events-none" />
-              <div className="relative rounded-3xl overflow-hidden border-2 border-emerald-300/35 bg-gradient-to-br from-[#092930] to-[#041418] p-2.5 shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
-                <div className="grid grid-cols-2 gap-2.5">
-                  <div className="relative rounded-2xl overflow-hidden h-64 sm:h-72">
+              <div className="relative rounded-3xl overflow-hidden border-2 border-emerald-300/35 bg-gradient-to-br from-[#092930] to-[#041418] p-2 shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="relative rounded-2xl overflow-hidden h-44 sm:h-52">
                     <img
                       src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=700&q=80"
                       alt="Verified Indian Electrician"
@@ -224,7 +229,7 @@ export default function AboutPage() {
                       Electrician Experts
                     </span>
                   </div>
-                  <div className="relative rounded-2xl overflow-hidden h-64 sm:h-72">
+                  <div className="relative rounded-2xl overflow-hidden h-44 sm:h-52">
                     <img
                       src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=700&q=80"
                       alt="Verified Indian Plumber & Technician"
@@ -276,13 +281,14 @@ export default function AboutPage() {
               src={moodyModernHomeBanner.src}
               alt=""
               aria-hidden="true"
-              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right -scale-x-100"
             />
             <img
               src={moodyModernHomeBanner.src}
               alt="Moody Modern Home Exterior"
-              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right"
             />
+            <div className="hidden md:block absolute inset-y-0 left-1/2 -translate-x-1/2 w-24 bg-gradient-to-r from-transparent via-[#061c22]/70 to-transparent" />
           </div>
 
           {stats.map((st) => {
@@ -423,7 +429,7 @@ export default function AboutPage() {
           <span className="absolute -top-3.5 left-6 sm:left-10 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#061c22] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg">
             Our Commitment
           </span>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* Left Trust Points (6 cols) */}
             <motion.div {...fadeUp(0.05)} className="lg:col-span-6 space-y-5">
 
@@ -629,7 +635,7 @@ export default function AboutPage() {
             Our Approach • How We Build Trust
           </span>
           <div className="relative z-10 flex flex-col items-center text-center pt-2">
-            <p className="text-xs sm:text-sm text-slate-200 max-w-xl">
+            <p className="text-xs sm:text-sm text-slate-100 max-w-xl px-4 py-1.5 rounded-full bg-[#041418]/65 backdrop-blur-sm border border-white/10">
               A transparent, step-by-step onboarding and verification flow that protects both households and local professionals.
             </p>
           </div>
@@ -641,7 +647,7 @@ export default function AboutPage() {
                 <motion.div
                   key={step.step}
                   {...fadeUp(idx * 0.08)}
-                  className="relative group rounded-2xl bg-white/5 border border-white/15 hover:border-emerald-300/60 hover:bg-white/10 p-5 pt-8 transition-all duration-300 space-y-3"
+                  className="relative group rounded-2xl bg-[#041418]/80 backdrop-blur-md border border-emerald-400/30 hover:border-emerald-300/75 hover:bg-[#041418]/90 shadow-lg p-5 pt-8 transition-all duration-300 space-y-3"
                 >
                   <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 rounded-full bg-[#061c22] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold shadow-lg whitespace-nowrap">
                     {step.title}

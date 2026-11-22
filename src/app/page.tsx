@@ -26,7 +26,16 @@ import {
   Zap,
 } from 'lucide-react';
 import { useMarketplace } from '@/context/MarketplaceContext';
-import { CategorySlug, CitySlug } from '@/types/marketplace';
+import {
+  CategorySlug,
+  CitySlug,
+  ServiceVerticalGroup,
+} from '@/types/marketplace';
+import {
+  getCategoryVerticalGroup,
+  renderCategoryIcon,
+  SERVICE_VERTICAL_GROUPS,
+} from '@/data/serviceCatalogConfig';
 import homeHeroBg from './how-it-works/images/home page hero bg.png';
 import sukhnaLakeBg from './become-a-professional/Images/Sukhna Lake with Open Hand Monument.png';
 import modernTealServicesBanner from './services/images/Modern Teal Services Banner.png';
@@ -39,7 +48,7 @@ export default function HomePage() {
     t,
     selectedCity,
     setSelectedCity,
-    categories,
+    visibleCategories,
     cities,
     providers,
     reviews,
@@ -47,7 +56,12 @@ export default function HomePage() {
   } = useMarketplace();
 
   const [heroCategory, setHeroCategory] = useState<string>('');
+  const [selectedVertical, setSelectedVertical] = useState<
+    'all' | ServiceVerticalGroup
+  >('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [serviceSlideIdx, setServiceSlideIdx] = useState<number>(0);
+  const [isServicesPaused, setIsServicesPaused] = useState<boolean>(false);
   const [testimonialIdx, setTestimonialIdx] = useState<number>(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState<boolean>(false);
 
@@ -64,13 +78,35 @@ export default function HomePage() {
     router.push(`/search?${params.toString()}`);
   };
 
-  const categoryIconMap: Record<CategorySlug, React.ReactNode> = {
-    electrician: <Zap className="w-5 h-5 text-amber-500 fill-amber-400" />,
-    plumber: <Droplets className="w-5 h-5 text-sky-500 fill-sky-400" />,
-    carpenter: <Hammer className="w-5 h-5 text-orange-500" />,
-    'computer-repair': <Laptop className="w-5 h-5 text-indigo-600" />,
-    'mobile-repair': <Smartphone className="w-5 h-5 text-blue-600" />,
-  };
+  const homeServiceCategories =
+    selectedVertical === 'all'
+      ? visibleCategories
+      : visibleCategories.filter(
+        (c) => getCategoryVerticalGroup(c) === selectedVertical
+      );
+
+  const displayedServiceCards =
+    homeServiceCategories.length <= 4
+      ? homeServiceCategories
+      : Array.from(
+        { length: 4 },
+        (_, offset) =>
+          homeServiceCategories[
+          (serviceSlideIdx + offset) % homeServiceCategories.length
+          ]
+      );
+
+  useEffect(() => {
+    setServiceSlideIdx(0);
+  }, [selectedVertical, visibleCategories.length]);
+
+  useEffect(() => {
+    if (isServicesPaused || homeServiceCategories.length <= 4) return;
+    const timer = setInterval(() => {
+      setServiceSlideIdx((prev) => (prev + 1) % homeServiceCategories.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [isServicesPaused, homeServiceCategories.length]);
 
   const popularQuickPills: { label: string; cat: CategorySlug; sub: string }[] = [
     { label: 'Fan Installation', cat: 'electrician', sub: 'fan-installation-repair' },
@@ -100,142 +136,149 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#f8fafc]">
       {/* 1. HERO SECTION (Custom Hero Background Image) */}
-      <section className="relative text-white overflow-hidden pb-44 lg:pb-52 pt-4 lg:pt-6 border-b border-emerald-400/20">
-        {/* Custom Home Hero Background Image */}
+      <section className="relative text-white overflow-hidden pb-16 lg:pb-20 pt-4 lg:pt-5 border-b border-emerald-400/20">
+        {/* Custom Home Hero Background Image (Symmetrical House Left & Right) */}
         <img
           src={homeHeroBg.src}
           alt="Punjab Services Home Hero"
-          className="absolute inset-0 w-full h-full object-cover object-right"
+          className="md:hidden absolute inset-0 w-full h-full object-cover object-right"
         />
+        <img
+          src={homeHeroBg.src}
+          alt=""
+          aria-hidden="true"
+          className="hidden md:block absolute left-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right -scale-x-100 pointer-events-none"
+        />
+        <img
+          src={homeHeroBg.src}
+          alt="Punjab Services Home Hero"
+          className="hidden md:block absolute right-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right pointer-events-none"
+        />
+        <div className="hidden md:block absolute inset-y-0 left-1/2 -translate-x-1/2 w-24 bg-gradient-to-r from-transparent via-[#061c22]/70 to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-[#041418]/50 pointer-events-none" />
 
-        <div className="w-full px-4 sm:px-6 relative z-10">
-          {/* Centered Floating Strip: Verified Local Experts Card ONLY */}
-          <div className="mb-4 lg:mb-0 lg:absolute lg:top-[106px] lg:left-1/2 lg:-translate-x-1/2 z-20 flex justify-center">
-            <div className="inline-flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 bg-white/95 backdrop-blur-md text-slate-900 px-3 py-2 rounded-2xl shadow-xl border border-emerald-200">
-              <div className="flex items-center gap-2.5">
+        <div className="w-full px-4 sm:px-6 relative z-10 space-y-4">
+          {/* Top Row: Left City Selector Pill + Right Serving Badge */}
+          <div className="flex items-start justify-between gap-4">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-emerald-300/35 text-white px-3.5 py-1.5 rounded-full shadow-md text-xs font-bold">
+              <MapPin className="w-3.5 h-3.5 text-emerald-300" />
+              <select
+                aria-label="Select City"
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.target.value as CitySlug)}
+                className="bg-transparent font-bold text-white focus:outline-none cursor-pointer pr-1"
+              >
+                <option value="mohali" className="bg-slate-900 text-white">Mohali</option>
+                <option value="chandigarh" className="bg-slate-900 text-white">Chandigarh</option>
+                <option value="hoshiarpur" className="bg-slate-900 text-white">Hoshiarpur</option>
+              </select>
+            </div>
+
+            <div className="transform -rotate-2 bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 px-4 py-2 rounded-2xl shadow-lg border-2 border-emerald-200 flex items-center gap-2 shrink-0">
+              <MapPin className="w-5 h-5 text-slate-950 shrink-0" />
+              <div className="text-xs font-extrabold leading-tight">
+                Serving
+                <br />
+                Mohali, Chandigarh
+                <br />&amp; Hoshiarpur
+              </div>
+            </div>
+          </div>
+
+          {/* Centered Hero Content */}
+          <div className="max-w-3xl mx-auto text-center flex flex-col items-center space-y-4">
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.15]">
+              <span className="block">{t('hero.titleLine1', 'Find Trusted Professionals')}</span>
+              <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent">
+                {t('hero.titleHighlight', 'Near You')}
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-slate-200 text-sm sm:text-base max-w-xl leading-relaxed">
+              {t(
+                'hero.subtitle',
+                'Book reliable Electricians, Plumbers, Carpenters and Device Repair experts in Mohali, Chandigarh & Hoshiarpur.'
+              )}
+            </p>
+
+            {/* Centered Search Bar */}
+            <form
+              onSubmit={handleHeroSearch}
+              className="w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-emerald-300/35 rounded-2xl p-1.5 shadow-[0_18px_50px_rgba(0,0,0,0.45)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 text-white"
+            >
+              <div className="flex items-center gap-2 px-3 py-2 sm:border-r border-white/15 min-w-[175px]">
+                <LayoutGrid className="w-4 h-4 text-emerald-300 shrink-0" />
+                <select
+                  aria-label="Select a Service Category"
+                  value={heroCategory}
+                  onChange={(e) => setHeroCategory(e.target.value)}
+                  className="w-full text-xs sm:text-sm font-bold text-white bg-transparent focus:outline-none cursor-pointer"
+                >
+                  <option value="" className="bg-slate-900 text-white">
+                    {t('hero.selectService', 'Select a Service')}
+                  </option>
+                  {visibleCategories.map((c) => (
+                    <option key={c.id} value={c.slug} className="bg-slate-900 text-white">
+                      {c.name[language]}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex items-center gap-2 px-3 py-2 flex-1">
+                <Search className="w-4 h-4 text-emerald-200 shrink-0" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={t(
+                    'hero.searchPlaceholder',
+                    'e.g. Fan repair, Pipe leakage, Laptop repair'
+                  )}
+                  className="w-full text-xs sm:text-sm font-medium bg-transparent text-white placeholder:text-slate-300 focus:outline-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg transition shrink-0"
+              >
+                <Search className="w-4 h-4" />
+                <span>{t('hero.searchBtn', 'Search')}</span>
+              </button>
+            </form>
+
+            {/* Centered Verified Local Experts Card */}
+            <div className="inline-flex flex-wrap sm:flex-nowrap items-center justify-between gap-4 bg-white/95 backdrop-blur-md text-slate-900 px-4 py-2.5 rounded-2xl shadow-xl border border-emerald-200">
+              <div className="flex items-center gap-3 text-left">
                 <div className="flex -space-x-2 shrink-0">
                   {providers.slice(0, 3).map((p) => (
                     <img
                       key={p.id}
                       src={p.avatar}
                       alt={p.name}
-                      className="w-8 h-8 rounded-full object-cover ring-2 ring-white"
+                      className="w-9 h-9 rounded-full object-cover ring-2 ring-white"
                     />
                   ))}
                 </div>
                 <div>
-                  <div className="text-xs font-extrabold text-slate-900 flex items-center gap-1">
+                  <div className="text-xs sm:text-sm font-extrabold text-slate-900 flex items-center gap-1">
                     <span>438+ Verified Local Experts</span>
-                    <BadgeCheck className="w-3.5 h-3.5 text-emerald-600 fill-emerald-100" />
+                    <BadgeCheck className="w-4 h-4 text-emerald-600 fill-emerald-100" />
                   </div>
-                  <div className="text-[10px] text-slate-600">
+                  <div className="text-[11px] text-slate-600">
                     Visiting Charge starts at ₹199 (Adjustable in final bill)
                   </div>
                 </div>
               </div>
               <Link
                 href="/book"
-                className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 text-xs font-extrabold shrink-0 transition shadow"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 text-xs font-extrabold shrink-0 transition shadow"
               >
                 Book Now
               </Link>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Column (7 cols) */}
-            <div className="lg:col-span-7 space-y-5">
-              {/* City Selector Pill */}
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-emerald-300/35 text-white px-3.5 py-1.5 rounded-full shadow-md text-xs font-bold">
-                <MapPin className="w-3.5 h-3.5 text-emerald-300" />
-                <select
-                  aria-label="Select City"
-                  value={selectedCity}
-                  onChange={(e) => setSelectedCity(e.target.value as CitySlug)}
-                  className="bg-transparent font-bold text-white focus:outline-none cursor-pointer pr-1"
-                >
-                  <option value="mohali" className="bg-slate-900 text-white">Mohali</option>
-                  <option value="chandigarh" className="bg-slate-900 text-white">Chandigarh</option>
-                  <option value="hoshiarpur" className="bg-slate-900 text-white">Hoshiarpur</option>
-                </select>
-              </div>
-              {/* Headline */}
-              <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.15]">
-                <span className="block">{t('hero.titleLine1', 'Find Trusted Professionals')}</span>
-                <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent">
-                  {t('hero.titleHighlight', 'Near You')}
-                </span>
-              </h1>
-
-              {/* Subtitle */}
-              <p className="text-slate-200 text-sm sm:text-base max-w-xl leading-relaxed">
-                {t(
-                  'hero.subtitle',
-                  'Book reliable Electricians, Plumbers, Carpenters and Device Repair experts in Mohali, Chandigarh & Hoshiarpur.'
-                )}
-              </p>
-
-              {/* Unified Glassmorphic Search Bar */}
-              <form
-                onSubmit={handleHeroSearch}
-                className="bg-white/10 backdrop-blur-xl border border-emerald-300/35 rounded-2xl p-2 shadow-[0_18px_50px_rgba(0,0,0,0.45)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 max-w-2xl text-white"
-              >
-                <div className="flex items-center gap-2 px-3 py-2 sm:border-r border-white/15 min-w-[175px]">
-                  <LayoutGrid className="w-4 h-4 text-emerald-300 shrink-0" />
-                  <select
-                    aria-label="Select a Service Category"
-                    value={heroCategory}
-                    onChange={(e) => setHeroCategory(e.target.value)}
-                    className="w-full text-xs sm:text-sm font-bold text-white bg-transparent focus:outline-none cursor-pointer"
-                  >
-                    <option value="" className="bg-slate-900 text-white">
-                      {t('hero.selectService', 'Select a Service')}
-                    </option>
-                    {categories.map((c) => (
-                      <option key={c.id} value={c.slug} className="bg-slate-900 text-white">
-                        {c.name[language]}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="flex items-center gap-2 px-3 py-2 flex-1">
-                  <Search className="w-4 h-4 text-emerald-200 shrink-0" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder={t(
-                      'hero.searchPlaceholder',
-                      'e.g. Fan repair, Pipe leakage, Laptop repair'
-                    )}
-                    className="w-full text-xs sm:text-sm font-medium bg-transparent text-white placeholder:text-slate-300 focus:outline-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg transition shrink-0"
-                >
-                  <Search className="w-4 h-4" />
-                  <span>{t('hero.searchBtn', 'Search')}</span>
-                </button>
-              </form>
-            </div>
-
-            {/* Right Column (5 cols) — Floating Serving Badge Over Custom Hero BG */}
-            <div className="lg:col-span-5 relative flex justify-end items-start self-start">
-              {/* Tilted Emerald Serving Badge */}
-              <div className="transform -rotate-2 bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 px-4 py-2 rounded-2xl shadow-lg border-2 border-emerald-200 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-slate-950 shrink-0" />
-                <div className="text-xs font-extrabold leading-tight">
-                  Serving
-                  <br />
-                  Mohali, Chandigarh
-                  <br />& Hoshiarpur
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -276,43 +319,43 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {[
-            {
-              icon: <ShieldCheck className="w-6 h-6" />,
-              title: t('trust.verifiedTitle', 'Verified Professionals'),
-              desc: t('trust.verifiedDesc', 'Background checked & trusted'),
-            },
-            {
-              icon: <Zap className="w-6 h-6" />,
-              title: t('trust.quickTitle', 'Quick & Easy Booking'),
-              desc: t('trust.quickDesc', 'Book in just a few clicks'),
-            },
-            {
-              icon: <IndianRupee className="w-6 h-6" />,
-              title: t('trust.pricingTitle', 'Transparent Pricing'),
-              desc: t('trust.pricingDesc', 'No hidden charges'),
-            },
-            {
-              icon: <Headphones className="w-6 h-6" />,
-              title: t('trust.supportTitle', 'Local Support'),
-              desc: t('trust.supportDesc', 'Real help, in your language'),
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="group flex items-center gap-3 p-2 rounded-xl border border-transparent hover:border-emerald-400/35 hover:bg-white/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
-            >
-              <div className="w-10 h-10 rounded-xl bg-emerald-400/15 border border-emerald-400/35 text-emerald-300 group-hover:bg-emerald-400 group-hover:text-slate-950 group-hover:scale-110 flex items-center justify-center shrink-0 transition-all duration-300 shadow-sm">
-                {item.icon}
-              </div>
-              <div>
-                <div className="font-extrabold text-white group-hover:text-emerald-300 text-sm transition-colors">
-                  {item.title}
+            {[
+              {
+                icon: <ShieldCheck className="w-6 h-6" />,
+                title: t('trust.verifiedTitle', 'Verified Professionals'),
+                desc: t('trust.verifiedDesc', 'Background checked & trusted'),
+              },
+              {
+                icon: <Zap className="w-6 h-6" />,
+                title: t('trust.quickTitle', 'Quick & Easy Booking'),
+                desc: t('trust.quickDesc', 'Book in just a few clicks'),
+              },
+              {
+                icon: <IndianRupee className="w-6 h-6" />,
+                title: t('trust.pricingTitle', 'Transparent Pricing'),
+                desc: t('trust.pricingDesc', 'No hidden charges'),
+              },
+              {
+                icon: <Headphones className="w-6 h-6" />,
+                title: t('trust.supportTitle', 'Local Support'),
+                desc: t('trust.supportDesc', 'Real help, in your language'),
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="group flex items-center gap-3 p-2 rounded-xl border border-transparent hover:border-emerald-400/35 hover:bg-white/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
+              >
+                <div className="w-10 h-10 rounded-xl bg-emerald-400/15 border border-emerald-400/35 text-emerald-300 group-hover:bg-emerald-400 group-hover:text-slate-950 group-hover:scale-110 flex items-center justify-center shrink-0 transition-all duration-300 shadow-sm">
+                  {item.icon}
                 </div>
-                <div className="text-xs text-slate-300 font-medium">{item.desc}</div>
+                <div>
+                  <div className="font-extrabold text-white group-hover:text-emerald-300 text-sm transition-colors">
+                    {item.title}
+                  </div>
+                  <div className="text-xs text-slate-300 font-medium">{item.desc}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
       </section>
@@ -321,7 +364,7 @@ export default function HomePage() {
       <section className="w-full px-4 sm:px-6 pt-14 pb-10">
         <div className="relative border border-emerald-400/30 rounded-3xl p-6 sm:p-8 shadow-2xl text-white">
           <span className="absolute -top-3.5 left-6 sm:left-8 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg">
-            5 Specialized Verticals
+            {visibleCategories.length} Live Categories in {selectedCity}
           </span>
           <Link
             href="/services"
@@ -346,71 +389,158 @@ export default function HomePage() {
               src={modernTealServicesBanner.src}
               alt=""
               aria-hidden="true"
-              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right -scale-x-100"
             />
             <img
               src={modernTealServicesBanner.src}
               alt="Modern Teal Services Banner"
-              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right"
             />
+            <div className="hidden md:block absolute inset-y-0 left-1/2 -translate-x-1/2 w-24 bg-gradient-to-r from-transparent via-[#061c22]/70 to-transparent" />
           </div>
 
-          <div className="relative z-10 text-center mb-8 pt-4">
+          <div className="relative z-10 text-center mb-6 pt-4 space-y-4">
             <p className="text-sm text-slate-300 font-medium">
               {t(
                 'home.ourServicesSub',
                 'Choose from a range of professional services at your doorstep'
               )}
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={() => setSelectedVertical('all')}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-extrabold border transition ${selectedVertical === 'all'
+                  ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 border-emerald-200 shadow-md'
+                  : 'bg-[#041418]/80 text-slate-200 border-white/20 hover:border-emerald-300/60'
+                  }`}
+              >
+                All Verticals ({visibleCategories.length})
+              </button>
+              {SERVICE_VERTICAL_GROUPS.map((grp) => {
+                const count = visibleCategories.filter(
+                  (c) => getCategoryVerticalGroup(c) === grp.id
+                ).length;
+                if (count === 0) return null;
+                return (
+                  <button
+                    key={grp.id}
+                    type="button"
+                    onClick={() => setSelectedVertical(grp.id)}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-extrabold border transition ${selectedVertical === grp.id
+                      ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 border-emerald-200 shadow-md'
+                      : 'bg-[#041418]/80 text-slate-200 border-white/20 hover:border-emerald-300/60'
+                      }`}
+                  >
+                    {grp.shortTitle} ({count})
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
-            {categories.map((cat) => (
-              <Link
-                key={cat.id}
-                href={`/services/${cat.slug}`}
-                className="group relative rounded-3xl border border-emerald-400/30 bg-[#041418] min-h-[285px] flex flex-col justify-end shadow-xl hover:-translate-y-2 hover:border-emerald-300/80 hover:shadow-[0_20px_44px_rgba(16,185,129,0.42)] transition-all duration-300"
-              >
-                {/* Full-Bleed Service Image (Clipped Inside Rounded Frame) */}
-                <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
-                  <img
-                    src={cat.cardImage}
-                    alt={cat.name[language]}
-                    className="w-full h-full object-cover opacity-55 group-hover:opacity-70 group-hover:scale-110 transition-all duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#041418] via-[#041418]/75 to-[#041418]/30 group-hover:via-[#061f25]/65 transition-all duration-300" />
-                </div>
-
-                {/* Top Border Floating Icon (Left) + Visit Fee Pill (Right) */}
-                <div className="absolute -top-4 left-4 z-20 w-10 h-10 rounded-xl bg-[#041418] border border-emerald-400/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-white transition-all duration-300 shadow-lg">
-                  {categoryIconMap[cat.slug]}
-                </div>
-                <span className="absolute -top-3.5 right-4 z-20 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 text-[11px] font-extrabold shadow-lg border border-emerald-200">
-                  ₹{cat.baseVisitingFee} Visit
-                </span>
-
-                {/* Bottom Glassmorphic Info (Switches to Emerald-Teal Gradient on Hover) */}
-                <div className="relative z-10 p-4 pt-8 space-y-3 rounded-b-3xl group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-teal-400 transition-all duration-300">
-                  <div>
-                    <h3 className="font-extrabold text-white text-lg leading-snug group-hover:text-slate-950 transition-colors duration-300">
-                      {cat.name[language]}
-                    </h3>
-                    <p className="text-xs text-slate-200 group-hover:text-slate-900 font-medium mt-1 leading-relaxed line-clamp-2 transition-colors duration-300">
-                      {cat.tagline[language]}
-                    </p>
+          <div
+            onMouseEnter={() => setIsServicesPaused(true)}
+            onMouseLeave={() => setIsServicesPaused(false)}
+            className="relative z-10 space-y-5"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5">
+              {displayedServiceCards.map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/services/${cat.slug}`}
+                  className="group relative rounded-3xl border border-emerald-400/30 bg-[#041418] min-h-[265px] flex flex-col justify-end shadow-xl hover:-translate-y-2 hover:border-emerald-300/80 hover:shadow-[0_20px_44px_rgba(16,185,129,0.42)] transition-all duration-300"
+                >
+                  {/* Full-Bleed Service Image (Clipped Inside Rounded Frame) */}
+                  <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+                    <img
+                      src={cat.cardImage}
+                      alt={cat.name[language]}
+                      className="w-full h-full object-cover opacity-55 group-hover:opacity-70 group-hover:scale-110 transition-all duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#041418] via-[#041418]/75 to-[#041418]/30 group-hover:via-[#061f25]/65 transition-all duration-300" />
                   </div>
 
-                  <div className="pt-2.5 border-t border-white/15 group-hover:border-slate-950/20 flex items-center justify-between gap-2 transition-colors duration-300">
-                    <span className="text-[11px] font-extrabold text-emerald-300 group-hover:text-slate-950 transition-colors duration-300">
-                      {cat.providerCount} Verified Pros
-                    </span>
-                    <span className="w-8 h-8 rounded-full bg-white/15 group-hover:bg-[#041418] text-white group-hover:text-emerald-300 flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5 shadow">
-                      <ArrowRight className="w-4 h-4" />
-                    </span>
+                  {/* Top Border Floating Icon (Left) + Visit Fee / Status Pill (Right) */}
+                  <div className="absolute -top-4 left-4 z-20 w-10 h-10 rounded-xl bg-[#041418] border border-emerald-400/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-white transition-all duration-300 shadow-lg">
+                    {renderCategoryIcon(cat.iconName || cat.slug, 'w-5 h-5')}
                   </div>
+                  <span className="absolute -top-3.5 right-4 z-20 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 text-[11px] font-extrabold shadow-lg border border-emerald-200">
+                    {cat.comingSoon
+                      ? 'Coming Soon'
+                      : cat.bookingsPaused
+                        ? 'Bookings Paused'
+                        : `₹${cat.baseVisitingFee} Visit`}
+                  </span>
+
+                  {/* Bottom Glassmorphic Info (Switches to Emerald-Teal Gradient on Hover) */}
+                  <div className="relative z-10 p-4 pt-8 space-y-3 rounded-b-3xl group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-teal-400 transition-all duration-300">
+                    <div>
+                      <h3 className="font-extrabold text-white text-lg leading-snug group-hover:text-slate-950 transition-colors duration-300">
+                        {cat.name[language]}
+                      </h3>
+                      <p className="text-xs text-slate-200 group-hover:text-slate-900 font-medium mt-1 leading-relaxed line-clamp-2 transition-colors duration-300">
+                        {cat.tagline[language]}
+                      </p>
+                    </div>
+
+                    <div className="pt-2.5 border-t border-white/15 group-hover:border-slate-950/20 flex items-center justify-between gap-2 transition-colors duration-300">
+                      <span className="text-[11px] font-extrabold text-emerald-300 group-hover:text-slate-950 transition-colors duration-300">
+                        {cat.providerCount} Verified Pros
+                      </span>
+                      <span className="w-8 h-8 rounded-full bg-white/15 group-hover:bg-[#041418] text-white group-hover:text-emerald-300 flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5 shadow">
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {homeServiceCategories.length > 4 && (
+              <div className="flex items-center justify-center gap-3 pt-1">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setServiceSlideIdx(
+                      (prev) =>
+                        (prev - 1 + homeServiceCategories.length) %
+                        homeServiceCategories.length
+                    )
+                  }
+                  aria-label="Previous service category"
+                  className="w-8 h-8 rounded-full bg-[#041418]/85 border border-emerald-400/40 hover:border-emerald-300 text-emerald-300 flex items-center justify-center transition"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <div className="flex items-center gap-1.5">
+                  {homeServiceCategories.map((c, idx) => (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => setServiceSlideIdx(idx)}
+                      aria-label={`Show ${c.name.en}`}
+                      className={`h-1.5 rounded-full transition-all ${idx === serviceSlideIdx % homeServiceCategories.length
+                        ? 'w-5 bg-emerald-400'
+                        : 'w-1.5 bg-white/30 hover:bg-white/60'
+                        }`}
+                    />
+                  ))}
                 </div>
-              </Link>
-            ))}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setServiceSlideIdx(
+                      (prev) => (prev + 1) % homeServiceCategories.length
+                    )
+                  }
+                  aria-label="Next service category"
+                  className="w-8 h-8 rounded-full bg-[#041418]/85 border border-emerald-400/40 hover:border-emerald-300 text-emerald-300 flex items-center justify-center transition"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -429,13 +559,14 @@ export default function HomePage() {
               src={moodyModernHomeBanner.src}
               alt=""
               aria-hidden="true"
-              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right -scale-x-100"
             />
             <img
               src={moodyModernHomeBanner.src}
               alt="Moody Modern Home Exterior"
-              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right"
             />
+            <div className="hidden md:block absolute inset-y-0 left-1/2 -translate-x-1/2 w-24 bg-gradient-to-r from-transparent via-[#061c22]/70 to-transparent" />
           </div>
 
           <span className="absolute -top-3.5 left-6 sm:left-8 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[11px] font-extrabold uppercase tracking-wider shadow-lg">
@@ -813,11 +944,10 @@ export default function HomePage() {
           {cities.map((city) => (
             <div
               key={city.id}
-              className={`group relative overflow-hidden rounded-3xl border p-6 shadow-xl transition-all duration-300 flex flex-col justify-between text-white hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(30,77,183,0.45),0_0_24px_rgba(56,189,248,0.35)] ${
-                selectedCity === city.slug
-                  ? 'border-cyan-400 ring-2 ring-cyan-400/40'
-                  : 'border-blue-300/30 hover:border-cyan-300/70'
-              }`}
+              className={`group relative overflow-hidden rounded-3xl border p-6 shadow-xl transition-all duration-300 flex flex-col justify-between text-white hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(30,77,183,0.45),0_0_24px_rgba(56,189,248,0.35)] ${selectedCity === city.slug
+                ? 'border-cyan-400 ring-2 ring-cyan-400/40'
+                : 'border-blue-300/30 hover:border-cyan-300/70'
+                }`}
             >
               {/* Background Image + Midnight Emerald-Teal Gradient Overlay */}
               <img
@@ -902,13 +1032,14 @@ export default function HomePage() {
               src={moodyModernHomeBanner.src}
               alt=""
               aria-hidden="true"
-              className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+              className="hidden md:block absolute left-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right -scale-x-100"
             />
             <img
               src={moodyModernHomeBanner.src}
               alt="Moody Modern Home Exterior"
-              className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+              className="hidden md:block absolute right-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right"
             />
+            <div className="hidden md:block absolute inset-y-0 left-1/2 -translate-x-1/2 w-24 bg-gradient-to-r from-transparent via-[#061c22]/70 to-transparent" />
           </div>
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">

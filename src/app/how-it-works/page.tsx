@@ -31,7 +31,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { BOOKING_LIFECYCLE_STEPS } from '@/types/marketplace';
-import heroSectionBg from './images/hero section bg.png';
+import openHandSunsetHeroBg from '../about/images/Chandigarh Open Hand Sunset-1.png';
 import hybridPricingBg from './images/Hybrid Pricing Model.png';
 import twilightVillasBg from '../about/images/Twilight Villas Along a Curving Road-2.png';
 
@@ -186,13 +186,13 @@ export default function HowItWorksPage() {
       <section className="relative overflow-hidden border-b border-emerald-400/20 text-white">
         {/* Custom Hero Background Image */}
         <img
-          src={heroSectionBg.src}
+          src={openHandSunsetHeroBg.src}
           alt="How Punjab Services Works background"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[#041418]/65" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#041418]/75 via-[#041418]/45 to-transparent" />
 
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Content */}
             <motion.div {...fadeUp(0)} className="lg:col-span-7 space-y-5">
@@ -520,13 +520,14 @@ export default function HowItWorksPage() {
                   src={twilightVillasBg.src}
                   alt=""
                   aria-hidden="true"
-                  className="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 h-full object-cover object-right -scale-x-100"
+                  className="hidden md:block absolute left-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right -scale-x-100"
                 />
                 <img
                   src={twilightVillasBg.src}
                   alt="Twilight Villas Along a Curving Road"
-                  className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 h-full object-cover object-right"
+                  className="hidden md:block absolute right-0 top-0 bottom-0 w-[50.5%] h-full object-cover object-right"
                 />
+                <div className="hidden md:block absolute inset-y-0 left-1/2 -translate-x-1/2 w-24 bg-gradient-to-r from-transparent via-[#061c22]/70 to-transparent" />
                 <div className="absolute top-0 inset-x-12 h-px bg-gradient-to-r from-transparent via-emerald-300/80 to-transparent" />
               </div>
 

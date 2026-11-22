@@ -23,6 +23,11 @@ import {
 } from 'lucide-react';
 import { useMarketplace } from '@/context/MarketplaceContext';
 import { CitySlug, Language } from '@/types/marketplace';
+import {
+  getCategoryVerticalGroup,
+  renderCategoryIcon,
+  SERVICE_VERTICAL_GROUPS,
+} from '@/data/serviceCatalogConfig';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -35,7 +40,8 @@ export function Navbar() {
     isLoggedIn,
     setIsLoggedIn,
     currentCustomer,
-    categories,
+    visibleCategories,
+    visibleSubcategories,
     notifications,
     toasts,
     dismissToast,
@@ -127,13 +133,13 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Center Navigation */}
-            <nav className="hidden lg:flex items-center gap-1.5 text-xs xl:text-sm font-bold text-slate-950 whitespace-nowrap bg-[#041418]/10 border border-[#041418]/15 rounded-full px-2 py-1.5 backdrop-blur-md">
+            <nav className="hidden lg:flex items-center gap-1 text-xs xl:text-sm font-bold text-slate-100 whitespace-nowrap bg-[#041418]/90 border border-emerald-200/30 rounded-full px-2 py-1.5 backdrop-blur-xl shadow-[0_10px_28px_rgba(4,20,24,0.32)]">
               <Link
                 href="/"
-                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                   pathname === '/'
-                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
-                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
+                    ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-extrabold shadow-[0_0_16px_rgba(52,211,153,0.45)]'
+                    : 'text-slate-100 hover:bg-white/10 hover:text-emerald-300'
                 }`}
               >
                 {t('nav.home', 'Home')}
@@ -141,10 +147,10 @@ export function Navbar() {
 
               <Link
                 href="/about"
-                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                   pathname === '/about'
-                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
-                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
+                    ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-extrabold shadow-[0_0_16px_rgba(52,211,153,0.45)]'
+                    : 'text-slate-100 hover:bg-white/10 hover:text-emerald-300'
                 }`}
               >
                 {t('nav.about', 'About Us')}
@@ -158,10 +164,10 @@ export function Navbar() {
               >
                 <button
                   onClick={() => router.push('/services')}
-                  className={`flex items-center gap-1 px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
+                  className={`flex items-center gap-1 px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                     pathname?.startsWith('/services')
-                      ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
-                      : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
+                      ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-extrabold shadow-[0_0_16px_rgba(52,211,153,0.45)]'
+                      : 'text-slate-100 hover:bg-white/10 hover:text-emerald-300'
                   }`}
                 >
                   <span>{t('nav.services', 'Services')}</span>
@@ -169,36 +175,58 @@ export function Navbar() {
                 </button>
 
                 {servicesOpen && (
-                  <div className="absolute left-0 top-full pt-3 w-[420px] z-50 whitespace-normal">
-                    <div className="bg-[#061c22] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.65)] border border-emerald-400/40 p-3 grid gap-1 text-white">
+                  <div className="absolute left-0 top-full pt-3 w-[480px] z-50 whitespace-normal">
+                    <div className="bg-[#061c22] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.65)] border border-emerald-400/40 p-3 grid gap-2 text-white max-h-[72vh] overflow-y-auto">
                       <Link
                         href="/services"
                         onClick={() => setServicesOpen(false)}
                         className="px-3 py-2 rounded-xl bg-emerald-400/20 text-emerald-300 font-bold text-xs flex items-center justify-between hover:bg-emerald-400 hover:text-slate-950 transition"
                       >
-                        <span>Browse All 5 Categories &amp; 40 Services</span>
+                        <span>
+                          Browse All {visibleCategories.length} Categories &amp; {visibleSubcategories.length} Services
+                        </span>
                         <span>→</span>
                       </Link>
-                      {categories.map((cat) => (
-                        <Link
-                          key={cat.id}
-                          href={`/services/${cat.slug}`}
-                          onClick={() => setServicesOpen(false)}
-                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/10 transition group"
-                        >
-                          <div className="w-9 h-9 rounded-lg bg-emerald-400/15 text-emerald-300 flex items-center justify-center shrink-0 group-hover:bg-emerald-400 group-hover:text-slate-950 transition">
-                            <Wrench className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <div className="font-bold text-white text-sm group-hover:text-emerald-300">
-                              {cat.name[language]}
+                      {SERVICE_VERTICAL_GROUPS.map((grp) => {
+                        const grpCats = visibleCategories.filter(
+                          (c) => getCategoryVerticalGroup(c) === grp.id
+                        );
+                        if (grpCats.length === 0) return null;
+                        return (
+                          <div key={grp.id} className="space-y-1 pt-1">
+                            <div className="px-2.5 text-[10px] font-extrabold uppercase tracking-wider text-emerald-300/80">
+                              {grp.shortTitle}
                             </div>
-                            <div className="text-xs text-slate-300 line-clamp-1">
-                              {cat.tagline[language]}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+                              {grpCats.map((cat) => (
+                                <Link
+                                  key={cat.id}
+                                  href={`/services/${cat.slug}`}
+                                  onClick={() => setServicesOpen(false)}
+                                  className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-white/10 transition group"
+                                >
+                                  <div className="w-8 h-8 rounded-lg bg-emerald-400/15 text-emerald-300 flex items-center justify-center shrink-0 group-hover:bg-emerald-400 group-hover:text-slate-950 transition">
+                                    {renderCategoryIcon(cat.iconName || cat.slug, 'w-4 h-4')}
+                                  </div>
+                                  <div className="min-w-0">
+                                    <div className="font-bold text-white text-xs group-hover:text-emerald-300 flex items-center gap-1.5 truncate">
+                                      <span className="truncate">{cat.name[language]}</span>
+                                      {cat.comingSoon && (
+                                        <span className="px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 text-[9px] font-bold shrink-0">
+                                          Soon
+                                        </span>
+                                      )}
+                                    </div>
+                                    <div className="text-[11px] text-slate-300 line-clamp-1">
+                                      {cat.tagline[language]}
+                                    </div>
+                                  </div>
+                                </Link>
+                              ))}
                             </div>
                           </div>
-                        </Link>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -206,10 +234,10 @@ export function Navbar() {
 
               <Link
                 href="/how-it-works"
-                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                   pathname === '/how-it-works'
-                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
-                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
+                    ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-extrabold shadow-[0_0_16px_rgba(52,211,153,0.45)]'
+                    : 'text-slate-100 hover:bg-white/10 hover:text-emerald-300'
                 }`}
               >
                 {t('nav.howItWorks', 'How it Works')}
@@ -217,10 +245,10 @@ export function Navbar() {
 
               <Link
                 href="/become-a-professional"
-                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                   pathname === '/become-a-professional'
-                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
-                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
+                    ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-extrabold shadow-[0_0_16px_rgba(52,211,153,0.45)]'
+                    : 'text-slate-100 hover:bg-white/10 hover:text-emerald-300'
                 }`}
               >
                 {t('nav.forProfessionals', 'For Professionals')}
@@ -228,10 +256,10 @@ export function Navbar() {
 
               <Link
                 href="/offers"
-                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                   pathname === '/offers'
-                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
-                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
+                    ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-extrabold shadow-[0_0_16px_rgba(52,211,153,0.45)]'
+                    : 'text-slate-100 hover:bg-white/10 hover:text-emerald-300'
                 }`}
               >
                 {t('nav.offers', 'Offers')}
@@ -239,10 +267,10 @@ export function Navbar() {
 
               <Link
                 href="/support"
-                className={`px-3.5 py-1.5 rounded-full transition whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                   pathname === '/support'
-                    ? 'bg-[#041418] text-emerald-300 border border-[#041418] shadow-sm'
-                    : 'hover:bg-[#041418]/10 hover:text-slate-950 border border-transparent'
+                    ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-extrabold shadow-[0_0_16px_rgba(52,211,153,0.45)]'
+                    : 'text-slate-100 hover:bg-white/10 hover:text-emerald-300'
                 }`}
               >
                 {t('nav.support', 'Support')}

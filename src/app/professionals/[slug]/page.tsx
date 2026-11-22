@@ -29,6 +29,9 @@ import {
   Zap,
 } from 'lucide-react';
 import { useMarketplace } from '@/context/MarketplaceContext';
+import twilightVillasBg from '../../about/images/Twilight Villas Along a Curving Road-2.png';
+import openHandSunsetBg from '../../about/images/Chandigarh Open Hand Sunset-1.png';
+import moodyModernHomeBanner from '../../services/images/Moody Modern Home Exterior Banner.png';
 
 export default function ProviderProfilePage() {
   const params = useParams();
@@ -344,10 +347,11 @@ export default function ProviderProfilePage() {
 
             {/* ABOUT + SERVICE AREAS ROW matching Image 4 */}
             {(activeTab === 'overview' || activeTab === 'availability') && (
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-                <div className="md:col-span-7 bg-white rounded-2xl border border-slate-200/90 p-5 shadow-card space-y-4">
-                  <h2 className="text-lg font-extrabold text-slate-900">
-                    About {provider.name}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-7 md:gap-5 pt-2">
+                <div className="md:col-span-7 relative bg-white rounded-2xl border border-slate-200/90 p-5 pt-8 shadow-card space-y-4">
+                  <h2 className="absolute -top-4 left-5 z-20 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-white text-xs sm:text-sm font-extrabold shadow-lg whitespace-nowrap">
+                    <BadgeCheck className="w-4 h-4 text-[#36f1a2]" />
+                    <span>About {provider.name}</span>
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {provider.about}
@@ -406,12 +410,12 @@ export default function ProviderProfilePage() {
                 </div>
 
                 {/* Service Areas & Languages Card matching Image 4 */}
-                <div className="md:col-span-5 bg-white rounded-2xl border border-slate-200/90 p-5 shadow-card space-y-4">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-1.5">
-                      <MapPin className="w-4 h-4 text-emerald-600" />
-                      <span>Service Areas</span>
-                    </h3>
+                <div className="md:col-span-5 relative bg-white rounded-2xl border border-slate-200/90 p-5 pt-8 shadow-card space-y-4">
+                  <h3 className="absolute -top-4 left-5 z-20 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-white text-xs sm:text-sm font-extrabold shadow-lg whitespace-nowrap">
+                    <MapPin className="w-4 h-4 text-[#36f1a2]" />
+                    <span>Service Areas</span>
+                  </h3>
+                  <div className="flex items-center justify-end">
                     <span className="text-[11px] font-semibold text-emerald-700">
                       {provider.serviceRadiusKm} km radius
                     </span>
@@ -449,20 +453,30 @@ export default function ProviderProfilePage() {
               </div>
             )}
 
-            {/* SERVICES OFFERED SECTION matching Image 4 */}
+            {/* SERVICES OFFERED SECTION (With BG Image + Top-Border Title) */}
             {(activeTab === 'overview' || activeTab === 'services') && (
-              <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-card space-y-4">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-                    <Zap className="w-5 h-5 text-amber-500 fill-amber-400" />
-                    <span>Services Offered</span>
-                  </h2>
-                  <span className="text-xs text-slate-500">
+              <div className="relative rounded-2xl border border-emerald-400/35 p-5 pt-8 shadow-xl text-white space-y-4 mt-2">
+                <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                  <img
+                    src={twilightVillasBg.src}
+                    alt="Services Offered background"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-[#041418]/70" />
+                </div>
+
+                <h2 className="absolute -top-4 left-5 z-20 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-white text-xs sm:text-sm font-extrabold shadow-lg whitespace-nowrap">
+                  <Zap className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  <span>Services Offered</span>
+                </h2>
+
+                <div className="relative z-10 flex items-center justify-end">
+                  <span className="text-xs text-emerald-100/90 font-medium">
                     Click a service to select in booking box
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
                   {provider.subcategories.map((subName) => {
                     const isSelected = selectedService === subName;
                     return (
@@ -475,14 +489,14 @@ export default function ProviderProfilePage() {
                         }}
                         className={`p-3.5 rounded-2xl border text-center flex flex-col items-center justify-center gap-2 transition ${
                           isSelected
-                            ? 'border-emerald-600 bg-emerald-50/70 ring-2 ring-emerald-600/20'
-                            : 'border-slate-200 hover:border-emerald-400 bg-slate-50/40'
+                            ? 'border-[#36f1a2] bg-emerald-400/20 ring-2 ring-[#36f1a2]/40 text-white'
+                            : 'border-white/20 hover:border-emerald-300/70 bg-[#041418]/70 text-slate-100'
                         }`}
                       >
-                        <div className="w-10 h-10 rounded-xl bg-emerald-100/70 text-emerald-700 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-400/15 border border-emerald-400/35 text-[#36f1a2] flex items-center justify-center">
                           <Sparkles className="w-5 h-5" />
                         </div>
-                        <span className="text-xs font-bold text-slate-800 leading-tight">
+                        <span className="text-xs font-bold leading-tight">
                           {subName}
                         </span>
                       </button>
@@ -492,17 +506,27 @@ export default function ProviderProfilePage() {
               </div>
             )}
 
-            {/* RECENT WORK (PORTFOLIO) GALLERY matching Image 4 */}
+            {/* RECENT WORK (PORTFOLIO) GALLERY (With BG Image + Top-Border Title) */}
             {(activeTab === 'overview' || activeTab === 'portfolio') && (
-              <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-card space-y-4">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-                    <ImageIcon className="w-5 h-5 text-emerald-600" />
-                    <span>Recent Work (Portfolio)</span>
-                  </h2>
+              <div className="relative rounded-2xl border border-emerald-400/35 p-5 pt-8 shadow-xl text-white space-y-4 mt-2">
+                <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                  <img
+                    src={moodyModernHomeBanner.src}
+                    alt="Recent Work Portfolio background"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-[#041418]/70" />
+                </div>
+
+                <h2 className="absolute -top-4 left-5 z-20 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-white text-xs sm:text-sm font-extrabold shadow-lg whitespace-nowrap">
+                  <ImageIcon className="w-4 h-4 text-[#36f1a2]" />
+                  <span>Recent Work (Portfolio)</span>
+                </h2>
+
+                <div className="relative z-10 flex items-center justify-end">
                   <button
                     onClick={() => setActiveTab('portfolio')}
-                    className="text-xs font-bold text-emerald-700 hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-bold text-[#36f1a2] hover:underline inline-flex items-center gap-1"
                   >
                     <span>
                       View All Photos ({defaultPortfolioImages.length})
@@ -511,7 +535,7 @@ export default function ProviderProfilePage() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
                   {defaultPortfolioImages.map((imgUrl, index) => (
                     <button
                       key={index}
@@ -537,12 +561,12 @@ export default function ProviderProfilePage() {
 
             {/* CUSTOMER REVIEWS SECTION matching Image 4 */}
             {(activeTab === 'overview' || activeTab === 'reviews') && (
-              <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-card space-y-4">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-                    <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
-                    <span>Customer Reviews ({provider.reviewCount})</span>
-                  </h2>
+              <div className="relative bg-white rounded-2xl border border-slate-200/90 p-5 pt-8 shadow-card space-y-4 mt-2">
+                <h2 className="absolute -top-4 left-5 z-20 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-white text-xs sm:text-sm font-extrabold shadow-lg whitespace-nowrap">
+                  <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  <span>Customer Reviews ({provider.reviewCount})</span>
+                </h2>
+                <div className="flex items-center justify-end">
                   <button
                     onClick={() => setActiveTab('reviews')}
                     className="text-xs font-bold text-emerald-700 hover:underline inline-flex items-center gap-1"
@@ -649,9 +673,9 @@ export default function ProviderProfilePage() {
             )}
 
             {/* SIMILAR PROFESSIONALS NEAR YOU matching Image 4 */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-card space-y-4">
-              <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-                <Users className="w-5 h-5 text-emerald-600" />
+            <div className="relative bg-white rounded-2xl border border-slate-200/90 p-5 pt-8 shadow-card space-y-4 mt-2">
+              <h2 className="absolute -top-4 left-5 z-20 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-white text-xs sm:text-sm font-extrabold shadow-lg whitespace-nowrap">
+                <Users className="w-4 h-4 text-[#36f1a2]" />
                 <span>Similar Professionals Near You</span>
               </h2>
 
@@ -695,10 +719,10 @@ export default function ProviderProfilePage() {
           </div>
 
           {/* RIGHT 4 COLUMNS: STICKY BOOKING CARD matching Image 4 */}
-          <aside className="lg:col-span-4 space-y-4 lg:sticky lg:top-24">
-            <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl p-6 space-y-4">
-              <div className="flex items-center gap-2 font-extrabold text-slate-900 text-lg">
-                <Calendar className="w-5 h-5 text-emerald-600" />
+          <aside className="lg:col-span-4 space-y-7 lg:sticky lg:top-24 pt-2">
+            <div className="relative bg-white rounded-3xl border border-slate-200/90 shadow-xl p-6 pt-9 space-y-4">
+              <div className="absolute -top-4 left-5 z-20 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-white text-xs sm:text-sm font-extrabold shadow-lg whitespace-nowrap">
+                <Calendar className="w-4 h-4 text-[#36f1a2]" />
                 <span>Book This Professional</span>
               </div>
 
@@ -796,7 +820,7 @@ export default function ProviderProfilePage() {
                   value={requirement}
                   onChange={(e) => setRequirement(e.target.value)}
                   placeholder="e.g. Fan not working, new wiring, switch repair..."
-                  className="w-full p-3 rounded-xl border border-slate-200 text-xs text-slate-800 bg-slate-50 focus:outline-none focus:border-emerald-600"
+                  className="w-full p-3 rounded-xl border border-emerald-500/50 text-xs font-medium text-slate-950 placeholder:text-slate-800 bg-gradient-to-r from-emerald-400 to-teal-400 focus:outline-none focus:ring-2 focus:ring-emerald-600/40"
                 />
               </div>
 
@@ -876,27 +900,39 @@ export default function ProviderProfilePage() {
               </button>
             </div>
 
-            {/* Green Why Book Card matching Image 4 */}
-            <div className="bg-emerald-50/70 rounded-2xl border border-emerald-200/80 p-5 space-y-2.5">
-              <div className="flex items-center gap-2 font-extrabold text-slate-900 text-sm">
-                <ShieldCheck className="w-5 h-5 text-emerald-600" />
-                <span>Why Book with Punjab Services?</span>
+            {/* Why Book with Punjab Services? (With BG Image + Top-Border Title) */}
+            <div className="relative rounded-2xl border border-emerald-400/35 p-5 pt-8 shadow-xl text-white space-y-2.5 mt-2">
+              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                <img
+                  src={openHandSunsetBg.src}
+                  alt="Why Book with Punjab Services background"
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-[#041418]/70" />
               </div>
-              <ul className="space-y-1.5 text-xs text-slate-700 font-medium">
+
+              <div className="relative z-10 sm:static">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#041418] border border-emerald-400/50 text-white text-xs font-extrabold shadow-lg whitespace-nowrap sm:absolute sm:-top-4 sm:left-5 z-20">
+                  <ShieldCheck className="w-4 h-4 text-[#36f1a2]" />
+                  <span>Why Book with Punjab Services?</span>
+                </div>
+              </div>
+
+              <ul className="relative z-10 space-y-2 text-xs text-emerald-50 font-medium pt-1">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <span>Verified & background checked professional</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#36f1a2] shrink-0" />
+                  <span>Verified &amp; background checked professional</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#36f1a2] shrink-0" />
                   <span>Secure booking and transparent pricing</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#36f1a2] shrink-0" />
                   <span>Real customer reviews and ratings</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#36f1a2] shrink-0" />
                   <span>Dedicated customer support</span>
                 </li>
               </ul>

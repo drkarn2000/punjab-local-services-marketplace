@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { useMarketplace } from '@/context/MarketplaceContext';
 import { CategorySlug, CitySlug, ProviderType } from '@/types/marketplace';
+import { renderCategoryIcon } from '@/data/serviceCatalogConfig';
 
 export default function CategoryListingPage() {
   const params = useParams();
@@ -41,6 +42,7 @@ export default function CategoryListingPage() {
     setSelectedCity,
     categories,
     subcategories,
+    isCategoryAvailableInCity,
     providers,
     updateBookingDraft,
     showToast,
@@ -48,8 +50,9 @@ export default function CategoryListingPage() {
 
   const category =
     categories.find((c) => c.slug === categorySlug) || categories[0];
+  const isAvailableInSelectedCity = isCategoryAvailableInCity(category, selectedCity);
   const categorySubs = subcategories.filter(
-    (s) => s.categorySlug === category.slug
+    (s) => s.categorySlug === category.slug && s.active !== false
   );
 
   // Filter & Sort State
@@ -73,7 +76,11 @@ export default function CategoryListingPage() {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const filteredProviders = useMemo(() => {
-    let list = providers.filter((p) => p.categorySlug === category.slug);
+    let list = providers.filter(
+      (p) =>
+        p.categorySlug === category.slug ||
+        p.categorySlugs?.includes(category.slug)
+    );
 
     // If not "All Punjab Cities", prioritize selectedCity or providers whose serviceAreas include selectedCity
     if (!cityFilterAll) {
@@ -188,13 +195,7 @@ export default function CategoryListingPage() {
     showToast('All category filters cleared.', 'info');
   };
 
-  const categoryIcon: Record<CategorySlug, React.ReactNode> = {
-    electrician: <Zap className="w-8 h-8 text-amber-400 fill-amber-400" />,
-    plumber: <Droplets className="w-8 h-8 text-cyan-300 fill-cyan-300" />,
-    carpenter: <Hammer className="w-8 h-8 text-amber-300" />,
-    'computer-repair': <Laptop className="w-8 h-8 text-cyan-300" />,
-    'mobile-repair': <Smartphone className="w-8 h-8 text-cyan-300" />,
-  };
+  // Category icons rendered via renderCategoryIcon in serviceCatalogConfig.tsx
 
   const cityDisplayName =
     selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1);
@@ -232,7 +233,7 @@ export default function CategoryListingPage() {
 
               <div className="flex items-center gap-3.5">
                 <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-emerald-300/40 flex items-center justify-center shadow-lg">
-                  {categoryIcon[category.slug]}
+                  {renderCategoryIcon(category.iconName || category.slug, 'w-8 h-8')}
                 </div>
                 <div>
                   <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
@@ -271,8 +272,24 @@ export default function CategoryListingPage() {
             <div className="lg:col-span-4 hidden lg:block">
               <div className="rounded-3xl bg-white/10 backdrop-blur-xl border border-emerald-300/35 p-6 shadow-2xl space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full bg-emerald-400 text-slate-950 text-[11px] font-extrabold uppercase tracking-wider">
-                    {cityDisplayName} Live
+                  <span
+                    className={`px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider ${
+                      category.comingSoon
+                        ? 'bg-amber-400 text-slate-950'
+                        : category.bookingsPaused
+                        ? 'bg-rose-400 text-slate-950'
+                        : !isAvailableInSelectedCity
+                        ? 'bg-slate-300 text-slate-950'
+                        : 'bg-emerald-400 text-slate-950'
+                    }`}
+                  >
+                    {category.comingSoon
+                      ? 'Coming Soon'
+                      : category.bookingsPaused
+                      ? 'Bookings Paused'
+                      : !isAvailableInSelectedCity
+                      ? `Not Live in ${cityDisplayName}`
+                      : `${cityDisplayName} Live`}
                   </span>
                   <span className="text-xs font-bold text-emerald-200">
                     {category.providerCount}+ Verified Pros

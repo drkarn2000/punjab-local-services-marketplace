@@ -127,26 +127,24 @@ export default function FaqPage() {
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-3">
+        <div className="space-y-6 pt-3">
           {filteredFaqs.map((faq) => {
             const isOpen = openId === faq.id;
             return (
               <div
                 key={faq.id}
-                className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                className="relative bg-white rounded-2xl border border-slate-200 shadow-sm pt-2"
               >
+                <span className="absolute -top-3 left-5 z-20 px-3.5 py-0.5 rounded-full bg-[#041418] border border-emerald-400/50 text-emerald-300 text-[10px] font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap">
+                  {faq.category}
+                </span>
                 <button
                   onClick={() => setOpenId(isOpen ? '' : faq.id)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-slate-50 transition"
+                  className="w-full p-5 rounded-2xl text-left flex items-center justify-between gap-4 hover:bg-slate-50 transition"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-extrabold uppercase shrink-0">
-                      {faq.category}
-                    </span>
-                    <span className="font-extrabold text-slate-900 text-sm sm:text-base">
-                      {faq.q}
-                    </span>
-                  </div>
+                  <span className="font-extrabold text-slate-900 text-sm sm:text-base">
+                    {faq.q}
+                  </span>
                   <ChevronDown
                     className={`w-5 h-5 text-slate-400 shrink-0 transition ${
                       isOpen ? 'rotate-180 text-emerald-600' : ''

@@ -27,6 +27,7 @@ export function CityHubTemplate({ citySlug }: { citySlug: CitySlug }) {
     cities,
     setCities,
     categories,
+    isCategoryAvailableInCity,
     subcategories,
     providers,
     updateBookingDraft,
@@ -38,6 +39,9 @@ export function CityHubTemplate({ citySlug }: { citySlug: CitySlug }) {
   }, [citySlug, setSelectedCity]);
 
   const city = cities.find((c) => c.slug === citySlug) || cities[0];
+  const cityCategories = categories.filter((cat) =>
+    isCategoryAvailableInCity(cat, city.slug)
+  );
   const cityProviders = providers.filter(
     (p) =>
       p.citySlug === city.slug ||
@@ -102,7 +106,7 @@ export function CityHubTemplate({ citySlug }: { citySlug: CitySlug }) {
                   href="/services"
                   className="px-5 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm"
                 >
-                  Browse All 5 Categories
+                  Browse All {cityCategories.length} Categories
                 </Link>
               </div>
             </div>
@@ -151,8 +155,8 @@ export function CityHubTemplate({ citySlug }: { citySlug: CitySlug }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {categories.map((cat) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {cityCategories.map((cat) => (
               <div
                 key={cat.id}
                 className="bg-white rounded-2xl border border-slate-200 p-5 shadow-card flex flex-col justify-between gap-4 hover:border-emerald-500 transition"

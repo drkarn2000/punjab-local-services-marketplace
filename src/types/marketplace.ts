@@ -2,12 +2,47 @@ export type Language = 'en' | 'pa' | 'hi';
 
 export type CitySlug = 'mohali' | 'chandigarh' | 'hoshiarpur';
 
+export type ServiceVerticalGroup =
+  | 'home-services'
+  | 'computer-tech'
+  | 'vehicle-roadside'
+  | 'other-future';
+
+export type BookingFormTemplateKey =
+  | 'electrician'
+  | 'plumber'
+  | 'home-cleaning'
+  | 'vehicle-repair'
+  | 'computer-mobile'
+  | 'generic';
+
 export type CategorySlug =
   | 'electrician'
   | 'plumber'
   | 'carpenter'
+  | 'home-cleaning'
+  | 'painting'
+  | 'ac-repair'
+  | 'appliance-repair'
+  | 'pest-control'
   | 'computer-repair'
-  | 'mobile-repair';
+  | 'mobile-repair'
+  | 'cctv-installation'
+  | 'vehicle-repair'
+  | 'roadside-assistance'
+  | 'packers-movers'
+  | 'water-purifier-repair'
+  | 'other-local-services'
+  | (string & {});
+
+export interface CategoryFormField {
+  name: string;
+  label: string;
+  type: 'select' | 'text' | 'textarea' | 'number';
+  options?: string[];
+  required?: boolean;
+  placeholder?: string;
+}
 
 export type ProviderType = 'individual' | 'business';
 
@@ -77,11 +112,15 @@ export interface SubcategoryItem {
   }[];
   faqs: { q: string; a: string }[];
   active: boolean;
+  comingSoon?: boolean;
+  bookingsPaused?: boolean;
+  cityAvailability?: CitySlug[];
 }
 
 export interface CategoryItem {
   id: string;
   slug: CategorySlug;
+  verticalGroup?: ServiceVerticalGroup;
   name: Record<Language, string>;
   tagline: Record<Language, string>;
   description: Record<Language, string>;
@@ -93,6 +132,11 @@ export interface CategoryItem {
   providerCount: number;
   displayOrder: number;
   active: boolean;
+  comingSoon?: boolean;
+  bookingsPaused?: boolean;
+  providerRegistrationOpen?: boolean;
+  cityAvailability?: CitySlug[];
+  bookingFormKey?: BookingFormTemplateKey;
   popularTags: string[];
 }
 
@@ -142,6 +186,7 @@ export interface ProviderProfile {
   businessName?: string;
   providerType: ProviderType;
   categorySlug: CategorySlug;
+  categorySlugs?: CategorySlug[];
   categoryName: string;
   subcategories: string[];
   skills: string[];
@@ -265,6 +310,7 @@ export interface BookingRecord {
   problemDescription: string;
   problemImages: string[];
   additionalInstructions?: string;
+  categorySpecificDetails?: Record<string, string>;
   address: CustomerAddress;
   bookingType: 'Instant' | 'Scheduled';
   date: string;

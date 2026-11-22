@@ -29,8 +29,8 @@ function SearchPageContent() {
     language,
     selectedCity,
     setSelectedCity,
-    categories,
-    subcategories,
+    visibleCategories: categories,
+    visibleSubcategories: subcategories,
     providers,
     updateBookingDraft,
     showToast,
@@ -81,7 +81,11 @@ function SearchPageContent() {
   const matchedProviders = useMemo(() => {
     let list = [...providers];
     if (catFilter) {
-      list = list.filter((p) => p.categorySlug === catFilter);
+      list = list.filter(
+        (p) =>
+          p.categorySlug === catFilter ||
+          p.categorySlugs?.includes(catFilter as CategorySlug)
+      );
     }
     if (subFilter) {
       list = list.filter((p) =>

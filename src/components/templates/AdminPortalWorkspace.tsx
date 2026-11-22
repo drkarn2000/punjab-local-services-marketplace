@@ -46,7 +46,12 @@ import {
   BookingStatus,
   CategorySlug,
   CitySlug,
+  ServiceVerticalGroup,
 } from '@/types/marketplace';
+import {
+  getCategoryVerticalGroup,
+  SERVICE_VERTICAL_GROUPS,
+} from '@/data/serviceCatalogConfig';
 
 export type AdminPortalSection =
   | 'dashboard'
@@ -214,6 +219,7 @@ export function AdminPortalWorkspace({
     setCategories,
     subcategories,
     setSubcategories,
+    applyLaunchPreset,
     providers,
     setProviders,
     customers,
@@ -281,6 +287,10 @@ export function AdminPortalWorkspace({
   const [newSubcatParent, setNewSubcatParent] = useState<CategorySlug>('electrician');
   const [newSubcatPrice, setNewSubcatPrice] = useState(299);
   const [newSubcatSeoTitle, setNewSubcatSeoTitle] = useState('');
+
+  const [newCatName, setNewCatName] = useState('');
+  const [newCatGroup, setNewCatGroup] = useState<ServiceVerticalGroup>('home-services');
+  const [newCatFee, setNewCatFee] = useState(249);
 
   const [selectedSubcatForService, setSelectedSubcatForService] = useState<string>(
     subcategories[0]?.id || 'sub-1'
@@ -438,8 +448,8 @@ export function AdminPortalWorkspace({
     {
       group: 'Catalog & Cities',
       items: [
-        { id: 'categories', label: '5 Main Categories', href: '/admin/categories', icon: Layers },
-        { id: 'subcategories', label: '40 Subcategories', href: '/admin/subcategories', icon: Tag },
+        { id: 'categories', label: `Categories (${categories.length})`, href: '/admin/categories', icon: Layers },
+        { id: 'subcategories', label: `Subcategories (${subcategories.length})`, href: '/admin/subcategories', icon: Tag },
         { id: 'services', label: 'Service Rate Cards', href: '/admin/services', icon: Sliders },
         { id: 'cities', label: 'Launch Cities (3)', href: '/admin/cities', icon: Building2 },
         { id: 'service-areas', label: 'Sector / Area Matrix', href: '/admin/service-areas', icon: MapPin },
@@ -1522,13 +1532,124 @@ export function AdminPortalWorkspace({
                  ========================================================= */}
               {section === 'categories' && (
                 <div className="space-y-5">
-                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg">
-                    <h2 className="text-lg font-extrabold text-slate-900">
-                      5 Primary Marketplace Service Categories Studio
-                    </h2>
-                    <p className="text-xs text-slate-500">
-                      Manage main service verticals, trilingual titles (EN/PA/HI), base visiting charges, commission rates, and active visibility.
-                    </p>
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div>
+                      <h2 className="text-lg font-extrabold text-slate-900">
+                        Service Categories, Visibility &amp; City Launch Studio ({categories.length} Categories)
+                      </h2>
+                      <p className="text-xs text-slate-500">
+                        Add/edit/delete categories, toggle Coming Soon or Bookings Paused, control provider registration, and configure city-wise visibility (Mohali, Chandigarh, Hoshiarpur).
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => applyLaunchPreset('mohali-launch')}
+                        className="px-3.5 py-2 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-extrabold border border-amber-300 transition"
+                      >
+                        Mohali Launch Mode (Electrician &amp; Plumber Only)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => applyLaunchPreset('full-marketplace')}
+                        className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold shadow transition"
+                      >
+                        Full Marketplace (All {categories.length} Live)
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Create New Category Card */}
+                  <div className="bg-white rounded-2xl border border-emerald-200 p-5 shadow-lg space-y-3">
+                    <h3 className="font-extrabold text-sm text-emerald-900">
+                      + Add New Service Category (Frontend Demo)
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+                      <input
+                        type="text"
+                        value={newCatName}
+                        onChange={(e) => setNewCatName(e.target.value)}
+                        placeholder="Category Name (e.g. Solar Panel Care)"
+                        className="px-3 py-2.5 rounded-xl border border-slate-300"
+                      />
+                      <select
+                        value={newCatGroup}
+                        onChange={(e) =>
+                          setNewCatGroup(e.target.value as ServiceVerticalGroup)
+                        }
+                        className="px-3 py-2.5 rounded-xl border border-slate-300 font-bold"
+                      >
+                        {SERVICE_VERTICAL_GROUPS.map((g) => (
+                          <option key={g.id} value={g.id}>
+                            {g.shortTitle}
+                          </option>
+                        ))}
+                      </select>
+                      <input
+                        type="number"
+                        value={newCatFee}
+                        onChange={(e) => setNewCatFee(Number(e.target.value))}
+                        placeholder="Visiting Fee (₹)"
+                        className="px-3 py-2.5 rounded-xl border border-slate-300 font-bold"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (!newCatName.trim()) {
+                            showToast('Please enter a category name.', 'warning');
+                            return;
+                          }
+                          const slug = newCatName
+                            .toLowerCase()
+                            .replace(/[^a-z0-9]+/g, '-')
+                            .replace(/^-|-$/g, '');
+                          setCategories((prev) => [
+                            {
+                              id: `cat-${Date.now()}`,
+                              slug,
+                              verticalGroup: newCatGroup,
+                              bookingFormKey: 'generic',
+                              cityAvailability: ['mohali', 'chandigarh', 'hoshiarpur'],
+                              providerRegistrationOpen: true,
+                              comingSoon: false,
+                              bookingsPaused: false,
+                              name: {
+                                en: newCatName.trim(),
+                                pa: newCatName.trim(),
+                                hi: newCatName.trim(),
+                              },
+                              tagline: {
+                                en: `Verified ${newCatName.trim()} experts at your doorstep`,
+                                pa: `${newCatName.trim()} ਸੇਵਾ`,
+                                hi: `${newCatName.trim()} सेवा`,
+                              },
+                              description: {
+                                en: `Trusted doorstep ${newCatName.trim()} professionals across Mohali, Chandigarh & Hoshiarpur.`,
+                                pa: `${newCatName.trim()} ਸੇਵਾਵਾਂ।`,
+                                hi: `${newCatName.trim()} सेवाएं।`,
+                              },
+                              iconName: 'Wrench',
+                              heroImage:
+                                'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80',
+                              cardImage:
+                                'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80',
+                              baseVisitingFee: newCatFee,
+                              commissionPercent: 12,
+                              providerCount: 10,
+                              displayOrder: prev.length + 1,
+                              active: true,
+                              popularTags: [newCatName.trim()],
+                            },
+                            ...prev,
+                          ]);
+                          setNewCatName('');
+                          showToast(`Added new category "${newCatName}"!`, 'success');
+                        }}
+                        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold shadow-md"
+                      >
+                        + Add Category
+                      </button>
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -1540,6 +1661,14 @@ export function AdminPortalWorkspace({
                         'from-violet-600 to-purple-700',
                         'from-emerald-500 to-teal-700',
                       ];
+                      const catCities = cat.cityAvailability || [
+                        'mohali',
+                        'chandigarh',
+                        'hoshiarpur',
+                      ];
+                      const grpMeta = SERVICE_VERTICAL_GROUPS.find(
+                        (g) => g.id === getCategoryVerticalGroup(cat)
+                      );
                       return (
                         <div
                           key={cat.id}
@@ -1548,34 +1677,66 @@ export function AdminPortalWorkspace({
                           <div
                             className={`p-4 text-white bg-gradient-to-r ${
                               cardGrads[idx % cardGrads.length]
-                            } flex items-center justify-between`}
+                            } flex items-center justify-between gap-2`}
                           >
-                            <div>
+                            <div className="min-w-0">
                               <span className="text-[10px] font-extrabold uppercase tracking-wider opacity-85">
-                                Display Order #{cat.displayOrder}
+                                {grpMeta?.shortTitle || 'Service'} • #{cat.displayOrder}
                               </span>
-                              <h3 className="text-base font-extrabold">{cat.name.en}</h3>
-                              <div className="text-xs opacity-90">
+                              <h3 className="text-base font-extrabold truncate">
+                                {cat.name.en}
+                              </h3>
+                              <div className="text-[11px] opacity-90 truncate">
                                 {cat.name.pa} • {cat.name.hi}
                               </div>
                             </div>
                             <span
-                              className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold ${
-                                cat.active
-                                  ? 'bg-emerald-300 text-slate-950'
-                                  : 'bg-rose-300 text-slate-950'
+                              className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold shrink-0 ${
+                                !cat.active
+                                  ? 'bg-rose-300 text-slate-950'
+                                  : cat.comingSoon
+                                  ? 'bg-amber-300 text-slate-950'
+                                  : cat.bookingsPaused
+                                  ? 'bg-orange-300 text-slate-950'
+                                  : 'bg-emerald-300 text-slate-950'
                               }`}
                             >
-                              {cat.active ? 'Active' : 'Archived'}
+                              {!cat.active
+                                ? 'Hidden'
+                                : cat.comingSoon
+                                ? 'Coming Soon'
+                                : cat.bookingsPaused
+                                ? 'Paused'
+                                : 'Live'}
                             </span>
                           </div>
 
                           <div className="p-4 space-y-3 text-xs">
-                            <p className="text-slate-600">{cat.tagline.en}</p>
+                            <div>
+                              <label className="text-[10px] font-bold text-slate-500 block">
+                                Category Title (Editable)
+                              </label>
+                              <input
+                                type="text"
+                                value={cat.name.en}
+                                onChange={(e) => {
+                                  const val = e.target.value;
+                                  setCategories((prev) =>
+                                    prev.map((c) =>
+                                      c.id === cat.id
+                                        ? { ...c, name: { ...c.name, en: val } }
+                                        : c
+                                    )
+                                  );
+                                }}
+                                className="w-full mt-0.5 px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 font-bold text-slate-900"
+                              />
+                            </div>
+
                             <div className="grid grid-cols-2 gap-2">
-                              <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                              <div className="p-2 rounded-xl bg-emerald-50 border border-emerald-200">
                                 <label className="text-[10px] font-bold text-emerald-700 block">
-                                  Base Visiting Fee (₹)
+                                  Visit Fee (₹)
                                 </label>
                                 <input
                                   type="number"
@@ -1591,7 +1752,7 @@ export function AdminPortalWorkspace({
                                   className="w-full mt-1 px-2 py-1 rounded bg-white border border-emerald-300 font-extrabold text-slate-900"
                                 />
                               </div>
-                              <div className="p-2.5 rounded-xl bg-purple-50 border border-purple-200">
+                              <div className="p-2 rounded-xl bg-purple-50 border border-purple-200">
                                 <label className="text-[10px] font-bold text-purple-700 block">
                                   Commission (%)
                                 </label>
@@ -1611,26 +1772,151 @@ export function AdminPortalWorkspace({
                               </div>
                             </div>
 
-                            <div className="flex gap-2 pt-2">
+                            {/* City-wise visibility toggles */}
+                            <div className="space-y-1.5 pt-1">
+                              <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
+                                City-Wise Visibility
+                              </div>
+                              <div className="flex flex-wrap gap-1.5">
+                                {(['mohali', 'chandigarh', 'hoshiarpur'] as CitySlug[]).map(
+                                  (citySlug) => {
+                                    const enabled = catCities.includes(citySlug);
+                                    return (
+                                      <button
+                                        key={citySlug}
+                                        type="button"
+                                        onClick={() => {
+                                          setCategories((prev) =>
+                                            prev.map((c) => {
+                                              if (c.id !== cat.id) return c;
+                                              const curr = c.cityAvailability || [
+                                                'mohali',
+                                                'chandigarh',
+                                                'hoshiarpur',
+                                              ];
+                                              const next = curr.includes(citySlug)
+                                                ? curr.filter((x) => x !== citySlug)
+                                                : [...curr, citySlug];
+                                              return { ...c, cityAvailability: next };
+                                            })
+                                          );
+                                        }}
+                                        className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold capitalize border transition ${
+                                          enabled
+                                            ? 'bg-emerald-600 text-white border-emerald-600'
+                                            : 'bg-slate-100 text-slate-500 border-slate-300 line-through'
+                                        }`}
+                                      >
+                                        {citySlug}
+                                      </button>
+                                    );
+                                  }
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Status & Registration Controls */}
+                            <div className="grid grid-cols-2 gap-1.5 pt-1">
                               <button
+                                type="button"
+                                onClick={() => {
+                                  setCategories((prev) =>
+                                    prev.map((c) =>
+                                      c.id === cat.id
+                                        ? { ...c, comingSoon: !c.comingSoon }
+                                        : c
+                                    )
+                                  );
+                                }}
+                                className={`py-1.5 px-2 rounded-lg text-[10px] font-extrabold border ${
+                                  cat.comingSoon
+                                    ? 'bg-amber-100 text-amber-900 border-amber-300'
+                                    : 'bg-slate-50 text-slate-700 border-slate-200'
+                                }`}
+                              >
+                                {cat.comingSoon ? 'Coming Soon: ON' : 'Coming Soon: OFF'}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setCategories((prev) =>
+                                    prev.map((c) =>
+                                      c.id === cat.id
+                                        ? { ...c, bookingsPaused: !c.bookingsPaused }
+                                        : c
+                                    )
+                                  );
+                                }}
+                                className={`py-1.5 px-2 rounded-lg text-[10px] font-extrabold border ${
+                                  cat.bookingsPaused
+                                    ? 'bg-orange-100 text-orange-900 border-orange-300'
+                                    : 'bg-slate-50 text-slate-700 border-slate-200'
+                                }`}
+                              >
+                                {cat.bookingsPaused ? 'Bookings: Paused' : 'Bookings: Open'}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setCategories((prev) =>
+                                    prev.map((c) =>
+                                      c.id === cat.id
+                                        ? {
+                                            ...c,
+                                            providerRegistrationOpen:
+                                              c.providerRegistrationOpen === false
+                                                ? true
+                                                : false,
+                                          }
+                                        : c
+                                    )
+                                  );
+                                }}
+                                className={`col-span-2 py-1.5 px-2 rounded-lg text-[10px] font-extrabold border ${
+                                  cat.providerRegistrationOpen === false
+                                    ? 'bg-rose-50 text-rose-800 border-rose-200'
+                                    : 'bg-teal-50 text-teal-800 border-teal-200'
+                                }`}
+                              >
+                                {cat.providerRegistrationOpen === false
+                                  ? 'Provider Registration: Closed'
+                                  : 'Provider Registration: Open'}
+                              </button>
+                            </div>
+
+                            <div className="flex gap-1.5 pt-2">
+                              <button
+                                type="button"
                                 onClick={() => {
                                   setCategories((prev) =>
                                     prev.map((c) =>
                                       c.id === cat.id ? { ...c, active: !c.active } : c
                                     )
                                   );
-                                  showToast(`Toggled status for ${cat.name.en}`, 'info');
+                                  showToast(`Toggled visibility for ${cat.name.en}`, 'info');
                                 }}
                                 className="flex-1 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold"
                               >
-                                {cat.active ? 'Archive Category' : 'Activate Category'}
+                                {cat.active ? 'Hide Category' : 'Show Category'}
                               </button>
                               <Link
                                 href={`/services/${cat.slug}`}
-                                className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold"
+                                className="px-2.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold"
                               >
-                                View Live →
+                                View
                               </Link>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setCategories((prev) =>
+                                    prev.filter((c) => c.id !== cat.id)
+                                  );
+                                  showToast(`Deleted "${cat.name.en}" (demo).`, 'info');
+                                }}
+                                className="px-2.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold"
+                              >
+                                Delete
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -1792,16 +2078,29 @@ export function AdminPortalWorkspace({
                                   /services/{sub.categorySlug}/{sub.slug}
                                 </td>
                                 <td className="p-3.5 font-extrabold text-emerald-700">
-                                  ₹{sub.startingPrice}
+                                  <input
+                                    type="number"
+                                    value={sub.startingPrice}
+                                    onChange={(e) => {
+                                      const val = Number(e.target.value);
+                                      setSubcategories((prev) =>
+                                        prev.map((s) =>
+                                          s.id === sub.id ? { ...s, startingPrice: val } : s
+                                        )
+                                      );
+                                    }}
+                                    className="w-20 px-2 py-1 rounded-lg border border-slate-300 bg-white text-emerald-800 font-extrabold"
+                                  />
                                 </td>
-                                <td className="p-3.5 text-right space-x-2">
+                                <td className="p-3.5 text-right space-x-1.5 whitespace-nowrap">
                                   <Link
                                     href={`/services/${sub.categorySlug}/${sub.slug}`}
                                     className="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold"
                                   >
-                                    Open Page →
+                                    Open
                                   </Link>
                                   <button
+                                    type="button"
                                     onClick={() => {
                                       setSubcategories((prev) =>
                                         prev.map((s) =>
@@ -1816,7 +2115,19 @@ export function AdminPortalWorkspace({
                                         : 'bg-rose-100 text-rose-800'
                                     }`}
                                   >
-                                    {sub.active ? 'Active' : 'Archived'}
+                                    {sub.active ? 'Enabled' : 'Disabled'}
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setSubcategories((prev) =>
+                                        prev.filter((s) => s.id !== sub.id)
+                                      );
+                                      showToast(`Deleted "${sub.name.en}" (demo).`, 'info');
+                                    }}
+                                    className="px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold"
+                                  >
+                                    Delete
                                   </button>
                                 </td>
                               </tr>

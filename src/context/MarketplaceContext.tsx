@@ -45,6 +45,10 @@ import {
   SUBCATEGORIES,
 } from '@/data/mockData';
 import { INITIAL_TRANSLATION_ENTRIES, translateKey } from '@/data/translations';
+import {
+  isCategoryVisibleInCity,
+  isSubcategoryVisibleInCity,
+} from '@/data/serviceCatalogConfig';
 
 export interface ToastMessage {
   id: string;
@@ -59,6 +63,7 @@ export interface BookingDraft {
   problemDescription: string;
   problemImages: string[];
   additionalInstructions: string;
+  categorySpecificDetails?: Record<string, string>;
   addressId: string;
   bookingType: 'Instant' | 'Scheduled';
   date: string;
@@ -91,6 +96,11 @@ interface MarketplaceContextType {
   setCategories: React.Dispatch<React.SetStateAction<CategoryItem[]>>;
   subcategories: SubcategoryItem[];
   setSubcategories: React.Dispatch<React.SetStateAction<SubcategoryItem[]>>;
+  visibleCategories: CategoryItem[];
+  visibleSubcategories: SubcategoryItem[];
+  isCategoryAvailableInCity: (cat: CategoryItem, city?: CitySlug) => boolean;
+  isSubcategoryAvailableInCity: (sub: SubcategoryItem, city?: CitySlug) => boolean;
+  applyLaunchPreset: (mode: 'mohali-launch' | 'full-marketplace') => void;
   providers: ProviderProfile[];
   setProviders: React.Dispatch<React.SetStateAction<ProviderProfile[]>>;
   customers: CustomerProfile[];
@@ -178,6 +188,7 @@ const DEFAULT_DRAFT: BookingDraft = {
     'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=400&q=80',
   ],
   additionalInstructions: 'Please carry multimeter and 32A MCB.',
+  categorySpecificDetails: {},
   addressId: 'addr-1',
   bookingType: 'Scheduled',
   date: '2026-11-14',
@@ -278,6 +289,75 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
     providers.find((p) => p.id === activeProviderId) || providers[0];
   const currentCustomer = customers[0];
 
+  const isCategoryAvailableInCity = (
+    cat: CategoryItem,
+    city: CitySlug = selectedCity
+  ) => isCategoryVisibleInCity(cat, city);
+
+  const isSubcategoryAvailableInCity = (
+    sub: SubcategoryItem,
+    city: CitySlug = selectedCity
+  ) => {
+    const parent = categories.find((c) => c.slug === sub.categorySlug);
+    return isSubcategoryVisibleInCity(sub, parent, city);
+  };
+
+  const visibleCategories = categories
+    .filter((c) => isCategoryVisibleInCity(c, selectedCity))
+    .sort((a, b) => a.displayOrder - b.displayOrder);
+
+  const visibleSubcategories = subcategories.filter((s) =>
+    isSubcategoryAvailableInCity(s, selectedCity)
+  );
+
+  const applyLaunchPreset = (mode: 'mohali-launch' | 'full-marketplace') => {
+    if (mode === 'mohali-launch') {
+      setCategories((prev) =>
+        prev.map((c) =>
+          c.slug === 'electrician' || c.slug === 'plumber'
+            ? {
+                ...c,
+                active: true,
+                comingSoon: false,
+                cityAvailability: ['mohali', 'chandigarh', 'hoshiarpur'],
+              }
+            : {
+                ...c,
+                cityAvailability: (c.cityAvailability || ['mohali', 'chandigarh', 'hoshiarpur']).filter(
+                  (ct) => ct !== 'mohali'
+                ),
+              }
+        )
+      );
+      showToast(
+        'Mohali Initial Launch Mode enabled: Only Electrician & Plumber visible in Mohali; other categories remain hidden in Mohali.',
+        'info'
+      );
+    } else {
+      setCategories((prev) =>
+        prev.map((c) => ({
+          ...c,
+          active: true,
+          comingSoon: false,
+          bookingsPaused: false,
+          cityAvailability: ['mohali', 'chandigarh', 'hoshiarpur'],
+        }))
+      );
+      setSubcategories((prev) =>
+        prev.map((s) => ({
+          ...s,
+          active: true,
+          comingSoon: false,
+          bookingsPaused: false,
+        }))
+      );
+      showToast(
+        'Full Marketplace Mode enabled: All 16 categories & 70+ services are live across Mohali, Chandigarh & Hoshiarpur.',
+        'success'
+      );
+    }
+  };
+
   const updateBookingDraft = (partial: Partial<BookingDraft>) => {
     setBookingDraft((prev) => ({ ...prev, ...partial }));
   };
@@ -319,6 +399,7 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
       problemDescription: bookingDraft.problemDescription,
       problemImages: bookingDraft.problemImages,
       additionalInstructions: bookingDraft.additionalInstructions,
+      categorySpecificDetails: bookingDraft.categorySpecificDetails,
       address,
       bookingType: bookingDraft.bookingType,
       date: bookingDraft.date,
@@ -1081,6 +1162,11 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
         setCategories,
         subcategories,
         setSubcategories,
+        visibleCategories,
+        visibleSubcategories,
+        isCategoryAvailableInCity,
+        isSubcategoryAvailableInCity,
+        applyLaunchPreset,
         providers,
         setProviders,
         customers,

@@ -8,11 +8,14 @@ import {
   CheckCircle2,
   KeyRound,
   Mail,
+  MapPin,
   Phone,
   RefreshCcw,
   ShieldCheck,
+  Zap,
 } from 'lucide-react';
 import { useMarketplace } from '@/context/MarketplaceContext';
+import loginBg from './image/Teal Luxury Home and Chandigarh Monument Scene.png';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -70,23 +73,77 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f0f5ff] py-12 px-4 sm:px-6 flex items-center justify-center">
-      <div className="max-w-md w-full bg-white rounded-3xl border border-emerald-100 shadow-2xl p-6 sm:p-8 space-y-6">
+    <div className="relative min-h-[calc(100vh-5rem)] py-10 px-4 sm:px-6 flex flex-col lg:flex-row items-center justify-center gap-6 overflow-hidden">
+      {/* Full-Screen Cinematic Background Image */}
+      <img
+        src={loginBg.src}
+        alt="Teal Luxury Home and Chandigarh Monument Scene"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#031618]/70 via-[#031618]/20 to-[#031618]/30 pointer-events-none" />
+
+      {/* Left Bottom Highlights Card (Desktop Floating, Mobile Stacked) */}
+      <div className="order-2 lg:order-none lg:absolute lg:bottom-8 lg:left-8 z-10 w-full max-w-md lg:max-w-[290px] rounded-2xl bg-[#041418]/75 backdrop-blur-xl border border-emerald-400/35 p-4 sm:p-5 text-white shadow-2xl space-y-3.5">
+        <div className="flex items-start gap-3">
+          <div className="w-9 h-9 rounded-full bg-emerald-400/15 border border-emerald-400/40 text-[#36f1a2] flex items-center justify-center shrink-0">
+            <Zap className="w-4 h-4" />
+          </div>
+          <div>
+            <div className="text-xs font-extrabold text-white">
+              Book Local Services
+            </div>
+            <div className="text-[11px] text-emerald-100/80">
+              Electrician, Plumber, Cleaning &amp; more
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-3">
+          <div className="w-9 h-9 rounded-full bg-emerald-400/15 border border-emerald-400/40 text-[#36f1a2] flex items-center justify-center shrink-0">
+            <ShieldCheck className="w-4 h-4" />
+          </div>
+          <div>
+            <div className="text-xs font-extrabold text-white">
+              Verified Professionals
+            </div>
+            <div className="text-[11px] text-emerald-100/80">
+              Trained, trusted &amp; background checked
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-3">
+          <div className="w-9 h-9 rounded-full bg-emerald-400/15 border border-emerald-400/40 text-[#36f1a2] flex items-center justify-center shrink-0">
+            <MapPin className="w-4 h-4" />
+          </div>
+          <div>
+            <div className="text-xs font-extrabold text-white">
+              Your Local Network
+            </div>
+            <div className="text-[11px] text-emerald-100/80">
+              Serving Mohali, Chandigarh &amp; Hoshiarpur
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Centered Glass-White Login Card */}
+      <div className="order-1 lg:order-none relative z-20 max-w-md w-full bg-white/95 backdrop-blur-xl rounded-3xl border border-white/70 shadow-[0_24px_70px_rgba(4,20,24,0.55)] p-6 sm:p-8 space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center mx-auto shadow-md">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center mx-auto shadow-lg">
             <KeyRound className="w-6 h-6" />
           </div>
-          <h1 className="text-2xl font-extrabold text-slate-900">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
             Welcome Back
           </h1>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-500 leading-relaxed">
             Login to manage your bookings, estimates, and saved addresses across
-            Mohali, Chandigarh & Hoshiarpur.
+            Mohali, Chandigarh &amp; Hoshiarpur.
           </p>
         </div>
 
         {/* Toggle Phone OTP vs Email Login */}
-        <div className="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-2xl border border-slate-200">
+        <div className="grid grid-cols-2 gap-1.5 p-1 bg-slate-100 rounded-full border border-slate-200">
           <button
             type="button"
             onClick={() => {
@@ -94,13 +151,13 @@ export default function LoginPage() {
               setOtpSent(false);
               setError(null);
             }}
-            className={`py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition ${
+            className={`py-2.5 rounded-full text-xs font-extrabold flex items-center justify-center gap-1.5 transition ${
               mode === 'phone'
-                ? 'bg-emerald-600 text-white shadow'
-                : 'text-slate-700'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow'
+                : 'text-slate-700 hover:text-slate-950'
             }`}
           >
-            <Phone className="w-3.5 h-3.5" /> Phone & OTP
+            <Phone className="w-3.5 h-3.5" /> Phone &amp; OTP
           </button>
           <button
             type="button"
@@ -109,10 +166,10 @@ export default function LoginPage() {
               setOtpSent(false);
               setError(null);
             }}
-            className={`py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition ${
+            className={`py-2.5 rounded-full text-xs font-extrabold flex items-center justify-center gap-1.5 transition ${
               mode === 'email'
-                ? 'bg-emerald-600 text-white shadow'
-                : 'text-slate-700'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow'
+                : 'text-slate-700 hover:text-slate-950'
             }`}
           >
             <Mail className="w-3.5 h-3.5" /> Email Login
@@ -129,11 +186,11 @@ export default function LoginPage() {
           <form onSubmit={handleRequestOtp} className="space-y-4">
             {mode === 'phone' ? (
               <div>
-                <label className="text-xs font-bold text-slate-800 block mb-1">
+                <label className="text-xs font-bold text-slate-800 block mb-1.5">
                   Mobile Number
                 </label>
-                <div className="flex items-center rounded-xl border border-slate-200 bg-slate-50 overflow-hidden">
-                  <span className="px-3 py-2.5 bg-slate-200/70 text-xs font-bold text-slate-700">
+                <div className="flex items-center rounded-xl border border-slate-200 bg-slate-50 focus-within:bg-white focus-within:border-emerald-600 overflow-hidden transition">
+                  <span className="px-3.5 py-3 bg-slate-200/70 text-xs font-extrabold text-slate-700">
                     +91
                   </span>
                   <input
@@ -142,31 +199,31 @@ export default function LoginPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="Enter 10-digit mobile number"
-                    className="w-full px-3 py-2.5 text-sm font-semibold bg-transparent focus:outline-none"
+                    className="w-full px-3 py-3 text-sm font-semibold bg-transparent focus:outline-none"
                   />
                 </div>
               </div>
             ) : (
               <>
                 <div>
-                  <label className="text-xs font-bold text-slate-800 block mb-1">
+                  <label className="text-xs font-bold text-slate-800 block mb-1.5">
                     Email Address
                   </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-emerald-600"
                   />
                 </div>
                 <div>
-                  <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center justify-between mb-1.5">
                     <label className="text-xs font-bold text-slate-800">
                       Password
                     </label>
                     <Link
                       href="/forgot-password"
-                      className="text-xs font-bold text-emerald-600 hover:underline"
+                      className="text-xs font-bold text-emerald-700 hover:underline"
                     >
                       Forgot Password?
                     </Link>
@@ -175,7 +232,7 @@ export default function LoginPage() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-emerald-600"
                   />
                 </div>
               </>
@@ -184,7 +241,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-full bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 text-white font-extrabold text-sm shadow-lg transition flex items-center justify-center gap-2"
             >
               <span>
                 {loading
@@ -207,7 +264,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-800 block mb-1">
+              <label className="text-xs font-bold text-slate-800 block mb-1.5">
                 Enter 6-Digit OTP
               </label>
               <input
@@ -225,7 +282,7 @@ export default function LoginPage() {
                 onClick={() =>
                   showToast('Demo OTP 123456 resent successfully!', 'info')
                 }
-                className="font-bold text-emerald-600 hover:underline inline-flex items-center gap-1"
+                className="font-bold text-emerald-700 hover:underline inline-flex items-center gap-1"
               >
                 <RefreshCcw className="w-3.5 h-3.5" /> Resend OTP
               </button>
@@ -241,19 +298,27 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition"
+              className="w-full py-3.5 rounded-full bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 text-white font-extrabold text-sm shadow-lg transition"
             >
               {loading ? 'Verifying OTP...' : 'Verify OTP & Login'}
             </button>
           </form>
         )}
 
-        <div className="text-center text-xs text-slate-500 space-y-2 pt-2 border-t border-slate-100">
+        <div className="relative flex items-center justify-center">
+          <div className="border-t border-slate-200 w-full" />
+          <span className="px-3 bg-white text-[11px] font-bold text-slate-400">
+            or
+          </span>
+          <div className="border-t border-slate-200 w-full" />
+        </div>
+
+        <div className="text-center text-xs text-slate-500 space-y-2">
           <div>
             New to Punjab Services?{' '}
             <Link
               href="/register"
-              className="font-bold text-emerald-600 hover:underline"
+              className="font-extrabold text-emerald-700 hover:underline"
             >
               Create an Account
             </Link>
@@ -263,7 +328,7 @@ export default function LoginPage() {
             <Link href="/terms-and-conditions" className="underline">
               Terms
             </Link>{' '}
-            &{' '}
+            &amp;{' '}
             <Link href="/privacy-policy" className="underline">
               Privacy Policy
             </Link>

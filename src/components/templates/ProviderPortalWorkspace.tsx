@@ -79,6 +79,8 @@ export function ProviderPortalWorkspace({
     language,
     setLanguage,
     providers,
+    categories,
+    subcategories,
     activeProviderId,
     setActiveProviderId,
     currentProvider,
@@ -107,6 +109,12 @@ export function ProviderPortalWorkspace({
   const [regPhone, setRegPhone] = useState('');
   const [regEmail, setRegEmail] = useState('');
   const [regCat, setRegCat] = useState<CategorySlug>('electrician');
+  const [regCategories, setRegCategories] = useState<CategorySlug[]>(['electrician']);
+  const [regSubcategories, setRegSubcategories] = useState<string[]>([
+    'Wiring & Rewiring',
+    'Fan Installation & Repair',
+  ]);
+  const [regAvailableToday, setRegAvailableToday] = useState<boolean>(true);
   const [regCity, setRegCity] = useState<CitySlug>('mohali');
   const [regLocality, setRegLocality] = useState('Phase 7, Mohali');
   const [regRadius, setRegRadius] = useState(15);
@@ -760,16 +768,27 @@ export function ProviderPortalWorkspace({
                   <select
                     aria-label="Service Category"
                     value={regCat}
-                    onChange={(e) => setRegCat(e.target.value as CategorySlug)}
+                    onChange={(e) => {
+                      const val = e.target.value as CategorySlug;
+                      setRegCat(val);
+                      if (!regCategories.includes(val)) {
+                        setRegCategories((prev) => [val, ...prev]);
+                      }
+                    }}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold bg-slate-50"
                   >
-                    <option value="electrician">Electrician</option>
-                    <option value="plumber">Plumber</option>
-                    <option value="carpenter">Carpenter</option>
-                    <option value="computer-repair">
-                      Computer & Laptop Repair
-                    </option>
-                    <option value="mobile-repair">Mobile Repair</option>
+                    {categories.map((cat) => (
+                      <option
+                        key={cat.id}
+                        value={cat.slug}
+                        disabled={cat.providerRegistrationOpen === false}
+                      >
+                        {cat.name.en}
+                        {cat.providerRegistrationOpen === false
+                          ? ' (Registration Closed)'
+                          : ''}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -840,9 +859,94 @@ export function ProviderPortalWorkspace({
                 </div>
               </div>
 
+              {/* Multi-Category & Subcategory Skills Selection */}
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-4">
+                <div>
+                  <label className="text-xs font-extrabold text-slate-900 block">
+                    Service Categories You Offer (Multi-Select) *
+                  </label>
+                  <p className="text-[11px] text-slate-500 mt-0.5">
+                    Select one or multiple categories where registration is open.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-2.5">
+                    {categories.map((cat) => {
+                      const isClosed = cat.providerRegistrationOpen === false;
+                      const selected = regCategories.includes(cat.slug);
+                      return (
+                        <button
+                          key={cat.id}
+                          type="button"
+                          disabled={isClosed}
+                          onClick={() => {
+                            setRegCategories((prev) =>
+                              prev.includes(cat.slug)
+                                ? prev.filter((s) => s !== cat.slug)
+                                : [...prev, cat.slug]
+                            );
+                          }}
+                          className={`px-3 py-1.5 rounded-full text-xs font-bold border transition ${
+                            isClosed
+                              ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed'
+                              : selected
+                              ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
+                              : 'bg-white text-slate-700 border-slate-300 hover:border-emerald-500'
+                          }`}
+                        >
+                          {cat.name.en}
+                          {isClosed ? ' (Closed)' : ''}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-xs font-extrabold text-slate-900 block">
+                    Skills &amp; Specialized Subcategories ({regSubcategories.length} selected)
+                  </label>
+                  <div className="flex flex-wrap gap-1.5 mt-2 max-h-36 overflow-y-auto pr-1">
+                    {subcategories
+                      .filter((sub) => regCategories.includes(sub.categorySlug))
+                      .map((sub) => {
+                        const selected = regSubcategories.includes(sub.name.en);
+                        return (
+                          <button
+                            key={sub.id}
+                            type="button"
+                            onClick={() =>
+                              setRegSubcategories((prev) =>
+                                prev.includes(sub.name.en)
+                                  ? prev.filter((x) => x !== sub.name.en)
+                                  : [...prev, sub.name.en]
+                              )
+                            }
+                            className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition ${
+                              selected
+                                ? 'bg-teal-600 text-white border-teal-600'
+                                : 'bg-white text-slate-700 border-slate-200 hover:border-teal-400'
+                            }`}
+                          >
+                            {sub.name.en}
+                          </button>
+                        );
+                      })}
+                  </div>
+                </div>
+
+                <label className="inline-flex items-center gap-2 text-xs font-bold text-slate-800 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={regAvailableToday}
+                    onChange={(e) => setRegAvailableToday(e.target.checked)}
+                    className="rounded accent-emerald-600 w-4 h-4"
+                  />
+                  <span>Available for Instant &amp; Same-Day Bookings</span>
+                </label>
+              </div>
+
               <div>
                 <label className="text-xs font-bold text-slate-800 block mb-1">
-                  Working Hours & Short Introduction
+                  Working Hours &amp; Short Introduction
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <input
@@ -892,6 +996,12 @@ export function ProviderPortalWorkspace({
               <button
                 type="button"
                 onClick={() => {
+                  if (regCategories.length === 0) {
+                    showToast('Please select at least one service category.', 'warning');
+                    return;
+                  }
+                  const primarySlug = regCategories[0] || regCat;
+                  const primaryCatObj = categories.find((c) => c.slug === primarySlug);
                   registerProvider({
                     name:
                       regBusinessName.trim() ||
@@ -899,7 +1009,14 @@ export function ProviderPortalWorkspace({
                       'Sukhwinder Electricals',
                     businessName: regBusinessName.trim() || undefined,
                     providerType: regType,
-                    categorySlug: regCat,
+                    categorySlug: primarySlug,
+                    categorySlugs: regCategories,
+                    categoryName: primaryCatObj?.name.en || 'Service Professional',
+                    subcategories:
+                      regSubcategories.length > 0
+                        ? regSubcategories
+                        : [primaryCatObj?.name.en || 'General Service'],
+                    skills: regSubcategories,
                     citySlug: regCity,
                     cityName:
                       regCity === 'mohali'
@@ -907,6 +1024,11 @@ export function ProviderPortalWorkspace({
                         : regCity === 'chandigarh'
                         ? 'Chandigarh'
                         : 'Hoshiarpur',
+                    serviceAreas: regLocality
+                      .split(',')
+                      .map((s) => s.trim())
+                      .filter(Boolean),
+                    availableToday: regAvailableToday,
                     experienceYears: regExp,
                     serviceRadiusKm: regRadius,
                     visitingCharge: regVisitingFee,

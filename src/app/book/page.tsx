@@ -32,11 +32,16 @@ import {
 } from 'lucide-react';
 import { useMarketplace } from '@/context/MarketplaceContext';
 import { CategorySlug, CitySlug } from '@/types/marketplace';
+import {
+  getBookingFormTemplate,
+  renderCategoryIcon,
+} from '@/data/serviceCatalogConfig';
 
 export default function BookingWizardPage() {
   const router = useRouter();
   const {
     categories,
+    visibleCategories,
     subcategories,
     providers,
     currentCustomer,
@@ -70,14 +75,19 @@ export default function BookingWizardPage() {
 
   const currentCategory =
     categories.find((c) => c.slug === bookingDraft.categorySlug) ||
+    visibleCategories[0] ||
     categories[0];
 
+  const formTemplate = getBookingFormTemplate(currentCategory);
+
   const categoryServiceTypes = subcategories
-    .filter((s) => s.categorySlug === currentCategory.slug)
-    .slice(0, 6);
+    .filter((s) => s.categorySlug === currentCategory.slug && s.active !== false)
+    .slice(0, 9);
 
   const categoryProviders = providers.filter(
-    (p) => p.categorySlug === currentCategory.slug
+    (p) =>
+      p.categorySlug === currentCategory.slug ||
+      p.categorySlugs?.includes(currentCategory.slug)
   );
 
   const selectedProvider =
@@ -278,12 +288,22 @@ export default function BookingWizardPage() {
               {/* Selected Category Banner with Change button */}
               <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-100/80 text-amber-600 flex items-center justify-center shrink-0">
-                    <Zap className="w-6 h-6 fill-amber-500" />
+                  <div className="w-12 h-12 rounded-2xl bg-[#041418] text-emerald-300 flex items-center justify-center shrink-0 shadow">
+                    {renderCategoryIcon(currentCategory.iconName || currentCategory.slug, 'w-6 h-6')}
                   </div>
                   <div>
-                    <div className="text-lg font-extrabold text-slate-900">
-                      {currentCategory.name.en}
+                    <div className="text-lg font-extrabold text-slate-900 flex items-center gap-2 flex-wrap">
+                      <span>{currentCategory.name.en}</span>
+                      {currentCategory.comingSoon && (
+                        <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-extrabold uppercase">
+                          Coming Soon
+                        </span>
+                      )}
+                      {currentCategory.bookingsPaused && (
+                        <span className="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 text-[10px] font-extrabold uppercase">
+                          Bookings Paused
+                        </span>
+                      )}
                     </div>
                     <div className="text-xs text-slate-600">
                       {currentCategory.tagline.en}
@@ -301,23 +321,26 @@ export default function BookingWizardPage() {
 
               {/* Category Switcher Drawer if "Change" clicked */}
               {showCategoryPicker && (
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 grid grid-cols-1 sm:grid-cols-5 gap-2.5">
-                  {categories.map((cat) => (
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+                  {visibleCategories.map((cat) => (
                     <button
                       key={cat.id}
                       type="button"
                       onClick={() => {
                         const firstSub = subcategories.find(
-                          (s) => s.categorySlug === cat.slug
+                          (s) => s.categorySlug === cat.slug && s.active !== false
                         );
                         const firstProv = providers.find(
-                          (p) => p.categorySlug === cat.slug
+                          (p) =>
+                            p.categorySlug === cat.slug ||
+                            p.categorySlugs?.includes(cat.slug)
                         );
                         updateBookingDraft({
                           categorySlug: cat.slug,
                           subcategoryName:
                             firstSub?.name.en || cat.name.en,
-                          providerId: firstProv?.id || 'prov-1',
+                          providerId: firstProv?.id || providers[0]?.id || 'prov-1',
+                          categorySpecificDetails: {},
                         });
                         setShowCategoryPicker(false);
                       }}
@@ -329,7 +352,11 @@ export default function BookingWizardPage() {
                     >
                       <div className="text-xs font-extrabold">{cat.name.en}</div>
                       <div className="text-[10px] text-slate-500 mt-0.5">
-                        Visit ₹{cat.baseVisitingFee}
+                        {cat.comingSoon
+                          ? 'Coming Soon'
+                          : cat.bookingsPaused
+                          ? 'Bookings Paused'
+                          : `Visit ₹${cat.baseVisitingFee}`}
                       </div>
                     </button>
                   ))}
@@ -385,7 +412,23 @@ export default function BookingWizardPage() {
               <div className="flex justify-end pt-3 border-t border-slate-100">
                 <button
                   type="button"
-                  onClick={() => setStep(2)}
+                  onClick={() => {
+                    if (currentCategory.comingSoon) {
+                      showToast(
+                        `${currentCategory.name.en} is marked Coming Soon. Please select an active service.`,
+                        'info'
+                      );
+                      return;
+                    }
+                    if (currentCategory.bookingsPaused) {
+                      showToast(
+                        `Bookings for ${currentCategory.name.en} are temporarily paused by Admin.`,
+                        'warning'
+                      );
+                      return;
+                    }
+                    setStep(2);
+                  }}
                   className="px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 transition inline-flex items-center gap-2"
                 >
                   <span>Continue</span>
@@ -408,6 +451,64 @@ export default function BookingWizardPage() {
                   Tell us what work you need, add photos for a quicker and
                   accurate estimate.
                 </p>
+              </div>
+
+              {/* Category-Specific Dynamic Form Fields */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200 space-y-4">
+                <div>
+                  <div className="text-xs font-extrabold uppercase tracking-wider text-emerald-800">
+                    {formTemplate.title}
+                  </div>
+                  <p className="text-xs text-slate-600 mt-0.5">
+                    {formTemplate.subtitle}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  {formTemplate.fields.map((field) => {
+                    const value =
+                      bookingDraft.categorySpecificDetails?.[field.name] || '';
+                    const handleFieldChange = (val: string) =>
+                      updateBookingDraft({
+                        categorySpecificDetails: {
+                          ...(bookingDraft.categorySpecificDetails || {}),
+                          [field.name]: val,
+                        },
+                      });
+                    return (
+                      <div key={field.name} className="space-y-1">
+                        <label className="text-xs font-bold text-slate-800 block">
+                          {field.label}{' '}
+                          {field.required && (
+                            <span className="text-rose-600">*</span>
+                          )}
+                        </label>
+                        {field.type === 'select' ? (
+                          <select
+                            value={value}
+                            onChange={(e) => handleFieldChange(e.target.value)}
+                            className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-emerald-600"
+                          >
+                            <option value="">Select {field.label}...</option>
+                            {(field.options || []).map((opt) => (
+                              <option key={opt} value={opt}>
+                                {opt}
+                              </option>
+                            ))}
+                          </select>
+                        ) : (
+                          <input
+                            type={field.type === 'number' ? 'number' : 'text'}
+                            value={value}
+                            onChange={(e) => handleFieldChange(e.target.value)}
+                            placeholder={field.placeholder || ''}
+                            className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-emerald-600"
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Requirement Textarea with 500-char counter */}
@@ -499,6 +600,18 @@ export default function BookingWizardPage() {
                 <button
                   type="button"
                   onClick={() => {
+                    const missingField = formTemplate.fields.find(
+                      (f) =>
+                        f.required &&
+                        !(bookingDraft.categorySpecificDetails?.[f.name] || '').trim()
+                    );
+                    if (missingField) {
+                      showToast(
+                        `Please fill "${missingField.label}" before continuing.`,
+                        'warning'
+                      );
+                      return;
+                    }
                     if (!bookingDraft.problemDescription.trim()) {
                       showToast(
                         'Please describe your requirement before continuing.',

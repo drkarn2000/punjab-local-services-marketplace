@@ -27,7 +27,16 @@ import {
   Zap,
 } from 'lucide-react';
 import { useMarketplace } from '@/context/MarketplaceContext';
-import { CategorySlug, CitySlug } from '@/types/marketplace';
+import {
+  CategorySlug,
+  CitySlug,
+  ServiceVerticalGroup,
+} from '@/types/marketplace';
+import {
+  getCategoryVerticalGroup,
+  renderCategoryIcon,
+  SERVICE_VERTICAL_GROUPS,
+} from '@/data/serviceCatalogConfig';
 import openHandSunsetBg from '../about/images/Chandigarh Open Hand Sunset-1.png';
 import twilightVillasBg from '../about/images/Twilight Villas Along a Curving Road-2.png';
 
@@ -36,18 +45,23 @@ export default function AllServicesPage() {
     language,
     selectedCity,
     setSelectedCity,
-    categories,
-    subcategories,
+    visibleCategories: categories,
+    visibleSubcategories: subcategories,
     showToast,
   } = useMarketplace();
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedVertical, setSelectedVertical] = useState<
+    'all' | ServiceVerticalGroup
+  >('all');
   const [selectedCategories, setSelectedCategories] = useState<CategorySlug[]>([]);
   const [availableTodayOnly, setAvailableTodayOnly] = useState(false);
   const [minRating, setMinRating] = useState<number>(0);
   const [sortBy, setSortBy] = useState<'popular' | 'price-asc' | 'pros-desc'>('popular');
   const [browseSlideIndex, setBrowseSlideIndex] = useState(0);
   const [browsePaused, setBrowsePaused] = useState(false);
+  const [mosaicIdx, setMosaicIdx] = useState(0);
+  const [mosaicPaused, setMosaicPaused] = useState(false);
 
   const toggleCategory = (slug: CategorySlug) => {
     setSelectedCategories((prev) =>
@@ -57,6 +71,11 @@ export default function AllServicesPage() {
 
   const filteredCategories = useMemo(() => {
     let list = [...categories];
+    if (selectedVertical !== 'all') {
+      list = list.filter(
+        (c) => getCategoryVerticalGroup(c) === selectedVertical
+      );
+    }
     if (selectedCategories.length > 0) {
       list = list.filter((c) => selectedCategories.includes(c.slug));
     }
@@ -94,8 +113,30 @@ export default function AllServicesPage() {
     return () => clearInterval(timer);
   }, [filteredCategories.length, browsePaused]);
 
+  const displayedMosaicCategories =
+    categories.length <= 5
+      ? categories
+      : Array.from(
+          { length: 5 },
+          (_, offset) => categories[(mosaicIdx + offset) % categories.length]
+        );
+
+  useEffect(() => {
+    if (categories.length <= 5 || mosaicPaused) return;
+    const timer = setInterval(() => {
+      setMosaicIdx((prev) => (prev + 1) % categories.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [categories.length, mosaicPaused]);
+
   const filteredSubcategories = useMemo(() => {
     return subcategories.filter((sub) => {
+      if (selectedVertical !== 'all') {
+        const parentCat = categories.find((c) => c.slug === sub.categorySlug);
+        if (parentCat && getCategoryVerticalGroup(parentCat) !== selectedVertical) {
+          return false;
+        }
+      }
       if (
         selectedCategories.length > 0 &&
         !selectedCategories.includes(sub.categorySlug)
@@ -113,13 +154,7 @@ export default function AllServicesPage() {
     });
   }, [subcategories, selectedCategories, searchTerm]);
 
-  const categoryIcon: Record<CategorySlug, React.ReactNode> = {
-    electrician: <Zap className="w-6 h-6 text-amber-500 fill-amber-400" />,
-    plumber: <Droplets className="w-6 h-6 text-sky-500 fill-sky-400" />,
-    carpenter: <Hammer className="w-6 h-6 text-orange-500" />,
-    'computer-repair': <Laptop className="w-6 h-6 text-indigo-600" />,
-    'mobile-repair': <Smartphone className="w-6 h-6 text-blue-600" />,
-  };
+  // Icons rendered centrally via renderCategoryIcon in serviceCatalogConfig.ts
 
   const popularTiles = [
     {
@@ -256,10 +291,14 @@ export default function AllServicesPage() {
         </div>
       </section>
 
-      {/* 5 Interactive Category Mosaic Tiles (Half Inside Hero, Half Below Border) */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 -mt-14 relative z-20">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
-          {categories.map((c) => (
+      {/* Interactive Category Mosaic Slider (Single Row, Auto-Slides Every 2s) */}
+      <section
+        onMouseEnter={() => setMosaicPaused(true)}
+        onMouseLeave={() => setMosaicPaused(false)}
+        className="w-full px-4 sm:px-6 lg:px-8 -mt-14 relative z-20 space-y-3"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
+          {displayedMosaicCategories.map((c) => (
             <Link
               key={c.id}
               href={`/services/${c.slug}`}
@@ -279,7 +318,7 @@ export default function AllServicesPage() {
               </span>
               <div className="relative z-10 flex items-center justify-between">
                 <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 flex items-center justify-center group-hover:scale-110 transition">
-                  {categoryIcon[c.slug]}
+                  {renderCategoryIcon(c.iconName || c.slug, 'w-6 h-6')}
                 </div>
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-200 text-[10px] font-extrabold">
                   ₹{c.baseVisitingFee} Visit
@@ -292,6 +331,48 @@ export default function AllServicesPage() {
             </Link>
           ))}
         </div>
+
+        {categories.length > 5 && (
+          <div className="flex items-center justify-center gap-3 pt-1">
+            <button
+              type="button"
+              onClick={() =>
+                setMosaicIdx(
+                  (prev) => (prev - 1 + categories.length) % categories.length
+                )
+              }
+              aria-label="Previous category slide"
+              className="w-8 h-8 rounded-full bg-[#041418] border border-emerald-400/50 hover:border-emerald-300 text-emerald-300 flex items-center justify-center shadow transition"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <div className="flex items-center gap-1.5">
+              {categories.map((c, idx) => (
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => setMosaicIdx(idx)}
+                  aria-label={`Show ${c.name.en}`}
+                  className={`h-1.5 rounded-full transition-all ${
+                    idx === mosaicIdx % categories.length
+                      ? 'w-5 bg-emerald-600'
+                      : 'w-1.5 bg-slate-300 hover:bg-emerald-400'
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                setMosaicIdx((prev) => (prev + 1) % categories.length)
+              }
+              aria-label="Next category slide"
+              className="w-8 h-8 rounded-full bg-[#041418] border border-emerald-400/50 hover:border-emerald-300 text-emerald-300 flex items-center justify-center shadow transition"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
       </section>
 
       {/* MAIN CONTENT: Left Filter Sidebar + Right Browse Services */}
@@ -336,8 +417,42 @@ export default function AllServicesPage() {
               ))}
             </div>
 
-            {/* Service Category Filter */}
+            {/* Vertical Group Filter */}
             <div className="space-y-2 border-b border-white/15 pb-4">
+              <div className="text-xs font-extrabold text-emerald-300 uppercase tracking-wider">
+                Service Vertical
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => setSelectedVertical('all')}
+                  className={`px-2.5 py-1 rounded-full text-[11px] font-bold border transition ${
+                    selectedVertical === 'all'
+                      ? 'bg-emerald-400 text-slate-950 border-emerald-200'
+                      : 'bg-white/5 text-slate-200 border-white/15 hover:border-emerald-300/60'
+                  }`}
+                >
+                  All ({categories.length})
+                </button>
+                {SERVICE_VERTICAL_GROUPS.map((grp) => (
+                  <button
+                    key={grp.id}
+                    type="button"
+                    onClick={() => setSelectedVertical(grp.id)}
+                    className={`px-2.5 py-1 rounded-full text-[11px] font-bold border transition ${
+                      selectedVertical === grp.id
+                        ? 'bg-emerald-400 text-slate-950 border-emerald-200'
+                        : 'bg-white/5 text-slate-200 border-white/15 hover:border-emerald-300/60'
+                    }`}
+                  >
+                    {grp.shortTitle}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Service Category Filter */}
+            <div className="space-y-2 border-b border-white/15 pb-4 max-h-60 overflow-y-auto pr-1">
               <div className="text-xs font-extrabold text-emerald-300 uppercase tracking-wider">
                 Service Category
               </div>
@@ -486,12 +601,12 @@ export default function AllServicesPage() {
 
               {filteredCategories.length > 0 && (
                 <div
-                  className="relative md:mx-6 my-6"
+                  className="relative md:mx-4 my-5"
                   onMouseEnter={() => setBrowsePaused(true)}
                   onMouseLeave={() => setBrowsePaused(false)}
                 >
-                  {/* Layered Custom-Effects Viewport (Centered Content) */}
-                  <div className="relative h-[340px] sm:h-[360px] rounded-3xl overflow-hidden border border-emerald-400/35 bg-[#041418] shadow-2xl">
+                  {/* Split Hero-Banner Slider Viewport (Left Dark Panel + Right Half Service Image) */}
+                  <div className="relative h-[340px] sm:h-[360px] rounded-3xl overflow-hidden border border-emerald-400/35 bg-[#031618] shadow-2xl">
                     {filteredCategories.map((cat, idx) => {
                       const isActive = idx === browseSlideIndex % filteredCategories.length;
                       return (
@@ -503,41 +618,43 @@ export default function AllServicesPage() {
                               : 'opacity-0 scale-105 z-0 pointer-events-none'
                           }`}
                         >
-                          {/* Background Image with Slow Zoom Reveal */}
-                          <img
-                            src={cat.cardImage}
-                            alt={cat.name[language]}
-                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${
-                              isActive ? 'scale-100 opacity-50' : 'scale-110 opacity-20'
-                            }`}
-                          />
+                          {/* Right-Half Full-Bleed Service Image */}
+                          <div className="absolute inset-y-0 right-0 w-full md:w-[56%] overflow-hidden pointer-events-none">
+                            <img
+                              src={cat.heroImage || cat.cardImage}
+                              alt={cat.name[language]}
+                              className={`w-full h-full object-cover object-center transition-transform duration-[1200ms] ease-out ${
+                                isActive ? 'scale-100' : 'scale-110'
+                              }`}
+                            />
+                            {/* Mobile dark readability scrim */}
+                            <div className="md:hidden absolute inset-0 bg-[#031618]/80" />
+                            {/* Desktop left-edge blend + glowing curved emerald arc */}
+                            <div className="hidden md:block absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#031618] via-[#031618]/70 to-transparent" />
+                            <div className="hidden md:block absolute -top-16 -bottom-16 left-2 w-24 rounded-l-[100%] border-l-2 border-emerald-400/90 shadow-[-10px_0_28px_rgba(52,211,153,0.55)] pointer-events-none" />
+                          </div>
 
-                          {/* Balanced Radial/Vertical Gradient Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-b from-[#041418]/75 via-[#092930]/85 to-[#041418]/90" />
-
-                          {/* Centered Staggered Content Layer */}
-                          <div className="relative z-10 h-full px-6 sm:px-16 md:px-28 py-8 flex flex-col items-center justify-center text-center gap-4">
+                          {/* Left Content Column */}
+                          <div className="relative z-10 h-full w-full md:w-[54%] px-7 sm:px-12 py-7 flex flex-col justify-center items-start gap-3.5">
                             <div
-                              className={`flex flex-wrap items-center justify-center gap-3 transition-all duration-700 ${
+                              className={`flex flex-wrap items-center gap-2 transition-all duration-700 ${
                                 isActive
                                   ? 'opacity-100 translate-y-0'
                                   : 'opacity-0 translate-y-4'
                               }`}
                             >
-                              <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center shadow-lg">
-                                {categoryIcon[cat.slug]}
-                              </div>
-                              <span className="px-3.5 py-1 rounded-full bg-emerald-400 text-slate-950 text-xs font-extrabold shadow">
-                                ₹{cat.baseVisitingFee} Visit
+                              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#36f1a2] text-slate-950 text-xs font-extrabold shadow">
+                                <Star className="w-3.5 h-3.5 fill-slate-950" />
+                                <span>Featured Service</span>
                               </span>
-                              <span className="px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-emerald-200 text-xs font-bold">
-                                {cat.providerCount} Verified Pros
+                              <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-emerald-200 text-xs font-bold">
+                                ₹{cat.baseVisitingFee} Visit • {cat.providerCount} Pros
                               </span>
                             </div>
 
-                            <div className="space-y-2 max-w-2xl">
+                            <div className="space-y-1.5">
                               <h3
-                                className={`text-2xl sm:text-4xl font-extrabold text-white tracking-tight transition-all duration-700 delay-100 ${
+                                className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight transition-all duration-700 delay-100 ${
                                   isActive
                                     ? 'opacity-100 translate-y-0'
                                     : 'opacity-0 translate-y-4'
@@ -546,18 +663,40 @@ export default function AllServicesPage() {
                                 {cat.name[language]}
                               </h3>
                               <p
-                                className={`text-sm sm:text-base text-slate-200 leading-relaxed line-clamp-2 transition-all duration-700 delay-150 ${
+                                className={`text-xs sm:text-sm text-slate-200 leading-relaxed line-clamp-2 max-w-md transition-all duration-700 delay-150 ${
                                   isActive
                                     ? 'opacity-100 translate-y-0'
                                     : 'opacity-0 translate-y-4'
                                 }`}
                               >
-                                {cat.tagline[language]} — {cat.description[language]}
+                                {cat.description[language]}
                               </p>
                             </div>
 
+                            {/* 3 Inline Trust Highlights */}
                             <div
-                              className={`flex items-center justify-center gap-3 transition-all duration-700 delay-200 ${
+                              className={`flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] sm:text-xs font-semibold text-emerald-100 transition-all duration-700 delay-150 ${
+                                isActive
+                                  ? 'opacity-100 translate-y-0'
+                                  : 'opacity-0 translate-y-4'
+                              }`}
+                            >
+                              <span className="inline-flex items-center gap-1.5">
+                                <BadgeCheck className="w-4 h-4 text-[#36f1a2]" />
+                                Verified Pros
+                              </span>
+                              <span className="inline-flex items-center gap-1.5">
+                                <ShieldCheck className="w-4 h-4 text-[#36f1a2]" />
+                                Fast Response
+                              </span>
+                              <span className="inline-flex items-center gap-1.5">
+                                <MapPin className="w-4 h-4 text-[#36f1a2]" />
+                                On-site Service
+                              </span>
+                            </div>
+
+                            <div
+                              className={`pt-1 flex items-center gap-3 transition-all duration-700 delay-200 ${
                                 isActive
                                   ? 'opacity-100 translate-y-0'
                                   : 'opacity-0 translate-y-4'
@@ -565,14 +704,11 @@ export default function AllServicesPage() {
                             >
                               <Link
                                 href={`/services/${cat.slug}`}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg transition"
+                                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#36f1a2] hover:bg-emerald-300 text-slate-950 font-extrabold text-xs sm:text-sm shadow-[0_8px_24px_rgba(54,241,162,0.35)] transition"
                               >
-                                <span>Explore {cat.name[language]}</span>
+                                <span>Book Now</span>
                                 <ArrowRight className="w-4 h-4" />
                               </Link>
-                              <span className="text-xs font-semibold text-emerald-200/80">
-                                {idx + 1} / {filteredCategories.length}
-                              </span>
                             </div>
                           </div>
                         </div>
@@ -580,42 +716,51 @@ export default function AllServicesPage() {
                     })}
                   </div>
 
-                  {/* Interactive Category Pills Straddling All 4 Borders (Desktop) */}
+                  {/* White Circular Prev / Next Edge Buttons */}
                   {filteredCategories.length > 1 && (
-                    <div className="mt-4 flex flex-wrap items-center justify-center gap-2 md:mt-0 md:block">
-                      {filteredCategories.map((cat, idx) => {
-                        const isActive =
-                          idx === browseSlideIndex % filteredCategories.length;
-                        const borderPosClasses = [
-                          'md:absolute md:-left-5 md:top-1/2 md:-translate-y-1/2',
-                          'md:absolute md:left-[26%] md:-bottom-4 md:-translate-x-1/2',
-                          'md:absolute md:right-[26%] md:-bottom-4 md:translate-x-1/2',
-                          'md:absolute md:left-1/2 md:-top-4 md:-translate-x-1/2',
-                          'md:absolute md:-right-5 md:top-1/2 md:-translate-y-1/2',
-                        ];
-                        return (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setBrowseSlideIndex((prev) =>
+                            prev <= 0 ? filteredCategories.length - 1 : prev - 1
+                          )
+                        }
+                        aria-label="Previous featured service"
+                        className="absolute left-2 md:-left-4 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-white hover:bg-emerald-50 text-slate-900 border border-slate-200 shadow-lg flex items-center justify-center transition"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setBrowseSlideIndex(
+                            (prev) => (prev + 1) % filteredCategories.length
+                          )
+                        }
+                        aria-label="Next featured service"
+                        className="absolute right-2 md:-right-4 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-white hover:bg-emerald-50 text-slate-900 border border-slate-200 shadow-lg flex items-center justify-center transition"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+
+                      {/* Clean Pagination Dots */}
+                      <div className="flex items-center justify-center gap-1.5 mt-3">
+                        {filteredCategories.map((c, idx) => (
                           <button
-                            key={cat.id}
+                            key={c.id}
                             type="button"
                             onClick={() => setBrowseSlideIndex(idx)}
-                            className={`z-30 inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-extrabold transition-all shadow-lg whitespace-nowrap ${
-                              borderPosClasses[idx] ?? ''
-                            } ${
-                              isActive
-                                ? 'bg-[#041418] text-emerald-300 border border-emerald-400 shadow-[0_8px_24px_rgba(16,185,129,0.45)] scale-105'
-                                : 'bg-white text-slate-800 border border-emerald-300/60 hover:bg-emerald-50 hover:text-emerald-800'
+                            aria-label={`Slide ${idx + 1}: ${c.name.en}`}
+                            className={`h-2 rounded-full transition-all ${
+                              idx === browseSlideIndex % filteredCategories.length
+                                ? 'w-5 bg-emerald-600'
+                                : 'w-2 bg-slate-300 hover:bg-emerald-400'
                             }`}
-                          >
-                            <span
-                              className={`w-2 h-2 rounded-full transition-colors ${
-                                isActive ? 'bg-emerald-400' : 'bg-slate-300'
-                              }`}
-                            />
-                            <span>{cat.name[language]}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                          />
+                        ))}
+                      </div>
+                    </>
                   )}
                 </div>
               )}
@@ -695,7 +840,9 @@ export default function AllServicesPage() {
 
                     {/* Top-Left Border Title Pill */}
                     <div className="sm:absolute sm:-top-4 sm:left-5 z-20 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 text-slate-950 text-xs font-extrabold shadow-lg">
-                      <span className="scale-75 -my-1 bg-[#041418] p-1 rounded-md">{categoryIcon[cat.slug]}</span>
+                      <span className="scale-75 -my-1 bg-[#041418] p-1 rounded-md">
+                        {renderCategoryIcon(cat.iconName || cat.slug, 'w-5 h-5')}
+                      </span>
                       <span>{cat.name[language]} Subcategories</span>
                     </div>
 
@@ -715,15 +862,15 @@ export default function AllServicesPage() {
                       </p>
                     </div>
 
-                    <div className="relative z-10 mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 pt-3 pb-3">
+                    <div className="relative z-10 mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1 pb-1">
                       {catSubs.map((sub) => (
                         <Link
                           key={sub.id}
                           href={`/services/${cat.slug}/${sub.slug}`}
-                          className="relative px-4 pt-6 pb-7 rounded-2xl bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white border border-emerald-400/30 hover:border-emerald-300/80 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(16,185,129,0.35)] transition-all duration-300 flex flex-col justify-center group"
+                          className="p-4 rounded-2xl bg-gradient-to-br from-[#041418] via-[#092930] to-[#0f1c38] text-white border border-emerald-400/30 hover:border-emerald-300/80 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(16,185,129,0.35)] transition-all duration-300 flex flex-col justify-between gap-3 group"
                         >
-                          {/* Top Border Centered Subcategory Name */}
-                          <span className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3 py-0.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 text-slate-950 text-[11px] font-extrabold shadow-md whitespace-nowrap max-w-[92%] truncate transition-colors">
+                          {/* Top Centered Subcategory Name Inside Card */}
+                          <span className="self-center px-3 py-0.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 text-slate-950 text-[11px] font-extrabold shadow-sm whitespace-nowrap max-w-full truncate">
                             {sub.name[language]}
                           </span>
 
@@ -731,12 +878,12 @@ export default function AllServicesPage() {
                             {sub.shortDesc.en}
                           </p>
 
-                          {/* Bottom Border Visit Fee & Duration Pills */}
-                          <div className="absolute -bottom-3 left-3 right-3 z-20 flex items-center justify-between gap-2 text-[10px]">
-                            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 font-extrabold text-slate-950 shadow">
+                          {/* Bottom Visit Fee & Duration Inside Card */}
+                          <div className="pt-2 border-t border-white/10 flex items-center justify-between gap-2 text-[10px]">
+                            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 font-extrabold text-slate-950 shadow-sm">
                               Visit ₹{sub.startingPrice}
                             </span>
-                            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 font-extrabold text-slate-950 shadow">
+                            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 border border-emerald-200 font-extrabold text-slate-950 shadow-sm">
                               ~{sub.estimatedDuration}
                             </span>
                           </div>
